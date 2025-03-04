@@ -12,50 +12,50 @@ def index():
 
 # crete new invoice
 @app.post("/invoices/create")
-def create_item(item: int):
+def create_new_invoice(item: int):
     return
 
 # edit invoice
 @app.put("/invoices/edit/{invoiceId}")
-def create_item(item: int):
+def edit_invoice(item: int):
     return
 
 # view invoice
 @app.get("/invoices/view/{invoiceId}")
-def create_item(item: int):
+def view_invoice(item: int):
     return
 
 # delete invoice
 @app.delete("/invoices/delete/{invoiceId}")
-def create_item(item: int):
+def delete_invoice(item: int):
     return
 
 # process UBL
 @app.post("/invoices/UBL/")
-def create_item(item: int):
+def process_UBL(item: int):
     return
 
 # process JSON
 @app.post("/invoices/{JSONId}")
-def create_item(item: int):
+def process_JSON(item: int):
     return
 
 # validate UBL
 @app.get("/invoices/validate/")
-def create_item(item: int):
+def validate_UBL(item: int):
     return
 
 # specify currency
 @app.put("/invoices/{invoiceId}/currency")
-def create_item(item: int):
+def specify_currency(item: int):
     return
 
 # specify language
 @app.put("/invoices/{invoiceId}/language")
-def create_item(item: int):
+def specify_language(item: int):
     return
 
 # specify template
 @app.put("/invoices/{invoiceId}/template")
-def create_item(item: int):
+def specify_template(item: int):
     return
