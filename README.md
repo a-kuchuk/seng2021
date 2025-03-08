@@ -12,7 +12,7 @@ build: `docker compose up --build` (sudo optional)
 
 ### deployment info
 
-app is deployed automatically from main branch
+app is deployed automatically from main branch on https://seng2021-nine.vercel.app/
 
 ```
 note from andrea:
