@@ -1,7 +1,27 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File, HTTPException
+import json
+import xmltodict
 
 app = FastAPI()
 
 @app.get("/")
 def index():
     return {"details": "Hello, World!"}
+
+
+@app.post("/ubl/order/parse")
+async def parse_ubl_order(file: UploadFile = File(...)):
+    try:
+        xml_content = await file.read()
+
+        data_dict = xmltodict.parse(xml_content, process_namespaces=False)
+
+        json_data = json.dumps(data_dict, indent=4)
+
+        with open("data.json", "w") as json_file:
+            json_file.write(json_data)
+        
+        return json.loads(json_data)
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Invalid XML file")
