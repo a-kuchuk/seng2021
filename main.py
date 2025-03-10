@@ -24,4 +24,4 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         return json.loads(json_data)
 
     except Exception as e:
-        raise HTTPException(status_code=400, detail="Invalid XML file")
+        raise HTTPException(status_code=400, detail="Erro: Invalid XML file")
