@@ -2,14 +2,7 @@ import io
 import os
 from fastapi.testclient import TestClient
 
-#there is probably a batter way to import main so you can access app lol
-cur_path = os.path.dirname(__file__) # current directory
-main_path = os.path.relpath('..\main.py', cur_path) # relative path to main.py
-import importlib.util
-
-spec = importlib.util.spec_from_file_location("main", main_path)
-main = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(main)
+from src import main
 app = main.app
 
 client = TestClient(app)
