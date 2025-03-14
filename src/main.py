@@ -6,8 +6,8 @@ Returns:
     _type_: _description_
 """
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
 import json
+from fastapi import FastAPI, UploadFile, File, HTTPException
 import xmltodict
 
 app = FastAPI()
@@ -26,6 +26,15 @@ def index():
 
 @app.post("/ubl/order/parse")
 async def parse_ubl_order(file: UploadFile = File(...)):
+    """
+    Parse a UBL order from an uploaded XML file.
+
+    Args:
+        file (UploadFile): The uploaded XML.
+
+    Returns:
+        str: JSON representation of the parsed XML.
+    """
     if file is None:
         raise HTTPException(status_code=400, detail="No file provided")
     try:
@@ -38,9 +47,8 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         # This uncommented code turns the JSON data into a file
         # with open("data.json", "w") as json_file:
         #     json_file.write(json_data)
-        
         # return json.loads(json_data)
 
         return json_data
     except Exception as e:
-        raise HTTPException(status_code=400, detail="Invalid XML file")
+        raise HTTPException(status_code=400, detail="Invalid XML file") from e

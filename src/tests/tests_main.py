@@ -1,11 +1,15 @@
-from fastapi.testclient import TestClient
-from src import main
-from src.main import app
+"""
+Unit tests for FastAPI UBL Order parsing endpoints.
+"""
+
 import json
+from fastapi.testclient import TestClient
+from src.main import app
 
 client = TestClient(app)
 
 def test_parse_example_valid():
+    """Test if a valid UBL order XML is parsed correctly."""
     xml_content = """<?xml version="1.0" encoding="UTF-8"?>
 <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:Order-2">
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
@@ -188,31 +192,30 @@ def test_parse_example_valid():
 </Order>"""
 
     files = {"file": ("test.xml", xml_content, "text/xml")}
-
     response = client.post("/ubl/order/parse", files=files)
 
     parsed_order = json.loads(response.json())
     assert parsed_order["Order"]["cbc:ID"] == "AEG012345"
 
 def test_parse_invalid_xml():
+    """Test if an invalid XML file returns HTTP 400."""
     xml_content = """<?xml version="1.0" encoding="UTF-8"?>
-    <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
-        <cbc:ID>AEG012345</cbc:ID>
-        <cbc:IssueDate>2005-06-20</cbc:IssueDate>
-    """
+        <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+            <cbc:ID>AEG012345</cbc:ID>
+            <cbc:IssueDate>2005-06-20</cbc:IssueDate>
+    """  # Malformed XML (missing closing tag)
 
     files = {"file": ("test.xml", xml_content, "text/xml")}
-
     response = client.post("/ubl/order/parse", files=files)
 
     assert response.status_code == 400  # Expecting HTTP 400 due to invalid XML
     assert "Invalid XML file" in response.json()["detail"]  # Ensure correct error message
 
 def test_parse_empty_xml():
+    """Test if an empty XML file returns HTTP 400."""
     xml_content = ""
 
     files = {"file": ("test.xml", xml_content, "text/xml")}
-
     response = client.post("/ubl/order/parse", files=files)
 
     assert response.status_code == 400  # Expecting HTTP 400 due to invalid XML
