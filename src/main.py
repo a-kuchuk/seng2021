@@ -32,8 +32,8 @@ def refine_data(order_id: str):
     with open(json_file, "r", encoding="utf-8") as file:
         try:
             data = json.load(file)
-        except json.JSONDecodeError:
-            raise HTTPException(status_code=400, detail="Invalid JSON format")
+        except json.JSONDecodeError as exec:
+            raise HTTPException(status_code=400, detail="Invalid JSON format") from exec
 
     if not data or "orderId" not in data:
         raise HTTPException(status_code=400, detail="Missing or invalid Order Id")
