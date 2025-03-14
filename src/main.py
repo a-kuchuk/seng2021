@@ -38,7 +38,6 @@ def edit_invoice(invoice_id: str, updated_invoice: dict):
     except json.JSONDecodeError as exc:
         raise HTTPException(status_code=500, detail="Invalid JSON format") from exc
 
-    # Find the invoice and update it
     if invoice_id not in invoices:
         raise HTTPException(status_code=400, detail="Invoice not found")
 
