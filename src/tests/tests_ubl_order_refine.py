@@ -1,13 +1,18 @@
 import json
+import sys
 import os
+
+# src directory in sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+
 from fastapi.testclient import TestClient
-from main import app  
+from main import app
 
 client = TestClient(app)
 
-def test_create_invoice_success():
+def test_refine_order_success():
     json_data = {
-        "invoiceId": "123",
+        "orderId": "123",
         "date": "2011-09-22",
         "period": {"start": "2011-08-01", "end": "2011-08-31"},
         "supplier": "Custom Cotter Pins",
@@ -18,34 +23,43 @@ def test_create_invoice_success():
         ]
     }
 
-    with open("data.json", "w") as file:
+    # filename from main.py
+    json_file = "order_data.json"
+
+    with open(json_file, "w") as file:
         json.dump(json_data, file)
 
-    response = client.post("/ubl/invoice/create/123")
+    response = client.post("/ubl/order/refine/123")
+
+    print("Response JSON:", response.json())
+
 
     assert response.status_code == 200
-    assert response.json() == {"invoiceId": "123"}
-    assert os.path.exists("invoice.xml")
+    assert response.json()["orderId"] == "123"
+    assert response.json()["message"] == "Order refined successfully"
 
-    os.remove("data.json")
-    os.remove("invoice.xml")
+    os.remove(json_file)
 
-def test_create_invoice_empty_json():
-    with open("data.json", "w") as file:
+def test_refine_order_empty_json():
+    json_file = "order_data.json"
+
+    with open(json_file, "w") as file:
         file.write("{}")
 
-    response = client.post("/ubl/invoice/create/123")
+    response = client.post("/ubl/order/refine/123")
 
     assert response.status_code == 400
-    assert response.json() == {"error": "Missing or invalid JSON Id"}
+    assert response.json() == {"detail": "Missing or invalid Order Id"}
 
-    os.remove("data.json")
+    os.remove(json_file)
 
-def test_create_invoice_file_not_found():
-    if os.path.exists("data.json"):
-        os.remove("data.json")
+def test_refine_order_file_not_found():
+    json_file = "order_data.json"
 
-    response = client.post("/ubl/invoice/create/123")
+    if os.path.exists(json_file):
+        os.remove(json_file)
+
+    response = client.post("/ubl/order/refine/123")
 
     assert response.status_code == 400
-    assert response.json() == {"error": "File doesn't exist"}
+    assert response.json() == {"detail": "File doesn't exist"}
