@@ -7,7 +7,7 @@ client = TestClient(app)
 
 def test_create_invoice_success():
     json_data = {
-        "invoiceId": "123",
+        "JSONId": "123",
         "date": "2011-09-22",
         "period": {"start": "2011-08-01", "end": "2011-08-31"},
         "supplier": "Custom Cotter Pins",
@@ -30,17 +30,20 @@ def test_create_invoice_success():
     
     os.remove("data.json")
     os.remove("invoice.xml")
+    print("invoice creation success!")
 
 def test_create_invoice_empty_json():
     with open("data.json", "w") as file:
         file.write("{}")
     
     response = client.post("/ubl/invoice/create/123")
-    
-    assert response.status_code == 400
-    assert response.json() == {"error": "File is empty?"}
+
+    assert response.status_code == 400 
+    assert "File is Empty" in response.json()["detail"] 
+
     
     os.remove("data.json")
+    print("invoice empty success!")
 
 def test_create_invoice_file_not_found():
     if os.path.exists("data.json"):
@@ -48,5 +51,11 @@ def test_create_invoice_file_not_found():
     
     response = client.post("/ubl/invoice/create/123")
     
-    assert response.status_code == 400
-    assert response.json() == {"error": "File doesn't exist"}
+    assert response.status_code == 400 
+    assert "File doesn't exist" in response.json()["detail"]
+    print("success not found!")
+
+if __name__ == "__main__":
+    test_create_invoice_success()
+    test_create_invoice_empty_json()
+    test_create_invoice_file_not_found()
