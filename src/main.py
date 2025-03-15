@@ -1,4 +1,10 @@
-"""Module for FastAPI application on invoice generation from order document"""
+"""_summary_
+
+contains all routes
+
+Returns:
+    _type_: _description_
+"""
 
 import xml.etree.ElementTree as ET
 import mimetypes
@@ -9,7 +15,13 @@ app = FastAPI()
 
 @app.get("/")
 def index():
-    """Index route for the API"""
+    """_summary_
+
+    default hello world route
+
+    Returns:
+        _type_: _description_
+    """
     return {"details": "Hello, World!"}
 
 
