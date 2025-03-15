@@ -222,8 +222,8 @@ def test_parse_empty_xml():
     assert "Invalid XML file" in response.json()["detail"]  # Ensure correct error message
 
 def test_valid_invoice():
-	"""Test valid order document to invoice JSON."""
-	xml_content = """<?xml version="1.0" encoding="UTF-8"?>
+    """Test valid order document to invoice JSON."""
+    xml_content = """<?xml version="1.0" encoding="UTF-8"?>
 <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:Order-2">
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>urn:oasis:names:specification:ubl:xpath:Order-2.0:sbs-1.0-draft</cbc:CustomizationID>
@@ -403,20 +403,20 @@ def test_valid_invoice():
 		</cac:LineItem>
 	</cac:OrderLine>
 </Order>"""
-# Pass in the order document in XML format to the /ubl/order/parse endpoint and then pass into the /ubl/order/validate endpoint
+# Pass in the order document in XML format to the /ubl/order/parse endpoint
+# and then pass into the /ubl/order/validate endpoint
 
-	files = {"file": ("test.xml", xml_content, "text/xml")}
-	response = client.post("/ubl/order/parse", files=files)
-	
-	parsed_order = response.json()
-	response2 = client.post("/ubl/order/validate", json=parsed_order)
+    files = {"file": ("test.xml", xml_content, "text/xml")}
+    response = client.post("/ubl/order/parse", files=files)
 
-	parsed_invoice = response2.json()
-	assert isinstance(parsed_invoice["validatedOrder"]["InvoiceID"]["ID"], int)
+    parsed_order = response.json()
+    response2 = client.post("/ubl/order/validate", json=parsed_order)
+    parsed_invoice = response2.json()
+    assert isinstance(parsed_invoice["validatedOrder"]["InvoiceID"]["ID"], int)
 
 def test_empty_field():
-	"""Test if API returns error when necessary field is empty."""
-	xml_content = """<?xml version="1.0" encoding="UTF-8"?>
+    """Test if API returns error when necessary field is empty."""
+    xml_content = """<?xml version="1.0" encoding="UTF-8"?>
 <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:Order-2">
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>urn:oasis:names:specification:ubl:xpath:Order-2.0:sbs-1.0-draft</cbc:CustomizationID>
@@ -596,12 +596,15 @@ def test_empty_field():
 		</cac:LineItem>
 	</cac:OrderLine>
 </Order>"""
-# Pass in the order document in XML format to the /ubl/order/parse endpoint and then pass into the /ubl/order/validate endpoint
+# Pass in the order document in XML format to the /ubl/order/parse endpoint
+# and then pass into the /ubl/order/validate endpoint
 
-	files = {"file": ("test.xml", xml_content, "text/xml")}
-	response = client.post("/ubl/order/parse", files=files)
-	
-	parsed_order = response.json()
-	response2 = client.post("/ubl/order/validate", json=parsed_order)
-	parsed_invoice = response2.json()
-	assert "Missing field: Issue Date" in parsed_invoice["errors"], "Expected 'Missing field: Issue Date' error"
+    files = {"file": ("test.xml", xml_content, "text/xml")}
+    response = client.post("/ubl/order/parse", files=files)
+
+    parsed_order = response.json()
+    response2 = client.post("/ubl/order/validate", json=parsed_order)
+    parsed_invoice = response2.json()
+    assert "Missing field: Issue Date" in parsed_invoice["errors"], (
+		"Expected 'Missing field: Issue Date' error"
+		)

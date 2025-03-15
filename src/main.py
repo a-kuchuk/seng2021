@@ -56,12 +56,21 @@ async def parse_ubl_order(file: UploadFile = File(...)):
 
 
 @app.post("/ubl/order/validate")
-async def validate_order(order_JSON: str = Body(...)):
+async def validate_order(order_json: str = Body(...)):
+    """ 
+    Validates an order JSON and ensures required fields are present.
+
+    Args:
+        order_json (str): The JSON order data received in the request body.
+
+    Returns:
+        Either a validated order or a list of missing field errors.
+    """
     try:
-        if order_JSON is None:
+        if order_json is None:
             raise HTTPException(status_code=400, detail="No JSON provided")
 
-        order_data = json.loads(order_JSON)
+        order_data = json.loads(order_json)
         order_data = order_data.get("Order", {})
         errors = []
         refined_order = {
@@ -119,7 +128,7 @@ async def validate_order(order_JSON: str = Body(...)):
                 }
             }
         }
-    
+
         required_fields = {
             "Invoice ID": refined_order["InvoiceID"]["ID"],
             "Issue Date": refined_order["IssueDate"],
