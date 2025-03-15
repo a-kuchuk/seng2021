@@ -7,6 +7,7 @@ Returns:
 """
 
 import json
+import random
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 import xmltodict
 
@@ -62,8 +63,9 @@ async def validate_order(order_JSON: str = Body(...)):
 
         order_data = json.loads(order_JSON)
         order_data = order_data.get("Order", {})
+        errors = []
         refined_order = {
-            "InvoiceID": {"ID": (id(object()) * 13) % 100 + 1},
+            "InvoiceID": {"ID": random.randint(1,1000)},
             "IssueDate": order_data.get("cbc:IssueDate"),
             "InvoicePeriod": {
                 "StartDate": order_data.get("cac:Delivery", {})
@@ -117,6 +119,28 @@ async def validate_order(order_JSON: str = Body(...)):
                 }
             }
         }
+    
+        required_fields = {
+            "Invoice ID": refined_order["InvoiceID"]["ID"],
+            "Issue Date": refined_order["IssueDate"],
+            "Invoice Start Date": refined_order["InvoicePeriod"]["StartDate"],
+            "Invoice End Date": refined_order["InvoicePeriod"]["EndDate"],
+            "Supplier Name": refined_order["AccountingSupplierParty"]["Name"],
+            "Customer Name": refined_order["AccountingCustomerParty"]["Name"],
+            "Total Amount": refined_order["LegalMonetaryTotal"]["PayableAmount"]["Value"],
+            "Currency": refined_order["LegalMonetaryTotal"]["PayableAmount"]["Currency"],
+            "Item ID": refined_order["InvoiceLine"]["ID"],
+            "Item Description": refined_order["InvoiceLine"]["Item"]["Description"],
+            "Line Extension Amount": refined_order["InvoiceLine"]["Amount"]["Value"],
+            "Line Currency": refined_order["InvoiceLine"]["Amount"]["Currency"]
+        }
+
+        for field_name, value in required_fields.items():
+            if value is None:
+                errors.append(f"Missing field: {field_name}")
+
+        if errors:
+            return {"errors": errors}
 
         return {"validatedOrder": refined_order}
 
