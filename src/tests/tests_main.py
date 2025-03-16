@@ -800,4 +800,3 @@ def test_invoice_creation():
     parsed_invoice = response2.json()
     response3 = client.post("/ubl/invoice/create", json=parsed_invoice)
     parsed_invoice2 = response3.json()
-    print(parsed_invoice)
