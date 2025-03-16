@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+        <cbc:ID>AEG012345</cbc:ID>
+        <cbc:IssueDate>2005-06-20</cbc:IssueDate>
