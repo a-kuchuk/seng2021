@@ -10,7 +10,6 @@ import json
 import random
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
-import mimetypes
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 import xmltodict
 
@@ -76,9 +75,8 @@ async def validate_order(order_json: str = Body(...)):
         order_data = json.loads(order_json)
         order_data = order_data.get("Order", {})
         errors = []
-        invoiceId = random.randint(1,1000)
         refined_order = {
-            "InvoiceID": invoiceId,
+            "InvoiceID": random.randint(1,1000),
             "IssueDate": order_data.get("cbc:IssueDate"),
             "InvoicePeriod": {
                 "StartDate": order_data.get("cac:Delivery", {})
@@ -162,7 +160,6 @@ async def create_invoice(invoice_json: dict = Body(...)):
     if not data:  # Ensure the parsed JSON is not an empty dictionary
         raise HTTPException(status_code=400, detail="Parsed JSON is empty")
 
-    print("made it past the checks?")
     # Create the root element (UBL Invoice)
     invoice = ET.Element("Invoice", {
     "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
@@ -205,8 +202,8 @@ async def create_invoice(invoice_json: dict = Body(...)):
         ET.SubElement(
             invoice_line, "cbc:LineExtensionAmount", currencyID=f"{line['Currency']}"
         ).text = f"{line['Value']}"
-        ET.SubElement(ET.SubElement(invoice_line, "cac:Item"), "cbc:Description").text = f"{line['Description']}"
-
+        ET.SubElement(ET.SubElement(invoice_line, "cac:Item"),
+        "cbc:Description").text = f"{line['Description']}"
     # Convert to XML string and save to file
     xml_str = ET.tostring(invoice, encoding="utf-8")
 

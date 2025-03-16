@@ -610,6 +610,7 @@ def test_empty_field():
 		)
 
 def test_invoice_creation():
+    """Test if API returns valid invoice when all data is present"""
     xml_content = """<?xml version="1.0" encoding="UTF-8"?>
 <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:Order-2">
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
@@ -799,4 +800,4 @@ def test_invoice_creation():
     response2 = client.post("/ubl/order/validate", json=parsed_order)
     parsed_invoice = response2.json()
     response3 = client.post("/ubl/invoice/create", json=parsed_invoice)
-    parsed_invoice2 = response3.json()
+    assert response3.status_code == 200
