@@ -188,11 +188,16 @@ async def create_invoice(invoice_json: dict = Body(...)):
                 "cac:PartyName")
     ET.SubElement(invoice[-1], "cbc:Name").text = f"{data['AccountingSupplierParty']}"
     # Customer details
-    customer = ET.SubElement(invoice, "cac:AccountingCustomerParty")
-    customer_party = ET.SubElement(customer, "cac:Party")
-    customer_party_name = ET.SubElement(customer_party, "cac:PartyName")
-    ET.SubElement(customer_party_name, "cbc:Name").text = f"{data['AccountingCustomerParty']}"
-
+    # customer = ET.SubElement(invoice, "cac:AccountingCustomerParty")
+    # customer_party = ET.SubElement(customer, "cac:Party")
+    # customer_party_name = ET.SubElement(customer_party, "cac:PartyName")
+    # ET.SubElement(customer_party_name, "cbc:Name").text = f"{data['AccountingCustomerParty']}"
+    ET.SubElement(
+        ET.SubElement(
+            ET.SubElement(
+                invoice, "cac:AccountingCustomerParty"), "cac:Party"),
+                "cac:PartyName")
+    ET.SubElement(invoice[-1], "cbc:Name").text = f"{data['AccountingCustomerParty']}"
     # Legal Monetary Total
     total_money = ET.SubElement(invoice, "cac:LegalMonetaryTotal")
     ET.SubElement(
