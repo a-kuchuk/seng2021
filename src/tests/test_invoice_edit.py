@@ -47,7 +47,7 @@ def setup_invoice_file():
 def test_edit_invoice_success():
     """_summary_
 
-    testing successful edit in invoice
+    testing successful editing in invoice
     """
     updated_data = {"customer": "Updated Customer", "total": {"amt": "150.00", "cur": "USD"}}
 
