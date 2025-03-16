@@ -15,7 +15,6 @@ client = TestClient(app)
 
 INVOICE_FILE = "invoice_data.json"
 
-# @pytest.fixture(scope="function", autouse=True)
 def setup_invoice_file():
     """_summary_
 
