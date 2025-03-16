@@ -8,7 +8,6 @@ Returns:
 
 import json
 import os
-import pytest
 from fastapi.testclient import TestClient
 from src.main import app
 
@@ -16,7 +15,7 @@ client = TestClient(app)
 
 INVOICE_FILE = "invoice_data.json"
 
-@pytest.fixture(scope="function", autouse=True)
+# @pytest.fixture(scope="function", autouse=True)
 def setup_invoice_file():
     """_summary_
 
