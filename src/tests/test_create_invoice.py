@@ -10,14 +10,14 @@ def test_create_invoice_success():
     """Tests if an invoice can be created successfully from a JSON file"""
     json_data = {
         "InvoiceID": "123",
-        "date": "2011-09-22",
-        "period": {"start": "2011-08-01", "end": "2011-08-31"},
-        "supplier": "Custom Cotter Pins",
-        "customer": "North American Veeblefetzer",
-        "total": {"amt": "150.00", "cur": "CAD"},
-        "lines": [
-            {"id": "1", "amt": "100.00", "cur": "CAD", "desc": "Cotter pin, MIL-SPEC"},
-            {"id": "2", "amt": "50.00", "cur": "CAD", "desc": "Cotter thread, MIL-SPEC"}
+        "IssueDate": "2011-09-22",
+        "InvoicePeriod": {"StartDate": "2011-08-01", "EndDate": "2011-08-31"},
+        "AccountingSupplierParty": "Custom Cotter Pins",
+        "AccountingCustomerParty": "North American Veeblefetzer",
+        "LegalMonetaryTotal": {"Value": "150.00", "Currency": "CAD"},
+        "InvoiceLine": [
+            {"ID": "1", "Amount": "100.00", "Currency": "CAD", "Description": "Cotter pin, MIL-SPEC"},
+            {"ID": "2", "Amount": "50.00", "Currency": "CAD", "Description": "Cotter thread, MIL-SPEC"}
         ]
     }
 

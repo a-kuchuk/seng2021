@@ -64,10 +64,11 @@ async def upload_order_document(file: UploadFile = File(None)):
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
     except Exception as exc:
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
-
-@app.post("/ubl/invoice/create/{JSON_Id}")
-async def create_invoice(invoice_json: str = Body(...)):
+    
+@app.post("/ubl/invoice/create")
+async def create_invoice(invoice_json: dict = Body(...)):
     """Route for converting a JSON file containing data into an XML Invoice file"""
+    invoice_json = json.dumps(invoice_json)
     if not invoice_json.strip():  # Check if the input string is empty
         raise HTTPException(status_code=400, detail="JSON string is empty")
     try:
@@ -80,42 +81,48 @@ async def create_invoice(invoice_json: str = Body(...)):
 
     print("made it past the checks?")
     # Create the root element (UBL Invoice)
-    invoice = ET.Element("Invoice", xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2")
+    invoice = ET.Element("Invoice", {
+        "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
+        "xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        "xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    })
 
     # Add invoice ID and Issue Date
-    ET.SubElement(invoice, "ID").text = f"{data['InvoiceID']}"
-    ET.SubElement(invoice, "IssueDate").text = f"{data['date']}"
+    ET.SubElement(invoice, "cbc:ID").text = f"{data['InvoiceID']}"
+    ET.SubElement(invoice, "cbc:IssueDate").text = f"{data['IssueDate']}"
 
     # Add Invoice period (start and end date)
-    invoice_period = ET.SubElement(invoice, "InvoicePeriod")
-    ET.SubElement(invoice_period, "StartDate").text = f"{data['period']['start']}"
-    ET.SubElement(invoice_period, "EndDate").text = f"{data['period']['end']}"
+    invoice_period = ET.SubElement(invoice, "cac:InvoicePeriod")
+    ET.SubElement(invoice_period, "cbc:StartDate").text = f"{data['InvoicePeriod']['StartDate']}"
+    ET.SubElement(invoice_period, "cbc:EndDate").text = f"{data['InvoicePeriod']['EndDate']}"
 
     # Supplier details
-    supplier = ET.SubElement(invoice, "AccountingSupplierParty")
-    supplier_party = ET.SubElement(supplier, "Party")
-    ET.SubElement(supplier_party, "Name").text = f"{data['supplier']}"
+    supplier = ET.SubElement(invoice, "cac:AccountingSupplierParty")
+    supplier_party = ET.SubElement(supplier, "cac:Party")
+    supplier_party_name = ET.SubElement(supplier_party, "cac:PartyName")
+    ET.SubElement(supplier_party_name, "cbc:Name").text = f"{data['AccountingSupplierParty']}"
 
     # Customer details
-    customer = ET.SubElement(invoice, "AccountingCustomerParty")
-    customer_party = ET.SubElement(customer, "Party")
-    ET.SubElement(customer_party, "Name").text = f"{data['customer']}"
+    customer = ET.SubElement(invoice, "cac:AccountingCustomerParty")
+    customer_party = ET.SubElement(customer, "cac:Party")
+    customer_party_name = ET.SubElement(customer_party, "cac:PartyName")
+    ET.SubElement(customer_party_name, "cbc:Name").text = f"{data['AccountingCustomerParty']}"
 
     # Legal Monetary Total
-    total_money = ET.SubElement(invoice, "LegalMonetaryTotal")
+    total_money = ET.SubElement(invoice, "cac:LegalMonetaryTotal")
     ET.SubElement(
-        total_money, "PayableAmount", currencyID=f"{data['total']['cur']}"
-    ).text = f"{data['total']['amt']}"
+        total_money, "cbc:PayableAmount", currencyID=f"{data['LegalMonetaryTotal']['Currency']}"
+    ).text = f"{data['LegalMonetaryTotal']['Value']}"
 
-    for line in data['lines']:
+    for line in data['InvoiceLine']:
         # Invoice Line Item
-        invoice_line = ET.SubElement(invoice, "InvoiceLine")
-        ET.SubElement(invoice_line, "ID").text = f"{line['id']}"
+        invoice_line = ET.SubElement(invoice, "cac:InvoiceLine")
+        ET.SubElement(invoice_line, "cbc:ID").text = f"{line['ID']}"
 
         ET.SubElement(
-            invoice_line, "LineExtensionAmount", currencyID=f"{line['cur']}"
-        ).text = f"{line['amt']}"
-        ET.SubElement(ET.SubElement(invoice_line, "Item"), "Description").text = f"{line['desc']}"
+            invoice_line, "cbc:LineExtensionAmount", currencyID=f"{line['Currency']}"
+        ).text = f"{line['Value']}"
+        ET.SubElement(ET.SubElement(invoice_line, "cac:Item"), "cbc:Description").text = f"{line['Description']}"
 
     # Convert to XML string and save to file
     xml_str = ET.tostring(invoice, encoding="utf-8")
