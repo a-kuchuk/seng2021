@@ -7,10 +7,10 @@ Returns:
 """
 
 import xml.etree.ElementTree as ET
+import xml.dom.minidom
 import mimetypes
-from fastapi import FastAPI, File, HTTPException, UploadFile
-import xml.dom.minidom 
 import json
+from fastapi import FastAPI, File, HTTPException, UploadFile, Body
 
 app = FastAPI()
 
@@ -65,75 +65,68 @@ async def upload_order_document(file: UploadFile = File(None)):
     except Exception as exc:
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
 
-@app.post("/ubl/invoice/create/{JSONId}")
-async def createInvoice():
+@app.post("/ubl/invoice/create/{JSON_Id}")
+async def create_invoice(invoice_json: str = Body(...)):
     """Route for converting a JSON file containing data into an XML Invoice file"""
+    if not invoice_json.strip():  # Check if the input string is empty
+        raise HTTPException(status_code=400, detail="JSON string is empty")
     try:
-        with open("data.json", "r") as file:
-            data = json.load(file)
-            
-        if not data:
-            raise HTTPException(status_code=400, detail="File is Empty")
-            
-    except FileNotFoundError:
-        raise HTTPException(status_code=400, detail="File doesn't exist")
-        
+        data = json.loads(invoice_json)  # Parse the JSON string into a dictionary
+    except json.JSONDecodeError as ex:
+        raise HTTPException(status_code=400, detail="Invalid JSON format") from ex
+
+    if not data:  # Ensure the parsed JSON is not an empty dictionary
+        raise HTTPException(status_code=400, detail="Parsed JSON is empty")
+
+    print("made it past the checks?")
     # Create the root element (UBL Invoice)
     invoice = ET.Element("Invoice", xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2")
-    # Add invoice ID
-    invoice_id = ET.SubElement(invoice, "ID")
-    invoice_id.text = f"{data['JSONId']}"
-    # Add issue date
-    issue_date = ET.SubElement(invoice, "IssueDate")
-    issue_date.text = f"{data['date']}"
-    
+
+    # Add invoice ID and Issue Date
+    ET.SubElement(invoice, "ID").text = f"{data['JSONId']}"
+    ET.SubElement(invoice, "IssueDate").text = f"{data['date']}"
+
     # Add Invoice period (start and end date)
     invoice_period = ET.SubElement(invoice, "InvoicePeriod")
-    start_date = ET.SubElement(invoice_period, "StartDate")
-    start_date.text = f"{data['period']['start']}"
-    end_date = ET.SubElement(invoice_period, "EndDate")
-    end_date.text = f"{data['period']['end']}"
-    
+    ET.SubElement(invoice_period, "StartDate").text = f"{data['period']['start']}"
+    ET.SubElement(invoice_period, "EndDate").text = f"{data['period']['end']}"
+
     # Supplier details
     supplier = ET.SubElement(invoice, "AccountingSupplierParty")
     supplier_party = ET.SubElement(supplier, "Party")
-    supplier_name = ET.SubElement(supplier_party, "Name")
-    supplier_name.text = f"{data['supplier']}"
-    
+    ET.SubElement(supplier_party, "Name").text = f"{data['supplier']}"
+
     # Customer details
     customer = ET.SubElement(invoice, "AccountingCustomerParty")
     customer_party = ET.SubElement(customer, "Party")
-    customer_name = ET.SubElement(customer_party, "Name")
-    customer_name.text = f"{data['customer']}"
-    
+    ET.SubElement(customer_party, "Name").text = f"{data['customer']}"
+
     # Legal Monetary Total
     total_money = ET.SubElement(invoice, "LegalMonetaryTotal")
-    payable = ET. SubElement(total_money, "PayableAmount", currencyID=f"{data['total']['cur']}")
-    payable.text = f"{data['total']['amt']}"
+    ET.SubElement(
+        total_money, "PayableAmount", currencyID=f"{data['total']['cur']}"
+    ).text = f"{data['total']['amt']}"
+
     for line in data['lines']:
         # Invoice Line Item
         invoice_line = ET.SubElement(invoice, "InvoiceLine")
-        line_id = ET.SubElement(invoice_line, "ID")
-        line_id.text = f"{line['id']}"
-        
-        price_amount = ET.SubElement(invoice_line, "LineExtensionAmount", currencyID=f"{line['cur']}")
-        price_amount.text = f"{line['amt']}"
-        item = ET.SubElement(invoice_line, "Item")
-        item_name = ET.SubElement(item, "Description")
-        item_name.text = f"{line['desc']}"
-        
+        ET.SubElement(invoice_line, "ID").text = f"{line['id']}"
+
+        ET.SubElement(
+            invoice_line, "LineExtensionAmount", currencyID=f"{line['cur']}"
+        ).text = f"{line['amt']}"
+        ET.SubElement(ET.SubElement(invoice_line, "Item"), "Description").text = f"{line['desc']}"
+
     # Convert to XML string and save to file
-    tree = ET.ElementTree(invoice)
     xml_str = ET.tostring(invoice, encoding="utf-8")
-    
+
     # Format the XML file so it's not a single line
-    parsed_xml = xml.dom.minidom.parseString(xml_str)
-    pretty_xml = parsed_xml.toprettyxml(indent="  ")
-    
+    pretty_xml = xml.dom.minidom.parseString(xml_str).toprettyxml(indent="\t")
+
     try:
         with open("invoice.xml", "w", encoding="utf-8") as file:
             file.write(pretty_xml)
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Failed to create XML file {e}")
-         
+    except Exception as ex:
+        raise HTTPException(status_code=500, detail=f"Failed to create XML file {ex}") from ex
+
     return {"details": "XML file successful"}
