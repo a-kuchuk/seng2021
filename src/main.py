@@ -151,7 +151,7 @@ async def validate_order(order_json: str = Body(...)):
         if errors:
             return {"errors": errors}
 
-        return {"validatedOrder": refined_order}
+        return refined_order
 
     except Exception as e:
         raise HTTPException(status_code=400, detail="Invalid JSON data") from e

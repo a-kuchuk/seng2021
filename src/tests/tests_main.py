@@ -412,7 +412,7 @@ def test_valid_invoice():
     parsed_order = response.json()
     response2 = client.post("/ubl/order/validate", json=parsed_order)
     parsed_invoice = response2.json()
-    assert isinstance(parsed_invoice["validatedOrder"]["InvoiceID"]["ID"], int)
+    assert isinstance(parsed_invoice["InvoiceID"]["ID"], int)
 
 def test_empty_field():
     """Test if API returns error when necessary field is empty."""
