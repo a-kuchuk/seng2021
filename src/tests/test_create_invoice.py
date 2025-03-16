@@ -29,7 +29,7 @@ def test_create_invoice_success():
     )
 
     assert response.status_code == 200
-    assert response.json() == {"details": "XML file successful"}
+    assert response.json() == {"InvoiceID": "123"}
     assert os.path.exists("invoice.xml")
 
     os.remove("invoice.xml")

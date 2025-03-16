@@ -136,4 +136,4 @@ async def create_invoice(invoice_json: dict = Body(...)):
     except Exception as ex:
         raise HTTPException(status_code=500, detail=f"Failed to create XML file {ex}") from ex
 
-    return {"details": "XML file successful"}
+    return {"InvoiceID": f"{data['InvoiceID']}"}
