@@ -65,10 +65,9 @@ async def upload_order_document(file: UploadFile = File(None)):
     except Exception as exc:
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
     
-@app.post("/ubl/invoice/create")
-async def create_invoice(invoice_json: dict = Body(...)):
+@app.post("/ubl/invoice/create/{JSON_Id}")
+async def create_invoice(invoice_json: str = Body(...)):
     """Route for converting a JSON file containing data into an XML Invoice file"""
-    invoice_json = json.dumps(invoice_json)
     if not invoice_json.strip():  # Check if the input string is empty
         raise HTTPException(status_code=400, detail="JSON string is empty")
     try:

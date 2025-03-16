@@ -16,8 +16,8 @@ def test_create_invoice_success():
         "AccountingCustomerParty": "North American Veeblefetzer",
         "LegalMonetaryTotal": {"Value": "150.00", "Currency": "CAD"},
         "InvoiceLine": [
-            {"ID": "1", "Amount": "100.00", "Currency": "CAD", "Description": "Cotter pin, MIL-SPEC"},
-            {"ID": "2", "Amount": "50.00", "Currency": "CAD", "Description": "Cotter thread, MIL-SPEC"}
+            {"ID": "1", "Value": "100.00", "Currency": "CAD", "Description": "Cotter pin, MIL-SPEC"},
+            {"ID": "2", "Value": "50.00", "Currency": "CAD", "Description": "Cotter thread, MIL-SPEC"}
         ]
     }
 
@@ -27,6 +27,8 @@ def test_create_invoice_success():
         "/ubl/invoice/create/123",
         json=json_string
     )
+    
+    print(response)
 
     assert response.status_code == 200
     assert response.json() == {"InvoiceID": "123"}
@@ -75,7 +77,6 @@ def test_create_invoice_empty_json_object():
     assert response.status_code == 400
     assert "Parsed JSON is empty" in response.json()["detail"]
     print("Parsed JSON empty success!")
-
 
 if __name__ == "__main__":
     test_create_invoice_success()
