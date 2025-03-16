@@ -83,7 +83,7 @@ async def create_invoice(invoice_json: str = Body(...)):
     invoice = ET.Element("Invoice", xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2")
 
     # Add invoice ID and Issue Date
-    ET.SubElement(invoice, "ID").text = f"{data['JSONId']}"
+    ET.SubElement(invoice, "ID").text = f"{data['InvoiceID']}"
     ET.SubElement(invoice, "IssueDate").text = f"{data['date']}"
 
     # Add Invoice period (start and end date)
