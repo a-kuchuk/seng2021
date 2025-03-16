@@ -32,7 +32,6 @@ def test_upload_order_doc_empty_file():
     files = {"file": ("empty_order_doc.xml", "", "text/xml")}
     response = client.post("/ubl/order/upload", files=files)
     assert response.status_code == 400
-    # assert response.json()["detail"] == "Empty file"
 
 
 def test_upload_order_doc_empty_id():
@@ -41,7 +40,6 @@ def test_upload_order_doc_empty_id():
     files = {"file": ("no_id_order_doc.xml", ubl_xml_content, "text/xml")}
     response = client.post("/ubl/order/upload", files=files)
     assert response.status_code == 400
-    # assert response.json()["detail"] == "Order ID not found"
 
 
 def test_upload_order_doc_no_id():
@@ -50,7 +48,6 @@ def test_upload_order_doc_no_id():
     files = {"file": ("empty_id_order_doc.xml", ubl_xml_content, "text/xml")}
     response = client.post("/ubl/order/upload", files=files)
     assert response.status_code == 400
-    # assert response.json()["detail"] == "Order ID not found"
 
 
 def test_upload_order_doc_invalid_xml():
