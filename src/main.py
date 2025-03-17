@@ -9,7 +9,6 @@ Returns:
 
 import json
 import random
-import mimetypes
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
