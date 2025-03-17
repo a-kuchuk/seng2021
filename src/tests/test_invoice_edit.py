@@ -13,7 +13,7 @@ from src.main import app
 
 client = TestClient(app)
 
-INVOICE_FILE = "invoice_data.json"
+INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
 
 def setup_invoice_file():
     """_summary_
@@ -52,10 +52,10 @@ def test_edit_invoice_success():
     response = client.put("/ubl/invoice/edit/123", json=updated_data)
 
     assert response.status_code == 200
-    assert response.json()["invoiceId"] == "123"
-    assert response.json()["customer"] == "Updated Customer"
-    assert response.json()["total"]["amt"] == "150.00"
-    assert response.json()["total"]["cur"] == "USD"
+    assert response.xml()["invoiceId"] == "123"
+    assert response.xml()["customer"] == "Updated Customer"
+    assert response.xml()["total"]["amt"] == "150.00"
+    assert response.xml()["total"]["cur"] == "USD"
 
 def test_edit_invoice_not_found():
     """_summary_
@@ -65,7 +65,7 @@ def test_edit_invoice_not_found():
     response = client.put("/ubl/invoice/edit/999", json={"customer": "New Customer"})
 
     assert response.status_code == 400
-    assert response.json() == {"detail": "Invoice not found"}
+    assert response.xml() == {"detail": "Invoice not found"}
 
 def test_edit_invoice_missing_input():
     """_summary_
@@ -75,7 +75,7 @@ def test_edit_invoice_missing_input():
     response = client.put("/ubl/invoice/edit/123", json={})
 
     assert response.status_code == 400
-    assert response.json() == {"detail": "Missing or invalid input data"}
+    assert response.xml() == {"detail": "Missing or invalid input data"}
 
 def test_edit_invoice_file_not_found():
     """_summary_
@@ -84,7 +84,7 @@ def test_edit_invoice_file_not_found():
     """
     os.remove(INVOICE_FILE)
 
-    response = client.put("/ubl/invoice/edit/123", json={"customer": "New Customer"})
+    response = client.put("/ubl/invoice/edit/123", xml={"customer": "New Customer"})
 
     assert response.status_code == 500
-    assert response.json() == {"detail": "Invoice file not found"}
+    assert response.xml() == {"detail": "Invoice file not found"}

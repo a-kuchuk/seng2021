@@ -15,7 +15,7 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 
 app = FastAPI()
 
-INVOICE_FILE = "invoice_data.json"
+INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
 
 @app.put("/ubl/invoice/edit/{invoiceId}")
 def edit_invoice(invoice_id: str, updated_invoice: dict):
