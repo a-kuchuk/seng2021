@@ -12,8 +12,8 @@ Generates invoice
 
 """
 
-import xml.etree.ElementTree as ET
 from fastapi import FastAPI, File, HTTPException, UploadFile
+import xml.etree.ElementTree as ET
 
 tags_metadata = [
     {
