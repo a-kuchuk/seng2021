@@ -132,8 +132,8 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         # return json.loads(json_data)
 
         return json_data
-    except Exception as e:
-        raise HTTPException(status_code=400, detail="Invalid XML file") from e
+    except Exception as ex:
+        raise HTTPException(status_code=400, detail="Invalid XML file") from ex
 
 
 @app.post("/ubl/order/validate", tags=["DATA VALIDATION"])
@@ -228,8 +228,8 @@ async def validate_order(order_json: str = Body(...)):
         refined_order = json.dumps(refined_order)
         return refined_order
 
-    except Exception as e:
-        raise HTTPException(status_code=400, detail="Invalid JSON data") from e
+    except Exception as ex:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from ex
 
 @app.post("/ubl/invoice/create", tags=["INVOICE GENERATION"])
 async def create_invoice(invoice_json: str = Body(...)):
@@ -261,10 +261,10 @@ async def create_invoice(invoice_json: str = Body(...)):
 
     # Create the root element (UBL Invoice)
     invoice = ET.Element("Invoice", {
-    "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
-    "xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
-    "xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
-})
+        "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
+        "xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        "xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    })
 
     # Add invoice ID and Issue Date
     ET.SubElement(invoice, "cbc:ID").text = f"{data['InvoiceID']}"
