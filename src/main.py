@@ -1,4 +1,4 @@
-"""invoicve generation api"""
+"""invoice generation api"""
 
 import json
 import os
@@ -6,8 +6,8 @@ import random
 import xml
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
-from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 import xmltodict
+from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 
 DESCRIPTION= """
 API that takes an XML order document and provides a XML invoice
@@ -54,10 +54,16 @@ INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
 
 @app.get("/", tags=["HEALTH"])
 def hello_world():
+    """_summary_
+
+    default hello world route
+
+    """
+    return {"details": "Hello, World!"}
 
 
-@app.put("/ubl/invoice/edit/{invoice_id}", tags=["INVOICE MANIPULATION"])
-async def edit_invoice(invoice_id: str, updated_invoice: dict):
+@app.put("/ubl/invoice/edit/{invoice_id}", tags = ["INVOICE MANIPULATION"])
+async def edit_invoice(invoice_id: str, updated_invoice: dict = Body(...)):
     """_summary_
 
     editing invoice route
@@ -65,29 +71,64 @@ async def edit_invoice(invoice_id: str, updated_invoice: dict):
     Returns:
         invoiceId: string
     """
+    """Edits an existing invoice by updating specified fields."""
     if not invoice_id:
         raise HTTPException(status_code=400, detail="Missing or invalid invoice Id")
 
     if not updated_invoice or not isinstance(updated_invoice, dict):
         raise HTTPException(status_code=400, detail="Missing or invalid input data")
 
-    if os.path.exists(INVOICE_FILE):
+    if not os.path.exists(INVOICE_FILE):
         raise HTTPException(status_code=500, detail="Invoice file not found")
+    try:
+        tree = ET.parse(INVOICE_FILE)
+        root = tree.getroot()
+    except ET.ParseError:
+        raise HTTPException(status_code=500, detail="Failed to parse existing invoice XML")
 
-    # try:
-    #     contents = await file.read()
-    #     tree = xml.etree.ElementTree(ET.fromstring(contents))
-    #     root = tree.getroot()
-    
-    # iterate
-    # find tag & replace 
+    # Mapping keys to their XML paths
+    field_map = {
+        "InvoiceID": "cbc:ID",
+        "IssueDate": "cbc:IssueDate",
+        "AccountingSupplierParty": "cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name",
+        "AccountingCustomerParty": "cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name",
+        "LegalMonetaryTotal": "cac:LegalMonetaryTotal/cbc:PayableAmount",
+    }
 
-    # if invoice_id not in invoices:
-    #     raise HTTPException(status_code=400, detail="Invoice not found")
+    # Update XML fields based on input
+    for key, path in field_map.items():
+        if key in updated_invoice:
+            element = root.find(path, namespaces={
+                "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+                "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+            })
+            if element is not None:
+                element.text = str(updated_invoice[key])
 
-    # ET.Element.set(invoices, file, indent=4)
+    # Update Invoice Lines
+    if "InvoiceLine" in updated_invoice:
+        invoice_lines = root.findall("cac:InvoiceLine", namespaces={
+            "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+        })
+        for line in updated_invoice["InvoiceLine"]:
+            for xml_line in invoice_lines:
+                line_id = xml_line.find("cbc:ID", namespaces={
+                    "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+                })
+                if line_id is not None and line_id.text == str(line["ID"]):
+                    xml_line.find("cbc:LineExtensionAmount", namespaces={
+                        "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+                    }).text = str(line["Value"])
 
-    return invoices[invoice_id]
+                    xml_line.find("cac:Item/cbc:Description", namespaces={
+                        "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+                    }).text = str(line["Description"])
+
+    # Convert updated XML back to string
+    xml_str = ET.tostring(root, encoding="utf-8")
+    pretty_xml = xml.dom.minidom.parseString(xml_str).toprettyxml(indent="\t")
+
+    return pretty_xml
 
 
 @app.post("/ubl/order/upload", tags=["DATA VALIDATION"])

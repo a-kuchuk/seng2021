@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <Invoice>
+        <InvoiceId>123</InvoiceId>
+        <AccountingCustomerParty>Original Customer</AccountingCustomerParty>
+        <LegalMonetaryTotal>
+            <Value>100.00</Value>
+            <Currency>CAD</Currency>
+        </LegalMonetaryTotal>
+    </Invoice>
