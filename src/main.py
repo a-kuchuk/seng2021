@@ -1,11 +1,4 @@
-"""API that takes an XML order document and provides a XML invoice
-with the elements extracted from the order doc and mapped to the invoice.
-
-Contains all routes
-
-Returns:
-    _type_: _description_
-"""
+"""invoicve generation api"""
 
 import json
 import random
@@ -14,10 +7,51 @@ import xml.dom.minidom
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 import xmltodict
 
-app = FastAPI()
+DESCRIPTION= """
+API that takes an XML order document and provides a XML invoice
+with the elements extracted from the order doc and mapped to the invoice.
+
+## Validation
+
+You can validate oder data
+
+## Generation
+
+Generates invoice
+
+"""
 
 
-@app.get("/")
+tags_metadata = [
+    {
+        "name": "DATA VALIDATION",
+        "description": "Validates provided files",
+    },
+    {
+        "name": "INVOICE GENERATION",
+        "description": "Generates invoivce XML from provided data",
+    },
+    {
+        "name": "INVOICE MANIPULATION",
+        "description": "Modifies outputted input based on specifications",
+    },
+    {
+        "name": "HEALTH",
+        "description": "Verifies deployment",
+    },
+]
+
+app = FastAPI(
+    title="Invoice Creation API",
+    version="0.0.1",
+    description=DESCRIPTION,
+    openapi_tags=tags_metadata,
+)
+
+
+
+
+@app.get("/", tags=["HEALTH"])
 def index():
     """_summary_
 
@@ -28,7 +62,8 @@ def index():
     """
     return {"details": "Hello, World!"}
 
-@app.post("/ubl/order/upload")
+
+@app.post("/ubl/order/upload", tags=["DATA VALIDATION"])
 async def upload_order_document(file: UploadFile = File(None)):
     """Upload an XML order document and extract the order ID
 
@@ -76,7 +111,7 @@ async def upload_order_document(file: UploadFile = File(None)):
     except Exception as exc:
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
 
-@app.post("/ubl/order/parse")
+@app.post("/ubl/order/parse", tags=["DATA VALIDATION"])
 async def parse_ubl_order(file: UploadFile = File(...)):
     """_summary_
 
@@ -111,7 +146,7 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Invalid XML file") from e
 
 
-@app.post("/ubl/order/validate")
+@app.post("/ubl/order/validate", tags=["DATA VALIDATION"])
 async def validate_order(order_json: str = Body(...)):
     """_summary_
 
@@ -205,7 +240,7 @@ async def validate_order(order_json: str = Body(...)):
     except Exception as e:
         raise HTTPException(status_code=400, detail="Invalid JSON data") from e
 
-@app.post("/ubl/invoice/create")
+@app.post("/ubl/invoice/create", tags=["INVOICE GENERATION"])
 async def create_invoice(invoice_json: str = Body(...)):
     """_summary_
 
