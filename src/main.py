@@ -23,16 +23,29 @@ def index():
     """
     return {"details": "Hello, World!"}
 
+def extract_text_with_titles(element, indent=0):
+    """ Recursively extract tag names and their text content """
+    content = []
+    tag_name = element.tag.split('}')[-1] 
 
-@app.get("/ubl/invoice/pdf/{invoicePath}")
+    if element.text and element.text.strip():
+        content.append(f"{'  ' * indent}{tag_name}: {element.text.strip()}")
+
+    for child in element:
+        content.extend(extract_text_with_titles(child, indent=indent + 1))
+    
+    return content
+
+@app.get("/ubl/invoice/pdf")
 async def xml_to_pdf(invoicePath: str):
     tree = ET.parse(invoicePath)
     root = tree.getroot()
-    content = []
     
-    for elem in root.iter():
-        if elem.text and elem.text.strip():
-            content.append(elem.text.strip())
+    print("made it in")
+    
+    content = extract_text_with_titles(root)
+    
+    print("finished extracting")
         
     c = canvas.Canvas("invoice.pdf", pagesize=letter)
     width, height = letter
