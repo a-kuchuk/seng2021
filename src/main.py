@@ -1,19 +1,50 @@
-"""API that takes an XML order document and provides a XML invoice
+description = """
+API that takes an XML order document and provides a XML invoice
 with the elements extracted from the order doc and mapped to the invoice.
 
-Contains all routes
+## Validation
 
-Returns:
-    _type_: _description_
+You can validate oder data
+
+## Generation
+
+Generates invoice
+
 """
 
 import xml.etree.ElementTree as ET
+import mimetypes
 from fastapi import FastAPI, File, HTTPException, UploadFile
 
-app = FastAPI()
+tags_metadata = [
+    {
+        "name": "DATA VALIDATION",
+        "description": "Validates provided files",
+    },
+    {
+        "name": "INVOICE GENERATION",
+        "description": "Generates invoivce XML from provided data",
+    },
+    {
+        "name": "INVOICE MANIPULATION",
+        "description": "Modifies outputted input based on specifications",
+    },
+    {
+        "name": "HEALTH",
+        "description": "Verifies deployment",
+    },
+]
+
+app = FastAPI(
+    title="Invoice Creation API",
+    version="0.0.1",
+    openapi_tags=tags_metadata,
+)
 
 
-@app.get("/")
+
+
+@app.get("/", tags=["HEALTH"])
 def index():
     """_summary_
 
@@ -25,7 +56,7 @@ def index():
     return {"details": "Hello, World!"}
 
 
-@app.post("/ubl/order/upload")
+@app.post("/ubl/order/upload", tags=["DATA VALIDATION"])
 async def upload_order_document(file: UploadFile = File(None)):
     """Upload an XML order document and extract the order ID
 
@@ -47,8 +78,8 @@ async def upload_order_document(file: UploadFile = File(None)):
         raise HTTPException(status_code=400, detail="No file provided")
 
     # Check if file is XML text
-    filename = file.filename
-    if not filename.lower().endswith(".xml"):
+    mime_type, _ = mimetypes.guess_type(file.filename)
+    if mime_type not in ["text/xml"]:
         raise HTTPException(status_code=400, detail="File must be an XML file")
 
     try:
