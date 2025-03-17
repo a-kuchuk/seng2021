@@ -1,5 +1,6 @@
 """Module to test the upload of an order document."""
 
+import os
 import io
 from fastapi.testclient import TestClient
 
