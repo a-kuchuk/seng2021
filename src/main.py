@@ -235,6 +235,7 @@ async def validate_order(order_json: str = Body(...)):
         if errors:
             return {"errors": errors}
 
+        refined_order = json.dumps(refined_order)
         return refined_order
 
     except Exception as e:
