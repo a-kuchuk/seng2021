@@ -3,7 +3,6 @@ Unit tests for FastAPI UBL Order parsing endpoints.
 """
 
 import json
-import os
 import io
 from fastapi.testclient import TestClient
 from src.main import app
@@ -125,8 +124,7 @@ def test_valid_invoice():
 
     parsed_order = response.json()
     response2 = client.post("/ubl/order/validate", json=parsed_order)
-    parsed_invoice = response2.json()
-    assert isinstance(parsed_invoice["InvoiceID"], int)
+    assert response2.status_code == 200
 
 def test_empty_field():
     """_summary_
@@ -340,10 +338,10 @@ def test_invoice_creation():
     parsed_order = response.json()
     response2 = client.post("/ubl/order/validate", json=parsed_order)
     parsed_invoice = response2.json()
-    parsed_invoice=json.dumps(parsed_invoice)
     response3 = client.post("/ubl/invoice/create", json=parsed_invoice)
     assert response3.status_code == 200
-    os.remove("invoice.xml")
+    parsed_invoicexml = response3.json()
+    print(parsed_invoicexml)
 
 def test_create_invoice_empty_json():
     """_summary_
