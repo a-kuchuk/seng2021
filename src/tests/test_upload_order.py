@@ -5,12 +5,21 @@ from fastapi.testclient import TestClient
 
 #from src import main
 from src.main import app
-from src.tests.tests_main import get_xml
+#from src.tests.tests_main import get_xml
+from pathlib import Path
+
+
+
 
 #app = main.app
 
 client = TestClient(app)
 
+def get_xml(file_name):
+    """Function to read the content of an XML file."""
+    valid_xml_file_path = Path(__file__).parent / "resources" / file_name
+    with valid_xml_file_path.open("r", encoding="utf-8") as xml_file:
+        return xml_file.read()
 
 def test_upload_order_doc_valid():
     """Test the upload of a valid order document."""
