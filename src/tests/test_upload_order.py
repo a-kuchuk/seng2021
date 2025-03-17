@@ -71,6 +71,7 @@ Unit tests for FastAPI UBL Order parsing endpoints.
 """
 
 import json
+import os
 from pathlib import Path
 from fastapi.testclient import TestClient
 from src.main import app
@@ -340,6 +341,7 @@ def test_invoice_creation():
     parsed_invoice=json.dumps(parsed_invoice)
     response3 = client.post("/ubl/invoice/create", json=parsed_invoice)
     assert response3.status_code == 200
+    os.remove("invoice.xml")
 
 def test_create_invoice_empty_json():
     """Tests the creation of an Invoice from an empty JSON string"""
