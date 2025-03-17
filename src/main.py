@@ -6,21 +6,13 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 import xmltodict
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
 DESCRIPTION= """
 API that takes an XML order document and provides a XML invoice
 with the elements extracted from the order doc and mapped to the invoice.
-
-## Validation
-
-You can validate oder data
-
-## Generation
-
-Generates invoice
-
 """
-
 
 tags_metadata = [
     {
@@ -140,8 +132,8 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         # return json.loads(json_data)
 
         return json_data
-    except Exception as e:
-        raise HTTPException(status_code=400, detail="Invalid XML file") from e
+    except Exception as ex:
+        raise HTTPException(status_code=400, detail="Invalid XML file") from ex
 
 
 @app.post("/ubl/order/validate", tags=["DATA VALIDATION"])
@@ -236,8 +228,8 @@ async def validate_order(order_json: str = Body(...)):
         refined_order = json.dumps(refined_order)
         return refined_order
 
-    except Exception as e:
-        raise HTTPException(status_code=400, detail="Invalid JSON data") from e
+    except Exception as ex:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from ex
 
 @app.post("/ubl/invoice/create", tags=["INVOICE GENERATION"])
 async def create_invoice(invoice_json: str = Body(...)):
@@ -269,10 +261,10 @@ async def create_invoice(invoice_json: str = Body(...)):
 
     # Create the root element (UBL Invoice)
     invoice = ET.Element("Invoice", {
-    "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
-    "xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
-    "xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
-})
+        "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
+        "xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        "xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    })
 
     # Add invoice ID and Issue Date
     ET.SubElement(invoice, "cbc:ID").text = f"{data['InvoiceID']}"
@@ -335,3 +327,43 @@ async def create_invoice(invoice_json: str = Body(...)):
     #     raise HTTPException(status_code=500, detail=f"Failed to create XML file {ex}") from ex
 
     # return {"details": "XML file successful"}
+
+
+@app.post("/ubl/invoice/pdf", tags=["MANIPULATION"])
+async def xml_to_pdf(file: UploadFile = File(...)):
+    """Upload an XML invoice document and converts in into a PDF
+
+    Args:
+        file (UploadFile, optional): the UBL XML invoice document. Defaults to File(None).
+
+    Returns:
+        none
+    """
+    contents = await file.read()
+    tree = ET.ElementTree(ET.fromstring(contents))
+    root = tree.getroot()
+
+    def extract_text_with_titles(element, indent=0):
+        """ Recursively extract tag names and their text content """
+        content = []
+        tag_name = element.tag.split('}')[-1]  # Remove namespace if present
+        if element.text and element.text.strip():
+            content.append(f"{'  ' * indent}{tag_name}: {element.text.strip()}")
+        for child in element:
+            content.extend(extract_text_with_titles(child, indent=indent + 1))
+        return content
+
+    content = extract_text_with_titles(root)
+
+    can = canvas.Canvas("invoice.pdf", pagesize=letter)
+    height = letter[1]
+    y_position = height - 40  # Start position from the top
+
+    for line in content:
+        can.drawString(40, y_position, line)
+        y_position -= 20  # Move down for the next line
+        if y_position < 40:  # Start a new page if needed
+            can.showPage()
+            y_position = height - 40
+
+    can.save()
