@@ -8,9 +8,7 @@ from reportlab.pdfgen import canvas
 DESCRIPTION= """
 API that takes an XML order document and provides a XML invoice
 with the elements extracted from the order doc and mapped to the invoice.
-
 """
-
 
 tags_metadata = [
     {
