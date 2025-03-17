@@ -11,17 +11,9 @@ import os
 from pathlib import Path
 from fastapi.testclient import TestClient
 from src.main import app
-from src.tests.tests_main import get_xml
+from src.tests.tests_main import write_xml
 
 client = TestClient(app)
-
-# INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
-
-def write_xml(file_name):
-    """Function to write to the content of an XML file."""
-    valid_xml_file_path = Path(__file__).parent / "resources" / file_name
-    with valid_xml_file_path.open("w", encoding="utf-8") as xml_file:
-        return xml_file.write()
 
 def setup_invoice_file():
     """_summary_
@@ -30,20 +22,20 @@ def setup_invoice_file():
     """
 
     # Setup sample invoice file
-    sample_data = {
-        "123": {
-            "invoiceId": "123",
-            "date": "2011-09-22",
-            "period": {"start": "2011-08-01", "end": "2011-08-31"},
-            "supplier": "Custom Cotter Pins",
-            "customer": "North American Veeblefetzer",
-            "total": {"amt": "100.00", "cur": "CAD"},
-            "lines": [{"id": "1", "amt": "100.00", "cur": "CAD", "desc": "Cotter pin, MIL-SPEC"}]
-        }
-    }
+    # sample_data = {
+    #     "123": {
+    #         "invoiceId": "123",
+    #         "date": "2011-09-22",
+    #         "period": {"start": "2011-08-01", "end": "2011-08-31"},
+    #         "supplier": "Custom Cotter Pins",
+    #         "customer": "North American Veeblefetzer",
+    #         "total": {"amt": "100.00", "cur": "CAD"},
+    #         "lines": [{"id": "1", "amt": "100.00", "cur": "CAD", "desc": "Cotter pin, MIL-SPEC"}]
+    #     }
+    # }
 
     with open(write_xml("invoice_provided_valid.xml"), "w", encoding="utf-8") as file:
-        json.dump(sample_data, file)
+        json.dump(write_xml("invoice_provided_valid.xml"), file)
 
     yield
 
@@ -52,25 +44,36 @@ def test_edit_invoice_success():
 
     testing successful editing in invoice
     """
-    updated_data = {"customer": "Updated Customer", "total": {"amt": "150.00", "cur": "USD"}}
+    updated_data = {"AccountingCustomerParty": "Updated Customer", "LegalMonetaryTotal": {"Value": "150.00", "Currency": "USD"}}
 
     response = client.put("/ubl/invoice/edit/123", json=updated_data)
 
     assert response.status_code == 200
-    assert response.xml()["invoiceId"] == "123"
-    assert response.xml()["customer"] == "Updated Customer"
-    assert response.xml()["total"]["amt"] == "150.00"
-    assert response.xml()["total"]["cur"] == "USD"
+    assert response.json()["InvoiceId"] == "123"
+    assert response.json()["AccountingCustomerParty"] == "Updated Customer"
+    assert response.json()["LegalMonetaryTotal"]["Value"] == "150.00"
+    assert response.json()["LegalMonetaryTotal"]["Currency"] == "USD"
 
 def test_edit_invoice_not_found():
     """_summary_
 
     Error: invoice not found
     """
-    response = client.put("/ubl/invoice/edit/999", json={"customer": "New Customer"})
+    response = client.put("/ubl/invoice/edit/999", json={"AccountingCustomerParty": "New Customer"})
 
     assert response.status_code == 400
-    assert response.xml() == {"detail": "Invoice not found"}
+    assert response.json() == {"detail": "Invoice not found"}
+
+def test_edit_invoice_missing_id():
+    """_summary_
+
+    Error: invoice is missing id
+    """
+    response = client.put("/ubl/invoice/edit/", json={"AccountingCustomerParty": "New Customer"})
+
+    assert response.status_code == 400
+    assert response.json()["InvoiceId"] == ""
+    assert response.json() == {"detail": "Invoice not found"}
 
 def test_edit_invoice_missing_input():
     """_summary_
@@ -80,7 +83,7 @@ def test_edit_invoice_missing_input():
     response = client.put("/ubl/invoice/edit/123", json={})
 
     assert response.status_code == 400
-    assert response.xml() == {"detail": "Missing or invalid input data"}
+    assert response.json() == {"detail": "Missing or invalid input data"}
 
 def test_edit_invoice_file_not_found():
     """_summary_
@@ -88,7 +91,7 @@ def test_edit_invoice_file_not_found():
     Error: invoice file is not found
     """
 
-    response = client.put("/ubl/invoice/edit/123", xml={"customer": "New Customer"})
+    response = client.put("/ubl/invoice/edit/123", json={"AccountingCustomerParty": "New Customer"})
 
     assert response.status_code == 500
-    assert response.xml() == {"detail": "Invoice file not found"}
+    assert response.json() == {"detail": "Invoice file not found"}

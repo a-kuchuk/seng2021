@@ -9,15 +9,16 @@ Returns:
 
 import os
 import json
+import xml
 import xml.etree.ElementTree as ET
 from fastapi import FastAPI, File, HTTPException, UploadFile
-from src.tests.tests_main import get_xml
+from src.tests.tests_main import get_xml, write_xml
 
 app = FastAPI()
 
 INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
 
-@app.put("/ubl/invoice/edit/{invoiceId}")
+@app.put("/ubl/invoice/edit/{invoice_id}")
 def edit_invoice(invoice_id: str, updated_invoice: dict):
     """_summary_
 
@@ -32,22 +33,21 @@ def edit_invoice(invoice_id: str, updated_invoice: dict):
     if not updated_invoice or not isinstance(updated_invoice, dict):
         raise HTTPException(status_code=400, detail="Missing or invalid input data")
 
-    if not os.path.exists(INVOICE_FILE):
+    if os.path.exists(INVOICE_FILE):
         raise HTTPException(status_code=500, detail="Invoice file not found")
 
-    try:
-        with open(get_xml("invoice_"), "r", encoding="utf-8") as file:
-            invoices = json.load(file)
-    except json.JSONDecodeError as exc:
-        raise HTTPException(status_code=500, detail="Invalid JSON format") from exc
+    # try:
+    #     contents = await file.read()
+    #     tree = xml.etree.ElementTree(ET.fromstring(contents))
+    #     root = tree.getroot()
+    
+    # iterate
+    # find tag & replace 
 
-    if invoice_id not in invoices:
-        raise HTTPException(status_code=400, detail="Invoice not found")
+    # if invoice_id not in invoices:
+    #     raise HTTPException(status_code=400, detail="Invoice not found")
 
-    invoices[invoice_id].update(updated_invoice)
-
-    with open(INVOICE_FILE, "w", encoding="utf-8") as file:
-        json.dump(invoices, file, indent=4)
+    # ET.Element.set(invoices, file, indent=4)
 
     return invoices[invoice_id]
 
