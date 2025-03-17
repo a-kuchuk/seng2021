@@ -328,11 +328,12 @@ async def create_invoice(invoice_json: str = Body(...)):
 
     # Format the XML file so it's not a single line
     pretty_xml = xml.dom.minidom.parseString(xml_str).toprettyxml(indent="\t")
+    return pretty_xml
 
-    try:
-        with open("invoice.xml", "w", encoding="utf-8") as file:
-            file.write(pretty_xml)
-    except Exception as ex:
-        raise HTTPException(status_code=500, detail=f"Failed to create XML file {ex}") from ex
+    # try:
+    #     with open("invoice.xml", "w", encoding="utf-8") as file:
+    #         file.write(pretty_xml)
+    # except Exception as ex:
+    #     raise HTTPException(status_code=500, detail=f"Failed to create XML file {ex}") from ex
 
-    return {"details": "XML file successful"}
+    # return {"details": "XML file successful"}
