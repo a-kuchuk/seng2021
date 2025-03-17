@@ -52,7 +52,7 @@ app = FastAPI(
 
 
 @app.get("/", tags=["HEALTH"])
-def index():
+def hello_world():
     """_summary_
 
     default hello world route
