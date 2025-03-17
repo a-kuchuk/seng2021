@@ -8,7 +8,6 @@ Returns:
 """
 
 import xml.etree.ElementTree as ET
-import mimetypes
 from fastapi import FastAPI, File, HTTPException, UploadFile
 
 app = FastAPI()
@@ -51,8 +50,8 @@ async def upload_order_document(file: UploadFile = File(None)):
     filename = file.filename
     if not filename.lower().endswith(".xml"):
         raise HTTPException(status_code=400, detail="File must be an XML file")
-    #mime_type, _ = mimetypes.guess_type(file.filename)
-    #if mime_type not in ["text/xml"]:
+    # mime_type, _ = mimetypes.guess_type(file.filename)
+    # if mime_type not in ["text/xml"]:
     #    raise HTTPException(status_code=400, detail="File must be an XML file")
 
     try:
