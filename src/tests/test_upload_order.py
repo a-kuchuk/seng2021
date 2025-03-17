@@ -337,19 +337,23 @@ def test_invoice_creation():
     parsed_order = response.json()
     response2 = client.post("/ubl/order/validate", json=parsed_order)
     parsed_invoice = response2.json()
+    parsed_invoice=json.dumps(parsed_invoice)
     response3 = client.post("/ubl/invoice/create", json=parsed_invoice)
     assert response3.status_code == 200
 
 def test_create_invoice_empty_json():
     """Tests the creation of an Invoice from an empty JSON string"""
 
+    json_string = ""  # Empty JSON object
+
     response = client.post(
         "/ubl/invoice/create",
-        json={}  # Send empty JSON as request body
+        json=json_string  # Send empty JSON string as request body
     )
 
     assert response.status_code == 400
-    assert "Parsed JSON is empty" in response.json()["detail"]
+    assert "JSON string is empty" in response.json()["detail"]
+    print("Invoice empty success!")
 
 def test_create_invoice_invalid_json():
     """Tests the creation of an Invoice from an invalid JSON string"""
@@ -358,7 +362,23 @@ def test_create_invoice_invalid_json():
 
     response = client.post(
         "/ubl/invoice/create",
-        json=json_string # Send empty JSON string as request body
+        json=json_string  # Send empty JSON string as request body
     )
 
-    assert response.status_code == 422
+    assert response.status_code == 400
+    assert "Invalid JSON format" in response.json()["detail"]
+    print("Invoice invalid success!")
+
+def test_create_invoice_empty_json_object():
+    """Tests the creation of an Invoice from an empty JSON object"""
+
+    json_string = "{}"  # Empty JSON object
+
+    response = client.post(
+        "/ubl/invoice/create",
+        json=json_string  # Send empty JSON string as request body
+    )
+
+    assert response.status_code == 400
+    assert "Parsed JSON is empty" in response.json()["detail"]
+    print("Parsed JSON empty success!")
