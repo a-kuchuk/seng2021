@@ -1,0 +1,205 @@
+{
+    "Order": {
+        "@xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+        "@xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        "@xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Order-2",
+        "cbc:UBLVersionID": "2.0",
+        "cbc:CustomizationID": "urn:oasis:names:specification:ubl:xpath:Order-2.0:sbs-1.0-draft",
+        "cbc:ProfileID": "bpid:urn:oasis:names:draft:bpss:ubl-2-sbs-order-with-simple-response-draft",
+        "cbc:ID": "AEG012345",
+        "cbc:SalesOrderID": "CON0095678",
+        "cbc:CopyIndicator": "false",
+        "cbc:UUID": "6E09886B-DC6E-439F-82D1-7CCAC7F4E3B1",
+        "cbc:IssueDate": "2005-06-20",
+        "cbc:Note": "sample",
+        "cac:BuyerCustomerParty": {
+            "cbc:CustomerAssignedAccountID": "XFB01",
+            "cbc:SupplierAssignedAccountID": "GT00978567",
+            "cac:Party": {
+                "cac:PartyName": {
+                    "cbc:Name": "IYT Corporation"
+                },
+                "cac:PostalAddress": {
+                    "cbc:StreetName": "Avon Way",
+                    "cbc:BuildingName": "Thereabouts",
+                    "cbc:BuildingNumber": "56A",
+                    "cbc:CityName": "Bridgtow",
+                    "cbc:PostalZone": "ZZ99 1ZZ",
+                    "cbc:CountrySubentity": "Avon",
+                    "cac:AddressLine": {
+                        "cbc:Line": "3rd Floor, Room 5"
+                    },
+                    "cac:Country": {
+                        "cbc:IdentificationCode": "GB"
+                    }
+                },
+                "cac:PartyTaxScheme": {
+                    "cbc:RegistrationName": "Bridgtow District Council",
+                    "cbc:CompanyID": "12356478",
+                    "cbc:ExemptionReason": "Local Authority",
+                    "cac:TaxScheme": {
+                        "cbc:ID": "UK VAT",
+                        "cbc:TaxTypeCode": "VAT"
+                    }
+                },
+                "cac:Contact": {
+                    "cbc:Name": "Mr Fred Churchill",
+                    "cbc:Telephone": "0127 2653214",
+                    "cbc:Telefax": "0127 2653215",
+                    "cbc:ElectronicMail": "fred@iytcorporation.gov.uk"
+                }
+            }
+        },
+        "cac:SellerSupplierParty": {
+            "cbc:CustomerAssignedAccountID": "CO001",
+            "cac:Party": {
+                "cac:PartyName": {
+                    "cbc:Name": "Consortial"
+                },
+                "cac:PostalAddress": {
+                    "cbc:StreetName": "Busy Street",
+                    "cbc:BuildingName": "Thereabouts",
+                    "cbc:BuildingNumber": "56A",
+                    "cbc:CityName": "Farthing",
+                    "cbc:PostalZone": "AA99 1BB",
+                    "cbc:CountrySubentity": "Heremouthshire",
+                    "cac:AddressLine": {
+                        "cbc:Line": "The Roundabout"
+                    },
+                    "cac:Country": {
+                        "cbc:IdentificationCode": "GB"
+                    }
+                },
+                "cac:PartyTaxScheme": {
+                    "cbc:RegistrationName": "Farthing Purchasing Consortium",
+                    "cbc:CompanyID": "175 269 2355",
+                    "cbc:ExemptionReason": "N/A",
+                    "cac:TaxScheme": {
+                        "cbc:ID": "VAT",
+                        "cbc:TaxTypeCode": "VAT"
+                    }
+                },
+                "cac:Contact": {
+                    "cbc:Name": "Mrs Bouquet",
+                    "cbc:Telephone": "0158 1233714",
+                    "cbc:Telefax": "0158 1233856",
+                    "cbc:ElectronicMail": "bouquet@fpconsortial.co.uk"
+                }
+            }
+        },
+        "cac:OriginatorCustomerParty": {
+            "cac:Party": {
+                "cac:PartyName": {
+                    "cbc:Name": "The Terminus"
+                },
+                "cac:PostalAddress": {
+                    "cbc:StreetName": "Avon Way",
+                    "cbc:BuildingName": "Thereabouts",
+                    "cbc:BuildingNumber": "56A",
+                    "cbc:CityName": "Bridgtow",
+                    "cbc:PostalZone": "ZZ99 1ZZ",
+                    "cbc:CountrySubentity": "Avon",
+                    "cac:AddressLine": {
+                        "cbc:Line": "3rd Floor, Room 5"
+                    },
+                    "cac:Country": {
+                        "cbc:IdentificationCode": "GB"
+                    }
+                },
+                "cac:PartyTaxScheme": {
+                    "cbc:RegistrationName": "Bridgtow District Council",
+                    "cbc:CompanyID": "12356478",
+                    "cbc:ExemptionReason": "Local Authority",
+                    "cac:TaxScheme": {
+                        "cbc:ID": "UK VAT",
+                        "cbc:TaxTypeCode": "VAT"
+                    }
+                },
+                "cac:Contact": {
+                    "cbc:Name": "S Massiah",
+                    "cbc:Telephone": "0127 98876545",
+                    "cbc:Telefax": "0127 98876546",
+                    "cbc:ElectronicMail": "smassiah@the-email.co.uk"
+                }
+            }
+        },
+        "cac:Delivery": {
+            "cac:DeliveryAddress": {
+                "cbc:StreetName": "Avon Way",
+                "cbc:BuildingName": "Thereabouts",
+                "cbc:BuildingNumber": "56A",
+                "cbc:CityName": "Bridgtow",
+                "cbc:PostalZone": "ZZ99 1ZZ",
+                "cbc:CountrySubentity": "Avon",
+                "cac:AddressLine": {
+                    "cbc:Line": "3rd Floor, Room 5"
+                },
+                "cac:Country": {
+                    "cbc:IdentificationCode": "GB"
+                }
+            },
+            "cac:RequestedDeliveryPeriod": {
+                "cbc:StartDate": "2005-06-29",
+                "cbc:StartTime": "09:30:47.0Z",
+                "cbc:EndDate": "2005-06-29",
+                "cbc:EndTime": "09:30:47.0Z"
+            }
+        },
+        "cac:DeliveryTerms": {
+            "cbc:SpecialTerms": "1% deduction for late delivery as per contract"
+        },
+        "cac:TransactionConditions": {
+            "cbc:Description": "order response required; payment is by BACS or by cheque"
+        },
+        "cac:AnticipatedMonetaryTotal": {
+            "cbc:LineExtensionAmount": {
+                "@currencyID": "GBP",
+                "#text": "100.00"
+            },
+            "cbc:PayableAmount": {
+                "@currencyID": "GBP",
+                "#text": "100.00"
+            }
+        },
+        "cac:OrderLine": {
+            "cbc:Note": "this is an illustrative order line",
+            "cac:LineItem": {
+                "cbc:ID": "1",
+                "cbc:SalesOrderID": "A",
+                "cbc:LineStatusCode": "NoStatus",
+                "cbc:Quantity": {
+                    "@unitCode": "KGM",
+                    "#text": "100"
+                },
+                "cbc:LineExtensionAmount": {
+                    "@currencyID": "GBP",
+                    "#text": "100.00"
+                },
+                "cbc:TotalTaxAmount": {
+                    "@currencyID": "GBP",
+                    "#text": "17.50"
+                },
+                "cac:Price": {
+                    "cbc:PriceAmount": {
+                        "@currencyID": "GBP",
+                        "#text": "100.00"
+                    },
+                    "cbc:BaseQuantity": {
+                        "@unitCode": "KGM",
+                        "#text": "1"
+                    }
+                },
+                "cac:Item": {
+                    "cbc:Description": "Acme beeswax",
+                    "cbc:Name": "beeswax",
+                    "cac:BuyersItemIdentification": {
+                        "cbc:ID": "6578489"
+                    },
+                    "cac:SellersItemIdentification": {
+                        "cbc:ID": "17589683"
+                    }
+                }
+            }
+        }
+    }
+}
