@@ -3,7 +3,8 @@
 import io
 from fastapi.testclient import TestClient
 
-from src import main
+#from src import main
+import src.main 
 from src.tests.tests_main import get_xml
 
 app = main.app
