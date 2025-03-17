@@ -11,13 +11,14 @@ import os
 import json
 import xml.etree.ElementTree as ET
 from fastapi import FastAPI, File, HTTPException, UploadFile
+from src.tests.tests_main import get_xml
 
 app = FastAPI()
 
 INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
 
 @app.put("/ubl/invoice/edit/{invoiceId}")
-async def edit_invoice(invoice_id: str, updated_invoice: dict):
+def edit_invoice(invoice_id: str, updated_invoice: dict):
     """_summary_
 
     editing invoice route
@@ -35,7 +36,7 @@ async def edit_invoice(invoice_id: str, updated_invoice: dict):
         raise HTTPException(status_code=500, detail="Invoice file not found")
 
     try:
-        with open(INVOICE_FILE, "r", encoding="utf-8") as file:
+        with open(get_xml("invoice_"), "r", encoding="utf-8") as file:
             invoices = json.load(file)
     except json.JSONDecodeError as exc:
         raise HTTPException(status_code=500, detail="Invalid JSON format") from exc
