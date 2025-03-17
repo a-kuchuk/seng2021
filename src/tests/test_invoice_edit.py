@@ -8,12 +8,20 @@ Returns:
 
 import json
 import os
+from pathlib import Path
 from fastapi.testclient import TestClient
 from src.main import app
+from src.tests.tests_main import get_xml
 
 client = TestClient(app)
 
-INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
+# INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
+
+def write_xml(file_name):
+    """Function to write to the content of an XML file."""
+    valid_xml_file_path = Path(__file__).parent / "resources" / file_name
+    with valid_xml_file_path.open("w", encoding="utf-8") as xml_file:
+        return xml_file.write()
 
 def setup_invoice_file():
     """_summary_
@@ -34,13 +42,10 @@ def setup_invoice_file():
         }
     }
 
-    with open(INVOICE_FILE, "w", encoding="utf-8") as file:
+    with open(write_xml("invoice_provided_valid.xml"), "w", encoding="utf-8") as file:
         json.dump(sample_data, file)
 
     yield
-
-    if os.path.exists(INVOICE_FILE):
-        os.remove(INVOICE_FILE)
 
 def test_edit_invoice_success():
     """_summary_
@@ -82,7 +87,6 @@ def test_edit_invoice_file_not_found():
 
     Error: invoice file is not found
     """
-    os.remove(INVOICE_FILE)
 
     response = client.put("/ubl/invoice/edit/123", xml={"customer": "New Customer"})
 

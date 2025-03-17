@@ -17,7 +17,7 @@ app = FastAPI()
 INVOICE_FILE = "./src/tests/resources/invoice_provided_valid.xml"
 
 @app.put("/ubl/invoice/edit/{invoiceId}")
-def edit_invoice(invoice_id: str, updated_invoice: dict):
+async def edit_invoice(invoice_id: str, updated_invoice: dict):
     """_summary_
 
     editing invoice route
