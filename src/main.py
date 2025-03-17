@@ -30,14 +30,19 @@ def index():
 
 @app.post("/ubl/order/parse")
 async def parse_ubl_order(file: UploadFile = File(...)):
-    """
-    Parse a UBL order from an uploaded XML file.
+    """_summary_
+
+    Parses an uploaded UBL XML order document into JSON format.
 
     Args:
-        file (UploadFile): The uploaded XML.
+        file (UploadFile): XML file uploaded by the user.
+
+    Raises:
+        HTTPException: If no file is provided.
+        HTTPException: If the XML file is invalid.
 
     Returns:
-        str: JSON representation of the parsed XML.
+        dict: Parsed XML data in JSON format.
     """
     if file is None:
         raise HTTPException(status_code=400, detail="No file provided")
@@ -60,14 +65,19 @@ async def parse_ubl_order(file: UploadFile = File(...)):
 
 @app.post("/ubl/order/validate")
 async def validate_order(order_json: str = Body(...)):
-    """ 
-    Validates an order JSON and ensures required fields are present.
+    """_summary_
+
+    Validates a parsed UBL order document.
 
     Args:
-        order_json (str): The JSON order data received in the request body.
+        order_json (str): JSON string representation of the order document.
+
+    Raises:
+        HTTPException: If no JSON data is provided.
+        HTTPException: If the JSON data is invalid.
 
     Returns:
-        Either a validated order or a list of missing field errors.
+        dict: Validated order details or errors if missing fields.
     """
     try:
         if order_json is None:
@@ -149,7 +159,22 @@ async def validate_order(order_json: str = Body(...)):
 
 @app.post("/ubl/invoice/create")
 async def create_invoice(invoice_json: str = Body(...)):
-    """Route for converting a JSON file containing data into an XML Invoice file"""
+    """_summary_
+
+    Generates an XML invoice from validated order data.
+
+    Args:
+        invoice_json (str): JSON string representation of the validated invoice data.
+
+    Raises:
+        HTTPException: If the JSON input is empty.
+        HTTPException: If the JSON format is invalid.
+        HTTPException: If the parsed JSON is empty.
+        HTTPException: If the invoice XML file creation fails.
+
+    Returns:
+        dict: Confirmation message for XML file creation.
+    """
     if not invoice_json.strip():  # Check if the input is empty
         raise HTTPException(status_code=400, detail="JSON string is empty")
     try:

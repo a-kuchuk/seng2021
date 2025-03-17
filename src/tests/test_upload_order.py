@@ -11,13 +11,25 @@ from src.main import app
 client = TestClient(app)
 
 def get_xml(file_name):
-    """Function to read the content of an XML file."""
+    """_summary_
+
+    Reads an XML file and returns its contents as a string.
+
+    Args:
+        file_name (str): Name of the XML file.
+
+    Returns:
+        str: XML file contents.
+    """
     valid_xml_file_path = Path(__file__).parent / "resources" / file_name
     with valid_xml_file_path.open("r", encoding="utf-8") as xml_file:
         return xml_file.read()
 
 def test_validate_order():
-    """Test if a valid UBL order XML is parsed correctly."""
+    """_summary_
+
+    Tests validation of a valid UBL order document.
+    """
     xml_content = get_xml("order_provided_valid.xml")
 
     files = {"file": ("test.xml", xml_content, "text/xml")}
@@ -27,7 +39,10 @@ def test_validate_order():
     assert parsed_order["Order"]["cbc:ID"] == "AEG012345"
 
 def test_parse_invalid_xml():
-    """Test if an invalid XML file returns HTTP 400."""
+    """_summary_
+
+    Tests parsing with an invalid XML document.
+    """
     xml_content = """<?xml version="1.0" encoding="UTF-8"?>
         <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
             <cbc:ID>AEG012345</cbc:ID>
@@ -41,7 +56,10 @@ def test_parse_invalid_xml():
     assert "Invalid XML file" in response.json()["detail"]  # Ensure correct error message
 
 def test_parse_empty_xml():
-    """Test if an empty XML file returns HTTP 400."""
+    """_summary_
+
+    Tests parsing with an empty XML file.
+    """
     xml_content = ""
 
     files = {"file": ("test.xml", xml_content, "text/xml")}
@@ -51,7 +69,10 @@ def test_parse_empty_xml():
     assert "Invalid XML file" in response.json()["detail"]  # Ensure correct error message
 
 def test_valid_invoice():
-    """Test valid order document to invoice JSON."""
+    """_summary_
+
+    Tests order validation and invoice generation.
+    """
     xml_content = get_xml("order_provided_valid.xml")
 # Pass in the order document in XML format to the /ubl/order/parse endpoint
 # and then pass into the /ubl/order/validate endpoint
@@ -65,7 +86,10 @@ def test_valid_invoice():
     assert isinstance(parsed_invoice["InvoiceID"], int)
 
 def test_empty_field():
-    """Test if API returns error when necessary field is empty."""
+    """_summary_
+
+    Tests validation for a missing required field.
+    """
     xml_content = """<?xml version="1.0" encoding="UTF-8"?>
 <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:Order-2">
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
@@ -260,7 +284,10 @@ def test_empty_field():
 		)
 
 def test_invoice_creation():
-    """Test if API returns valid invoice when all data is present"""
+    """_summary_
+
+    Tests creation of an invoice from a validated order document.
+    """
     xml_content = get_xml("order_provided_valid.xml")
 # Pass in the order document in XML format to the /ubl/order/parse endpoint
 # and then pass into the /ubl/order/validate endpoint
@@ -276,7 +303,10 @@ def test_invoice_creation():
     os.remove("invoice.xml")
 
 def test_create_invoice_empty_json():
-    """Tests the creation of an Invoice from an empty JSON string"""
+    """_summary_
+
+    Tests invoice creation with an empty JSON payload.
+    """
 
     json_string = ""  # Empty JSON object
 
@@ -290,7 +320,10 @@ def test_create_invoice_empty_json():
     print("Invoice empty success!")
 
 def test_create_invoice_invalid_json():
-    """Tests the creation of an Invoice from an invalid JSON string"""
+    """_summary_
+
+    Tests invoice creation with an invalid JSON format.
+    """
 
     json_string = "{invalid json}"  # invalid JSON
 
@@ -304,7 +337,10 @@ def test_create_invoice_invalid_json():
     print("Invoice invalid success!")
 
 def test_create_invoice_empty_json_object():
-    """Tests the creation of an Invoice from an empty JSON object"""
+    """_summary_
+
+    Tests invoice creation with an empty JSON object.
+    """
 
     json_string = "{}"  # Empty JSON object
 
