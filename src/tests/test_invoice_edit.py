@@ -80,7 +80,7 @@ def test_edit_invoice_missing_input():
 def test_edit_invoice_file_not_found():
     """_summary_
 
-    Error: invoice file not found
+    Error: invoice file is not found
     """
     os.remove(INVOICE_FILE)
 
