@@ -3,6 +3,7 @@ Unit tests for FastAPI UBL Order parsing endpoints.
 """
 
 import json
+import os
 import io
 from fastapi.testclient import TestClient
 from src.main import app
@@ -393,3 +394,12 @@ def test_create_invoice_empty_json_object():
     assert response.status_code == 400
     assert "Parsed JSON is empty" in response.json()["detail"]
     print("Parsed JSON empty success!")
+
+def test_xml_to_pdf():
+    """Tests the creation of a PDF file"""
+    xml = get_xml("invoice_provided_valid.xml")
+    files = {"file": ("test.xml", xml, "text/xml")}
+    response = client.post("/ubl/invoice/pdf", files=files)
+
+    assert response.status_code == 200
+    os.remove("invoice.pdf")
