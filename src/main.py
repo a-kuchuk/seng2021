@@ -78,7 +78,7 @@ async def edit_invoice(invoice_id: str, updated_invoice: dict = Body(...)):
     if not updated_invoice or not isinstance(updated_invoice, dict):
         raise HTTPException(status_code=400, detail="Missing or invalid input data")
 
-    if not os.path.exists(INVOICE_FILE):
+    if os.path.exists(INVOICE_FILE):
         raise HTTPException(status_code=500, detail="Invoice file not found")
     try:
         tree = ET.parse(INVOICE_FILE)

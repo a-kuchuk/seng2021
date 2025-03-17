@@ -21,8 +21,8 @@ def setup_invoice_file():
         </LegalMonetaryTotal>
     </Invoice>"""
 
-    file_path = Path("src/tests/data/invoice_provided_valid.xml")
-    file_path.parent.mkdir(parents=True, exist_ok=True)  # Ensure directory exists
+    file_path = Path(INVOICE_FILE)
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     file_path.write_text(invoice_xml_content, encoding="utf-8")
 
 def test_edit_invoice_success():
@@ -46,14 +46,14 @@ def test_edit_invoice_success():
 
     response = client.put("/ubl/invoice/edit/123", json=updated_data)
 
-    # Debugging: Print response to check format
-    print("Response Status Code:", response.status_code)
-    print("Raw Response Text:", repr(response.text))  # Shows hidden characters
+    # # Debugging: Print response to check format
+    # print("Response Status Code:", response.status_code)
+    # print("Raw Response Text:", repr(response.text))
 
     assert response.status_code == 200
 
     # Sanitize the response text before parsing
-    response_text = response.text.strip().replace("\ufeff", "")  # Remove BOM if present
+    response_text = response.text.strip().replace("\ufeff", "")
 
     try:
         root = ET.fromstring(response_text)
@@ -94,11 +94,10 @@ def test_edit_invoice_missing_input():
     assert response.status_code == 400
     assert response.json() == {"detail": "Missing or invalid input data"}
 
-# def test_edit_invoice_file_not_found():
-#     """Test error when the invoice file is not found."""
+def test_edit_invoice_file_not_found():
+    """Test error when the invoice file is not found."""
     
+    response = client.put("/ubl/invoice/edit/123", json={"AccountingCustomerParty": "New Customer"})
 
-#     response = client.put("/ubl/invoice/edit/123", json={"AccountingCustomerParty": "New Customer"})
-
-#     assert response.status_code == 500
-#     assert response.json() == {"detail": "Invoice file not found"}
+    assert response.status_code == 500
+    assert response.json() == {"detail": "Invoice file not found"}
