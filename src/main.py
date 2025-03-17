@@ -48,9 +48,12 @@ async def upload_order_document(file: UploadFile = File(None)):
         raise HTTPException(status_code=400, detail="No file provided")
 
     # Check if file is XML text
-    mime_type, _ = mimetypes.guess_type(file.filename)
-    if mime_type not in ["text/xml"]:
+    filename = file.filename
+    if not filename.lower().endswith(".xml"):
         raise HTTPException(status_code=400, detail="File must be an XML file")
+    #mime_type, _ = mimetypes.guess_type(file.filename)
+    #if mime_type not in ["text/xml"]:
+    #    raise HTTPException(status_code=400, detail="File must be an XML file")
 
     try:
         contents = await file.read()
