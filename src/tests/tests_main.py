@@ -271,3 +271,26 @@ def test_invoice_creation():
     parsed_invoice = response2.json()
     response3 = client.post("/ubl/invoice/create", json=parsed_invoice)
     assert response3.status_code == 200
+
+def test_create_invoice_empty_json():
+    """Tests the creation of an Invoice from an empty JSON string"""
+
+    response = client.post(
+        "/ubl/invoice/create",
+        json={}  # Send empty JSON as request body
+    )
+
+    assert response.status_code == 400
+    assert "Parsed JSON is empty" in response.json()["detail"]
+
+def test_create_invoice_invalid_json():
+    """Tests the creation of an Invoice from an invalid JSON string"""
+
+    json_string = "{invalid json}"  # invalid JSON
+
+    response = client.post(
+        "/ubl/invoice/create",
+        json=json_string # Send empty JSON string as request body
+    )
+
+    assert response.status_code == 422

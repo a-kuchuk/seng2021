@@ -150,10 +150,10 @@ async def validate_order(order_json: str = Body(...)):
 async def create_invoice(invoice_json: dict = Body(...)):
     """Route for converting a JSON file containing data into an XML Invoice file"""
     invoice_json = json.dumps(invoice_json)
-    if not invoice_json.strip():  # Check if the input string is empty
+    if not invoice_json.strip():  # Check if the input is empty
         raise HTTPException(status_code=400, detail="JSON string is empty")
     try:
-        data = json.loads(invoice_json)  # Parse the JSON string into a dictionary
+        data = json.loads(invoice_json)  # Parse the JSON into a dictionary
     except json.JSONDecodeError as ex:
         raise HTTPException(status_code=400, detail="Invalid JSON format") from ex
 
