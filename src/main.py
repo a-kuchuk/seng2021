@@ -57,8 +57,6 @@ def hello_world():
 
     default hello world route
 
-    Returns:
-        _type_: _description_
     """
     return {"details": "Hello, World!"}
 
