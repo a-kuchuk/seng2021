@@ -1,4 +1,9 @@
-description = """
+"""invoicve generation api"""
+
+import xml.etree.ElementTree as ET
+from fastapi import FastAPI, File, HTTPException, UploadFile
+
+DESCRIPTION= """
 API that takes an XML order document and provides a XML invoice
 with the elements extracted from the order doc and mapped to the invoice.
 
@@ -12,8 +17,6 @@ Generates invoice
 
 """
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
-import xml.etree.ElementTree as ET
 
 tags_metadata = [
     {
@@ -37,6 +40,7 @@ tags_metadata = [
 app = FastAPI(
     title="Invoice Creation API",
     version="0.0.1",
+    description=DESCRIPTION,
     openapi_tags=tags_metadata,
 )
 
