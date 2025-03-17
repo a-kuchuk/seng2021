@@ -74,3 +74,4 @@ def test_xml_to_pdf():
     response = client.post("/ubl/invoice/pdf", files=files)
 
     assert response.status_code == 200
+    os.remove("invoice.pdf")
