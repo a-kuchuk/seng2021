@@ -5,6 +5,7 @@ import random
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
+from fastapi.openapi.utils import get_openapi
 import xmltodict
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -34,11 +35,44 @@ tags_metadata = [
 ]
 
 app = FastAPI(
-    title="Invoice Creation API",
-    version="0.0.1",
+    title="The Real Guy Chilcott",
+    version="2.0.1",
     description=DESCRIPTION,
     openapi_tags=tags_metadata,
+    contact={
+        "name": "Andrea Kuchuk",
+        "url": "https://www.linkedin.com/in/andrea-kuchuk/",
+        "email": "z5477474@ad.unsw.edu.au",
+    },
+    license_info={
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
 )
+
+def custom_openapi():
+    """_summary_
+
+    Generates OpenAPI documentation (available at /redoc) based on codebase and provided metadata
+
+    """
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="The Real Guy Chilcott",
+        version="2.0.1",
+        summary="Invoice Generation OpenAPI schema",
+        description="Our updated OpenAPI schema, available on web and for download",
+        routes=app.routes,
+    )
+    openapi_schema["info"]["x-logo"] = {
+        "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
+    }
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
 
 
 
@@ -47,7 +81,7 @@ app = FastAPI(
 def hello_world():
     """_summary_
 
-    default hello world route
+    Default hello world route
 
     """
     return {"details": "Hello, World!"}
@@ -55,18 +89,20 @@ def hello_world():
 
 @app.post("/ubl/order/upload", tags=["DATA VALIDATION"])
 async def upload_order_document(file: UploadFile = File(None)):
-    """Upload an XML order document and extract the order ID
+    """_summary_
 
-    Args:
+    Upload an XML order document and extract the order ID
+
+    Args:\n
         file (UploadFile, optional): the UBL XML order document. Defaults to File(None).
 
-    Raises:
-        HTTPException: No file provided
-        HTTPException: File must be an XML file
-        HTTPException: Order ID not found
+    Raises:\n
+        HTTPException: No file provided\n
+        HTTPException: File must be an XML file\n
+        HTTPException: Order ID not found\n
         HTTPException: Invalid XML format
 
-    Returns:
+    Returns:\n
         text: the order ID extracted from the XML document
     """
 
@@ -107,14 +143,14 @@ async def parse_ubl_order(file: UploadFile = File(...)):
 
     Parses an uploaded UBL XML order document into JSON format.
 
-    Args:
+    Args:\n
         file (UploadFile): XML file uploaded by the user.
 
-    Raises:
-        HTTPException: If no file is provided.
-        HTTPException: If the XML file is invalid.
+    Raises:\n
+        HTTPException: If no file is provided.\n
+        HTTPException: If the XML file is invalid.\n
 
-    Returns:
+    Returns:\n
         dict: Parsed XML data in JSON format.
     """
     if file is None:
@@ -142,14 +178,14 @@ async def validate_order(order_json: str = Body(...)):
 
     Validates a parsed UBL order document.
 
-    Args:
+    Args:\n
         order_json (str): JSON string representation of the order document.
 
-    Raises:
-        HTTPException: If no JSON data is provided.
+    Raises:\n
+        HTTPException: If no JSON data is provided.\n
         HTTPException: If the JSON data is invalid.
 
-    Returns:
+    Returns:\n
         dict: Validated order details or errors if missing fields.
     """
     try:
@@ -237,16 +273,16 @@ async def create_invoice(invoice_json: str = Body(...)):
 
     Generates an XML invoice from validated order data.
 
-    Args:
+    Args:\n
         invoice_json (str): JSON string representation of the validated invoice data.
 
-    Raises:
-        HTTPException: If the JSON input is empty.
-        HTTPException: If the JSON format is invalid.
-        HTTPException: If the parsed JSON is empty.
+    Raises:\n
+        HTTPException: If the JSON input is empty.\n
+        HTTPException: If the JSON format is invalid.\n
+        HTTPException: If the parsed JSON is empty.\n
         HTTPException: If the invoice XML file creation fails.
 
-    Returns:
+    Returns:\n
         dict: Confirmation message for XML file creation.
     """
     if not invoice_json.strip():  # Check if the input is empty
@@ -329,14 +365,16 @@ async def create_invoice(invoice_json: str = Body(...)):
     # return {"details": "XML file successful"}
 
 
-@app.post("/ubl/invoice/pdf", tags=["MANIPULATION"])
+@app.post("/ubl/invoice/pdf", tags=["INVOICE MANIPULATION"])
 async def xml_to_pdf(file: UploadFile = File(...)):
-    """Upload an XML invoice document and converts in into a PDF
+    """_summary_
 
-    Args:
+    Upload an XML invoice document and converts in into a PDF
+
+    Args:\n
         file (UploadFile, optional): the UBL XML invoice document. Defaults to File(None).
 
-    Returns:
+    Returns:\n
         none
     """
     contents = await file.read()
