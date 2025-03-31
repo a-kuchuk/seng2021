@@ -51,13 +51,18 @@ app = FastAPI(
 )
 
 def custom_openapi():
+    """_summary_
+
+    Generates OpenAPI documentation (available at /redoc) based on codebase and provided metadata
+
+    """
     if app.openapi_schema:
         return app.openapi_schema
     openapi_schema = get_openapi(
         title="The Real Guy Chilcott",
         version="2.0.1",
         summary="Invoice Generation OpenAPI schema",
-        description="Our updated and up to standard OpenAPI schema, available on web and for download",
+        description="Our updated OpenAPI schema, available on web and for download",
         routes=app.routes,
     )
     openapi_schema["info"]["x-logo"] = {
