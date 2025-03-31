@@ -5,6 +5,7 @@ import random
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
+from fastapi.openapi.utils import get_openapi
 import xmltodict
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -34,11 +35,30 @@ tags_metadata = [
 ]
 
 app = FastAPI(
-    title="Invoice Creation API",
-    version="0.0.1",
+    title="The Real Guy Chilcott",
+    version="2.0.1",
     description=DESCRIPTION,
     openapi_tags=tags_metadata,
 )
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="The Real Guy Chilcott",
+        version="2.0.1",
+        summary="Invoice Generation OpenAPI schema",
+        description="Our updated and up to standard OpenAPI schema, available on web and for download",
+        routes=app.routes,
+    )
+    openapi_schema["info"]["x-logo"] = {
+        "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
+    }
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
 
 
 
@@ -329,7 +349,7 @@ async def create_invoice(invoice_json: str = Body(...)):
     # return {"details": "XML file successful"}
 
 
-@app.post("/ubl/invoice/pdf", tags=["MANIPULATION"])
+@app.post("/ubl/invoice/pdf", tags=["INVOICE MANIPULATION"])
 async def xml_to_pdf(file: UploadFile = File(...)):
     """Upload an XML invoice document and converts in into a PDF
 
