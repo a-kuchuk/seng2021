@@ -8,3 +8,5 @@ typing_extensions==4.12.2
 uvicorn==0.33.0
 python-multipart==0.0.12
 httpx==0.28.1 
+pycountry==24.6.1
+currencyconverter==0.18.5
