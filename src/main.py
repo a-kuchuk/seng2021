@@ -411,7 +411,7 @@ async def xml_to_pdf(file: UploadFile = File(...)):
     can.save()
 
 # Initialize Jinja2 templates
-templates = Jinja2Templates(directory="tests/resources")
+templates = Jinja2Templates(directory="src/tests/resources")
 
 @app.post("/ubl/invoice/preview", response_class=HTMLResponse, tags=["INVOICE MANIPULATION"])
 async def preview_invoice(request: Request, file: UploadFile = File(...)):
