@@ -9,10 +9,10 @@ import xmltodict
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
 from fastapi import Request
 from fastapi.templating import Jinja2Templates
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
 
 DESCRIPTION= """
@@ -470,4 +470,7 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
     except ET.ParseError as ex:
         raise HTTPException(status_code=400, detail="Invalid XML format") from ex
     except Exception as ex:
-        raise HTTPException(status_code=400, detail=f"Error processing invoice preview: {str(ex)}") from ex
+        raise HTTPException(
+            status_code=400,
+            detail=f"Error processing invoice preview: {str(ex)}"
+        ) from ex
