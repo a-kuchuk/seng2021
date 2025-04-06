@@ -405,6 +405,7 @@ def test_xml_to_pdf():
     os.remove("invoice.pdf")
 
 def test_invoice_cancel():
+    """Tests the successful cancelation of invoice creation"""
     response = client.post("/ubl/invoice/cancel")
     assert response.status_code == 200
     assert response.json() == {"message": "Invoice creation has been canceled successfully."}
