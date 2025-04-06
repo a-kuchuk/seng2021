@@ -4,10 +4,11 @@ import json
 import random
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
+import xmltodict
+
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse
-import xmltodict
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from fastapi import Request
@@ -441,10 +442,19 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
         invoice_data = {
             "InvoiceID": root.findtext(".//cbc:ID", namespaces=namespaces),
             "IssueDate": root.findtext(".//cbc:IssueDate", namespaces=namespaces),
-            "SupplierName": root.findtext(".//cac:AccountingSupplierParty//cbc:Name", namespaces=namespaces),
-            "CustomerName": root.findtext(".//cac:AccountingCustomerParty//cbc:Name", namespaces=namespaces),
-            "TotalAmount": root.findtext(".//cbc:LegalMonetaryTotal//cbc:PayableAmount", namespaces=namespaces),
-            "Currency": root.findtext(".//cbc:LegalMonetaryTotal//cbc:PayableAmount", "currencyID", namespaces=namespaces),
+            "SupplierName": root.findtext(
+                ".//cac:AccountingSupplierParty//cbc:Name",
+                namespaces=namespaces),
+            "CustomerName": root.findtext(
+                ".//cac:AccountingCustomerParty//cbc:Name",
+                namespaces=namespaces),
+            "TotalAmount": root.findtext(
+                ".//cbc:LegalMonetaryTotal//cbc:PayableAmount",
+                namespaces=namespaces),
+            "Currency": root.findtext(
+                ".//cbc:LegalMonetaryTotal//cbc:PayableAmount",
+                "currencyID",
+                namespaces=namespaces),
             "items": []
         }
 
@@ -452,9 +462,12 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
             raise HTTPException(status_code=400, detail="Invoice ID: None")
 
         # Render HTML page with invoice data
-        return templates.TemplateResponse(request, "invoice_preview.html", {"invoice": invoice_data})
+        return templates.TemplateResponse(
+            request, "invoice_preview.html",
+            {"invoice": invoice_data}
+        )
 
-    except ET.ParseError:
-        raise HTTPException(status_code=400, detail="Invalid XML format")
+    except ET.ParseError as ex:
+        raise HTTPException(status_code=400, detail="Invalid XML format") from ex
     except Exception as ex:
-        raise HTTPException(status_code=400, detail=f"Error processing invoice preview: {str(ex)}")
+        raise HTTPException(status_code=400, detail=f"Error processing invoice preview: {str(ex)}") from ex

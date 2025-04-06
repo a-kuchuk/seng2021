@@ -409,7 +409,7 @@ def test_invoice_preview_valid():
     xml = get_xml("invoice_provided_valid.xml")
     files = {"file": ("test_invoice.xml", xml, "text/xml")}
     response = client.post("/ubl/invoice/preview", files=files)
-    
+
     assert response.status_code == 200
     assert "text/html" in response.headers["content-type"]
     assert "Invoice ID" in response.text
