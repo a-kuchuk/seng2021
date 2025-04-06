@@ -6,9 +6,13 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 from fastapi.openapi.utils import get_openapi
+from fastapi.responses import HTMLResponse
 import xmltodict
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+from fastapi import Request
+from fastapi.templating import Jinja2Templates
+
 
 DESCRIPTION= """
 API that takes an XML order document and provides a XML invoice
@@ -405,3 +409,52 @@ async def xml_to_pdf(file: UploadFile = File(...)):
             y_position = height - 40
 
     can.save()
+
+# Initialize Jinja2 templates
+templates = Jinja2Templates(directory="tests/resources")
+
+@app.post("/ubl/invoice/preview", response_class=HTMLResponse, tags=["INVOICE MANIPULATION"])
+async def preview_invoice(request: Request, file: UploadFile = File(...)):
+    """
+    Upload an XML invoice document and preview its information in HTML format.
+
+    Args:
+        request (Request): The request object.
+        file (UploadFile): The UBL XML invoice document.
+
+    Returns:
+        HTMLResponse: Rendered HTML page displaying the invoice information.
+    """
+    try:
+        # Read and parse XML content
+        contents = await file.read()
+        tree = ET.ElementTree(ET.fromstring(contents))
+        root = tree.getroot()
+
+        # Namespaces for parsing
+        namespaces = {
+            'cbc': 'urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2',
+            'cac': 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2',
+        }
+
+        # Extract relevant info from XML
+        invoice_data = {
+            "InvoiceID": root.findtext(".//cbc:ID", namespaces=namespaces),
+            "IssueDate": root.findtext(".//cbc:IssueDate", namespaces=namespaces),
+            "SupplierName": root.findtext(".//cac:AccountingSupplierParty//cbc:Name", namespaces=namespaces),
+            "CustomerName": root.findtext(".//cac:AccountingCustomerParty//cbc:Name", namespaces=namespaces),
+            "TotalAmount": root.findtext(".//cbc:LegalMonetaryTotal//cbc:PayableAmount", namespaces=namespaces),
+            "Currency": root.findtext(".//cbc:LegalMonetaryTotal//cbc:PayableAmount", "currencyID", namespaces=namespaces),
+            "items": []
+        }
+
+        if not invoice_data["InvoiceID"]:
+            raise HTTPException(status_code=400, detail="Invoice ID: None")
+
+        # Render HTML page with invoice data
+        return templates.TemplateResponse(request, "invoice_preview.html", {"invoice": invoice_data})
+
+    except ET.ParseError:
+        raise HTTPException(status_code=400, detail="Invalid XML format")
+    except Exception as ex:
+        raise HTTPException(status_code=400, detail=f"Error processing invoice preview: {str(ex)}")
