@@ -374,17 +374,17 @@ async def create_invoice(invoice_json: str = Body(...)):
 async def parse_ubl_order(file: UploadFile = File(...)):
     """_summary_
 
-    Parses an uploaded UBL XML order document into JSON format.
+    Parses an uploaded UBL XML order document into JSON format.\n
 
-    Args:
-        file (UploadFile): XML file uploaded by the user.
+    Args:\n
+        file (UploadFile): XML file uploaded by the user.\n
 
-    Raises:
-        HTTPException: If no file is provided.
-        HTTPException: If the XML file is invalid.
+    Raises:\n
+        HTTPException: If no file is provided.\n
+        HTTPException: If the XML file is invalid.\n
 
-    Returns:
-        dict: Parsed XML data in JSON format.
+    Returns:\n
+        dict: Parsed XML data in JSON format.\n
     """
     if file is None:
         raise HTTPException(status_code=400, detail="No file provided")
@@ -404,17 +404,17 @@ async def parse_ubl_order(file: UploadFile = File(...)):
 async def validate_order(order_json: str = Body(...)):
     """_summary_
 
-    Validates a parsed UBL order document.
+    Validates a parsed UBL order document.\n
 
-    Args:
-        order_json (str): JSON string representation of the order document.
+    Args:\n
+        order_json (str): JSON string representation of the order document.\n
 
-    Raises:
-        HTTPException: If no JSON data is provided.
-        HTTPException: If the JSON data is invalid.
+    Raises:\n
+        HTTPException: If no JSON data is provided.\n
+        HTTPException: If the JSON data is invalid.\n
 
-    Returns:
-        dict: Validated order details or errors if missing fields.
+    Returns:\n
+        dict: Validated order details or errors if missing fields.\n
     """
     try:
         if order_json is None:
@@ -546,8 +546,21 @@ async def validate_order(order_json: str = Body(...)):
 
 @app.put("/ubl/order/edit/v2", tags=["DATA VALIDATION"])
 async def edit_invoice(payload: dict = Body(...)):
-    """
-    Edits fields in an invoice and re-validates it using the existing validation logic.
+    """_summary_
+
+    Edits a parsed invoice JSON.\n
+
+    Args:\n
+        refined_order (dict): JSON representation of the order document.\n
+        updates (dict): Dictionary of updates to apply to the order document.\n
+
+    Raises:\n
+        HTTPException: If no JSON data is provided.\n
+        HTTPException: If the JSON data is invalid.\n
+        HTTPException: If an edit is invalid.\n
+
+    Returns:\n
+        dict: Validated order details or errors if missing fields.\n
     """
     refined_order = json.loads(payload["invoice_json"])
     updates = payload["updates"]
@@ -631,8 +644,21 @@ async def edit_invoice(payload: dict = Body(...)):
 
 @app.put("/ubl/order/currency/v2", tags=["DATA VALIDATION"])
 async def edit_invoice(payload: dict = Body(...)):
-    """
-    Edits fields in an invoice and re-validates it using the existing validation logic.
+    """_summary_
+
+    Edits a parsed invoice JSON's currency.\n
+
+    Args:\n
+        refined_order (dict): JSON representation of the order document.\n
+        updates (dict): Dictionary of updates to apply to the order document.\n
+
+    Raises:\n
+        HTTPException: If no JSON data is provided.\n
+        HTTPException: If the JSON data is invalid.\n
+        HTTPException: If an edit is invalid.\n
+
+    Returns:\n
+        dict: Validated order details or errors if missing fields.\n
     """
     refined_order = json.loads(payload["invoice_json"])
     updates = payload["updates"]
@@ -653,7 +679,7 @@ async def edit_invoice(payload: dict = Body(...)):
         if not valid_currency(updates["Currency"]):
             raise HTTPException(
                 status_code=400,
-                detail=f"Invalid currency: {updates["Currency"]}. Must be valid currency code.",
+                detail=f"Invalid currency: {updates['Currency']}. Must be valid currency code.",
             )
 
         updates["Currency"] = updates["Currency"].upper()
@@ -692,6 +718,27 @@ async def edit_invoice(payload: dict = Body(...)):
 
 @app.post("/ubl/order/email/v2", tags=["DATA VALIDATION"])
 async def edit_invoice(to_email: str = Form(...), attachment: UploadFile = Form(...)):
+    """_summary_
+
+    Send the invoice as an attatchement to email\n
+
+    Args:\n
+        to_email (str): Email address to send the invoice to.\n
+        attachment (UploadFile): Invoice to send.\n
+
+    Raises:\n
+        HTTPException: If no email is provided.\n
+        HTTPException: If no invoice is provided.\n
+
+    Returns:\n
+        dict: A success message.\n
+    """
+
+    if to_email is None:
+        raise HTTPException(status_code=400, detail="No email provided")
+
+    if attachment is None:
+        raise HTTPException(status_code=400, detail="No invoice provided")
     smtp_port = 587
     smtp_server = "smtp.gmail.com"
 

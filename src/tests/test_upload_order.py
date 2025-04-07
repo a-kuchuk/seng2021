@@ -351,7 +351,6 @@ def test_invoice_creation():
     parsed_invoice = response2.json()
     response3 = client.post("/ubl/invoice/create", json=parsed_invoice)
     assert response3.status_code == 200
-    parsed_invoicexml = response3.json()
 
 
 def test_create_invoice_empty_json():
@@ -458,7 +457,7 @@ def test_new_upload_empty_xml():
 def test_validv2_invoice():
     """_summary_
 
-    Tests order validation and invoice generation.
+    Tests order validation with new API
     """
     xml_content = get_xml("order_provided_valid.xml")
     # Pass in the order document in XML format to the /ubl/order/parse endpoint
@@ -670,6 +669,10 @@ def test_validatev2_empty_field():
 
 
 def test_validv2_invalid_invoice():
+    """_summary_
+
+    Tests validation for invalid fields
+    """
     xml_content = """<?xml version="1.0" encoding="UTF-8"?>
 <Order xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:Order-2">
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
@@ -871,9 +874,11 @@ def test_validv2_invalid_invoice():
 
 
 def test_edit_invoice():
+    """_summary_
+
+    Tests editing an invoice
+    """
     xml_content = get_xml("order_provided_valid.xml")
-    # Pass in the order document in XML format to the /ubl/order/parse endpoint
-    # and then pass into the /ubl/order/validate endpoint
     files = {"file": ("test.xml", xml_content, "text/xml")}
     response = client.post("/ubl/order/parse", files=files)
 
@@ -889,13 +894,14 @@ def test_edit_invoice():
         "/ubl/order/edit/v2", json={"invoice_json": parsed_invoice, "updates": updates}
     )
     assert response3.status_code == 200
-    parsed_invoicexml = response3.json()
 
 
-def test_edit_invoice():
+def test_invalid_edit_invoice():
+    """_summary_
+
+    Tests edit with invalid fields
+    """
     xml_content = get_xml("order_provided_valid.xml")
-    # Pass in the order document in XML format to the /ubl/order/parse endpoint
-    # and then pass into the /ubl/order/validate endpoint
     files = {"file": ("test.xml", xml_content, "text/xml")}
     response = client.post("/ubl/order/parse", files=files)
 
@@ -913,13 +919,14 @@ def test_edit_invoice():
         "/ubl/order/edit/v2", json={"invoice_json": parsed_invoice, "updates": updates}
     )
     assert response3.status_code == 400
-    parsed_invoicexml = response3.json()
 
 
 def test_currency():
+    """_summary_
+
+    Tests change in currency
+    """
     xml_content = get_xml("order_provided_valid.xml")
-    # Pass in the order document in XML format to the /ubl/order/parse endpoint
-    # and then pass into the /ubl/order/validate endpoint
     files = {"file": ("test.xml", xml_content, "text/xml")}
     response = client.post("/ubl/order/parse", files=files)
 
@@ -932,13 +939,14 @@ def test_currency():
         json={"invoice_json": parsed_invoice, "updates": updates},
     )
     assert response3.status_code == 200
-    parsed_invoicexml = response3.json()
 
 
 def test_currency_lower():
+    """_summary_
+
+    Test valid currency change in lower case
+    """
     xml_content = get_xml("order_provided_valid.xml")
-    # Pass in the order document in XML format to the /ubl/order/parse endpoint
-    # and then pass into the /ubl/order/validate endpoint
     files = {"file": ("test.xml", xml_content, "text/xml")}
     response = client.post("/ubl/order/parse", files=files)
 
@@ -956,9 +964,11 @@ def test_currency_lower():
 
 
 def test_currency_invalid():
+    """_summary_
+
+    Test invalid currency
+    """
     xml_content = get_xml("order_provided_valid.xml")
-    # Pass in the order document in XML format to the /ubl/order/parse endpoint
-    # and then pass into the /ubl/order/validate endpoint
     files = {"file": ("test.xml", xml_content, "text/xml")}
     response = client.post("/ubl/order/parse", files=files)
 
@@ -976,6 +986,10 @@ def test_currency_invalid():
 
 
 def test_email():
+    """_summary_
+
+    Tests valid email send
+    """
     ubl_xml_content = get_xml("invoice_provided_valid.xml")
     files = {"attachment": ("valid_order_doc.xml", ubl_xml_content, "text/xml")}
     data = {"to_email": "wubenny2@gmail.com"}
