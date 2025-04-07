@@ -4,17 +4,56 @@ import json
 import random
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
-import xmltodict
-
-from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Request
+from email.message import EmailMessage
+import smtplib
+from datetime import datetime
+from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Form, Request
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
+import xmltodict
+import pycountry
+from currency_converter import CurrencyConverter
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 
-DESCRIPTION= """
+def valid_date(date_str):
+    """_summary_
+
+    Checks if the provided string is a valid date
+
+    Args:
+        date_str (str): Date to check
+
+    Returns:
+        True or false based on the check
+    """
+    try:
+        datetime.fromisoformat(date_str)
+        return True
+    except ValueError:
+        return False
+
+
+def valid_currency(code):
+    """_summary_
+
+    Checks if the provided currency code is valid
+
+    Args:
+        code (str): Currency code to check
+
+    Returns:
+        True or false based on the check
+    """
+    try:
+        return pycountry.currencies.get(alpha_3=code.upper()) is not None
+    except AttributeError:
+        return False
+
+
+DESCRIPTION = """
 API that takes an XML order document and provides a XML invoice
 with the elements extracted from the order doc and mapped to the invoice.
 """
@@ -54,6 +93,7 @@ app = FastAPI(
     },
 )
 
+
 def custom_openapi():
     """_summary_
 
@@ -77,8 +117,6 @@ def custom_openapi():
 
 
 app.openapi = custom_openapi
-
-
 
 
 @app.get("/", tags=["HEALTH"])
@@ -141,6 +179,7 @@ async def upload_order_document(file: UploadFile = File(None)):
     except Exception as exc:
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
 
+
 @app.post("/ubl/order/parse", tags=["DATA VALIDATION"])
 async def parse_ubl_order(file: UploadFile = File(...)):
     """_summary_
@@ -200,52 +239,51 @@ async def validate_order(order_json: str = Body(...)):
         order_data = order_data.get("Order", {})
         errors = []
         refined_order = {
-            "InvoiceID": random.randint(1,1000),
+            "InvoiceID": random.randint(1, 1000),
             "IssueDate": order_data.get("cbc:IssueDate"),
             "InvoicePeriod": {
                 "StartDate": order_data.get("cac:Delivery", {})
-                                    .get("cac:RequestedDeliveryPeriod", {})
-                                    .get("cbc:StartDate"),
+                .get("cac:RequestedDeliveryPeriod", {})
+                .get("cbc:StartDate"),
                 "EndDate": order_data.get("cac:Delivery", {})
-                                    .get("cac:RequestedDeliveryPeriod", {})
-                                    .get("cbc:EndDate")
+                .get("cac:RequestedDeliveryPeriod", {})
+                .get("cbc:EndDate"),
             },
             "AccountingSupplierParty": order_data.get("cac:SellerSupplierParty", {})
-                                .get("cac:Party", {})
-                                .get("cac:PartyName", {})
-                                .get("cbc:Name")
-            ,
+            .get("cac:Party", {})
+            .get("cac:PartyName", {})
+            .get("cbc:Name"),
             "AccountingCustomerParty": order_data.get("cac:BuyerCustomerParty", {})
-                                .get("cac:Party", {})
-                                .get("cac:PartyName", {})
-                                .get("cbc:Name")
-            ,
+            .get("cac:Party", {})
+            .get("cac:PartyName", {})
+            .get("cbc:Name"),
             "LegalMonetaryTotal": {
-                    "Value": order_data.get("cac:AnticipatedMonetaryTotal", {})
-                                    .get("cbc:PayableAmount", {})
-                                    .get("#text"),
-                    "Currency": order_data.get("cac:AnticipatedMonetaryTotal", {})
-                                        .get("cbc:PayableAmount", {})
-                                        .get("@currencyID")
+                "Value": order_data.get("cac:AnticipatedMonetaryTotal", {})
+                .get("cbc:PayableAmount", {})
+                .get("#text"),
+                "Currency": order_data.get("cac:AnticipatedMonetaryTotal", {})
+                .get("cbc:PayableAmount", {})
+                .get("@currencyID"),
             },
-            "InvoiceLine": [ {
-                "ID": order_data.get("cac:OrderLine", {})
-                                .get("cac:LineItem", {})
-                                .get("cbc:ID"),
-                "Value": order_data.get("cac:OrderLine", {})
-                                .get("cac:LineItem", {})
-                                .get("cbc:LineExtensionAmount", {})
-                                .get("#text"),
-                "Currency": order_data.get("cac:OrderLine", {})
-                                    .get("cac:LineItem", {})
-                                    .get("cbc:LineExtensionAmount", {})
-                                    .get("@currencyID"),
-                "Description": order_data.get("cac:OrderLine", {})
-                                        .get("cac:LineItem", {})
-                                        .get("cac:Item", {})
-                                        .get("cbc:Description")
-            }
-            ]
+            "InvoiceLine": [
+                {
+                    "ID": order_data.get("cac:OrderLine", {})
+                    .get("cac:LineItem", {})
+                    .get("cbc:ID"),
+                    "Value": order_data.get("cac:OrderLine", {})
+                    .get("cac:LineItem", {})
+                    .get("cbc:LineExtensionAmount", {})
+                    .get("#text"),
+                    "Currency": order_data.get("cac:OrderLine", {})
+                    .get("cac:LineItem", {})
+                    .get("cbc:LineExtensionAmount", {})
+                    .get("@currencyID"),
+                    "Description": order_data.get("cac:OrderLine", {})
+                    .get("cac:LineItem", {})
+                    .get("cac:Item", {})
+                    .get("cbc:Description"),
+                }
+            ],
         }
 
         required_fields = {
@@ -256,7 +294,7 @@ async def validate_order(order_json: str = Body(...)):
             "Supplier Name": refined_order["AccountingSupplierParty"],
             "Customer Name": refined_order["AccountingCustomerParty"],
             "Total Amount": refined_order["LegalMonetaryTotal"]["Value"],
-            }
+        }
 
         for field_name, value in required_fields.items():
             if value is None:
@@ -270,6 +308,7 @@ async def validate_order(order_json: str = Body(...)):
 
     except Exception as ex:
         raise HTTPException(status_code=400, detail="Invalid JSON data") from ex
+
 
 @app.post("/ubl/invoice/create", tags=["INVOICE GENERATION"])
 async def create_invoice(invoice_json: str = Body(...)):
@@ -300,11 +339,14 @@ async def create_invoice(invoice_json: str = Body(...)):
         raise HTTPException(status_code=400, detail="Parsed JSON is empty")
 
     # Create the root element (UBL Invoice)
-    invoice = ET.Element("Invoice", {
-        "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
-        "xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
-        "xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
-    })
+    invoice = ET.Element(
+        "Invoice",
+        {
+            "xmlns": "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
+            "xmlns:cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+            "xmlns:cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+        },
+    )
 
     # Add invoice ID and Issue Date
     ET.SubElement(invoice, "cbc:ID").text = f"{data['InvoiceID']}"
@@ -312,8 +354,12 @@ async def create_invoice(invoice_json: str = Body(...)):
 
     # Add Invoice period (start and end date)
     invoice_period = ET.SubElement(invoice, "cac:InvoicePeriod")
-    ET.SubElement(invoice_period, "cbc:StartDate").text = f"{data['InvoicePeriod']['StartDate']}"
-    ET.SubElement(invoice_period, "cbc:EndDate").text = f"{data['InvoicePeriod']['EndDate']}"
+    ET.SubElement(invoice_period, "cbc:StartDate").text = (
+        f"{data['InvoicePeriod']['StartDate']}"
+    )
+    ET.SubElement(invoice_period, "cbc:EndDate").text = (
+        f"{data['InvoicePeriod']['EndDate']}"
+    )
 
     # Supplier details
     # supplier = ET.SubElement(invoice, "cac:AccountingSupplierParty")
@@ -322,9 +368,10 @@ async def create_invoice(invoice_json: str = Body(...)):
     # ET.SubElement(supplier_party_name, "cbc:Name").text = f"{data['AccountingSupplierParty']}"
     ET.SubElement(
         ET.SubElement(
-            ET.SubElement(
-                invoice, "cac:AccountingSupplierParty"), "cac:Party"),
-                "cac:PartyName")
+            ET.SubElement(invoice, "cac:AccountingSupplierParty"), "cac:Party"
+        ),
+        "cac:PartyName",
+    )
     ET.SubElement(invoice[-1], "cbc:Name").text = f"{data['AccountingSupplierParty']}"
     # Customer details
     # customer = ET.SubElement(invoice, "cac:AccountingCustomerParty")
@@ -333,17 +380,20 @@ async def create_invoice(invoice_json: str = Body(...)):
     # ET.SubElement(customer_party_name, "cbc:Name").text = f"{data['AccountingCustomerParty']}"
     ET.SubElement(
         ET.SubElement(
-            ET.SubElement(
-                invoice, "cac:AccountingCustomerParty"), "cac:Party"),
-                "cac:PartyName")
+            ET.SubElement(invoice, "cac:AccountingCustomerParty"), "cac:Party"
+        ),
+        "cac:PartyName",
+    )
     ET.SubElement(invoice[-1], "cbc:Name").text = f"{data['AccountingCustomerParty']}"
     # Legal Monetary Total
     total_money = ET.SubElement(invoice, "cac:LegalMonetaryTotal")
     ET.SubElement(
-        total_money, "cbc:PayableAmount", currencyID=f"{data['LegalMonetaryTotal']['Currency']}"
+        total_money,
+        "cbc:PayableAmount",
+        currencyID=f"{data['LegalMonetaryTotal']['Currency']}",
     ).text = f"{data['LegalMonetaryTotal']['Value']}"
 
-    for line in data['InvoiceLine']:
+    for line in data["InvoiceLine"]:
         # Invoice Line Item
         invoice_line = ET.SubElement(invoice, "cac:InvoiceLine")
         ET.SubElement(invoice_line, "cbc:ID").text = f"{line['ID']}"
@@ -351,8 +401,9 @@ async def create_invoice(invoice_json: str = Body(...)):
         ET.SubElement(
             invoice_line, "cbc:LineExtensionAmount", currencyID=f"{line['Currency']}"
         ).text = f"{line['Value']}"
-        ET.SubElement(ET.SubElement(invoice_line, "cac:Item"),
-        "cbc:Description").text = f"{line['Description']}"
+        ET.SubElement(
+            ET.SubElement(invoice_line, "cac:Item"), "cbc:Description"
+        ).text = f"{line['Description']}"
     # Convert to XML string and save to file
     xml_str = ET.tostring(invoice, encoding="utf-8")
 
@@ -367,6 +418,414 @@ async def create_invoice(invoice_json: str = Body(...)):
     #     raise HTTPException(status_code=500, detail=f"Failed to create XML file {ex}") from ex
 
     # return {"details": "XML file successful"}
+
+
+@app.post("/ubl/order/upload/v2", tags=["DATA VALIDATION"])
+async def uploadv2(file: UploadFile = File(...)):
+    """_summary_
+
+    Parses an uploaded UBL XML order document into JSON format.\n
+
+    Args:\n
+        file (UploadFile): XML file uploaded by the user.\n
+
+    Raises:\n
+        HTTPException: If no file is provided.\n
+        HTTPException: If the XML file is invalid.\n
+
+    Returns:\n
+        dict: Parsed XML data in JSON format.\n
+    """
+    if file is None:
+        raise HTTPException(status_code=400, detail="No file provided")
+    try:
+        xml_content = await file.read()
+
+        data_dict = xmltodict.parse(xml_content, process_namespaces=False)
+
+        json_data = json.dumps(data_dict, indent=4)
+
+        return json_data
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Invalid XML file") from e
+
+
+# pylint: disable=too-many-branches, too-many-statements
+@app.post("/ubl/order/validate/v2", tags=["DATA VALIDATION"])
+async def validate_v2(order_json: str = Body(...)):
+    """_summary_
+
+    Validates a parsed UBL order document.\n
+
+    Args:\n
+        order_json (str): JSON string representation of the order document.\n
+
+    Raises:\n
+        HTTPException: If no JSON data is provided.\n
+        HTTPException: If the JSON data is invalid.\n
+
+    Returns:\n
+        dict: Validated order details or errors if missing fields.\n
+    """
+    try:
+        if order_json is None:
+            raise HTTPException(status_code=400, detail="No JSON provided")
+
+        order_data = json.loads(order_json)
+        order_data = order_data.get("Order", {})
+        errors = []
+        refined_order = {
+            "InvoiceID": random.randint(1, 1000),
+            "IssueDate": order_data.get("cbc:IssueDate"),
+            "InvoicePeriod": {
+                "StartDate": order_data.get("cac:Delivery", {})
+                .get("cac:RequestedDeliveryPeriod", {})
+                .get("cbc:StartDate"),
+                "EndDate": order_data.get("cac:Delivery", {})
+                .get("cac:RequestedDeliveryPeriod", {})
+                .get("cbc:EndDate"),
+            },
+            "AccountingSupplierParty": order_data.get("cac:SellerSupplierParty", {})
+            .get("cac:Party", {})
+            .get("cac:PartyName", {})
+            .get("cbc:Name"),
+            "AccountingCustomerParty": order_data.get("cac:BuyerCustomerParty", {})
+            .get("cac:Party", {})
+            .get("cac:PartyName", {})
+            .get("cbc:Name"),
+            "LegalMonetaryTotal": {
+                "Value": order_data.get("cac:AnticipatedMonetaryTotal", {})
+                .get("cbc:PayableAmount", {})
+                .get("#text"),
+                "Currency": order_data.get("cac:AnticipatedMonetaryTotal", {})
+                .get("cbc:PayableAmount", {})
+                .get("@currencyID"),
+            },
+            "InvoiceLine": [],
+        }
+        all_items = order_data.get("cac:OrderLine", [])
+        if isinstance(all_items, dict):
+            all_items = [all_items]
+
+        for items in all_items:
+            item = items.get("cac:LineItem", {})
+            refined_order["InvoiceLine"].append(
+                {
+                    "ID": item.get("cbc:ID"),
+                    "Value": item.get("cbc:LineExtensionAmount", {}).get("#text"),
+                    "Currency": item.get("cbc:LineExtensionAmount", {}).get(
+                        "@currencyID"
+                    ),
+                    "Description": item.get("cac:Item", {}).get("cbc:Description"),
+                }
+            )
+
+        required_fields = {
+            "Invoice ID": refined_order["InvoiceID"],
+            "Issue Date": refined_order["IssueDate"],
+            "Invoice Start Date": refined_order["InvoicePeriod"]["StartDate"],
+            "Invoice End Date": refined_order["InvoicePeriod"]["EndDate"],
+            "Supplier Name": refined_order["AccountingSupplierParty"],
+            "Customer Name": refined_order["AccountingCustomerParty"],
+            "Total Amount": refined_order["LegalMonetaryTotal"]["Value"],
+        }
+
+        for field_name, value in required_fields.items():
+            if value is None:
+                errors.append(f"Missing field: {field_name}")
+
+        if errors:
+            raise HTTPException(status_code=400, detail=errors)
+
+        errors = []
+
+        if not valid_date(refined_order["IssueDate"]):
+            errors.append("Invalid IssueDate format. Must be in format (YYYY-MM-DD).")
+        if not valid_date(refined_order["InvoicePeriod"]["StartDate"]):
+            errors.append("Invalid StartDate format. Must be in format (YYYY-MM-DD).")
+        if not valid_date(refined_order["InvoicePeriod"]["EndDate"]):
+            errors.append("Invalid EndDate format. Must be in format (YYYY-MM-DD).")
+        if valid_date(refined_order["InvoicePeriod"]["StartDate"]) and valid_date(
+            refined_order["InvoicePeriod"]["EndDate"]
+        ):
+            if datetime.fromisoformat(
+                refined_order["InvoicePeriod"]["EndDate"]
+            ) < datetime.fromisoformat(refined_order["InvoicePeriod"]["StartDate"]):
+                errors.append("EndDate must be after StartDate.")
+
+        if not isinstance(refined_order["AccountingSupplierParty"], str):
+            errors.append("Supplier Name must be a string.")
+
+        if not isinstance(refined_order["AccountingCustomerParty"], str):
+            errors.append("Customer Name must be a string.")
+
+        currency = refined_order["LegalMonetaryTotal"]["Currency"]
+        if not valid_currency(currency):
+            errors.append(f"Invalid currency: {currency}. Must be valid currency code.")
+
+        try:
+            float(refined_order["LegalMonetaryTotal"]["Value"])
+        except (TypeError, ValueError):
+            errors.append("Total Amount must be a number.")
+
+        for i, line in enumerate(refined_order["InvoiceLine"]):
+            try:
+                if line["ID"] is None or not str(line["ID"]).isdigit():
+                    errors.append(f"Item {i+1}: ID must be a number.")
+                float(line["Value"])
+                if not valid_currency(line["Currency"]):
+                    errors.append(
+                        f"Item {i+1}: Invalid currency: {currency}. Must be valid currency code."
+                    )
+                if not isinstance(line["Description"], str):
+                    errors.append(f"Item {i+1}: Description must be a string.")
+            except (TypeError, ValueError, AttributeError):
+                errors.append(f"Item {i+1}: Invalid item data.")
+
+        if errors:
+            raise HTTPException(status_code=400, detail=errors)
+
+        refined_order = json.dumps(refined_order)
+        return refined_order
+
+    except HTTPException as http_exc:
+        raise http_exc
+
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from exc
+
+
+@app.put("/ubl/order/edit/v2", tags=["DATA VALIDATION"])
+async def edit_invoice(payload: dict = Body(...)):
+    """_summary_
+
+    Edits a parsed invoice JSON.\n
+
+    Args:\n
+        refined_order (dict): JSON representation of the order document.\n
+        updates (dict): Dictionary of updates to apply to the order document.\n
+
+    Raises:\n
+        HTTPException: If no JSON data is provided.\n
+        HTTPException: If the JSON data is invalid.\n
+        HTTPException: If an edit is invalid.\n
+
+    Returns:\n
+        dict: Validated order details or errors if missing fields.\n
+    """
+    refined_order = json.loads(payload["invoice_json"])
+    updates = payload["updates"]
+    try:
+        if refined_order is None:
+            raise HTTPException(status_code=400, detail="No invoice data provided")
+
+        if updates is None:
+            raise HTTPException(status_code=400, detail="No edits provided")
+
+        if "IssueDate" in updates:
+            refined_order["IssueDate"] = updates["IssueDate"]
+
+        if "StartDate" in updates:
+            refined_order["InvoicePeriod"]["StartDate"] = updates["StartDate"]
+
+        if "EndDate" in updates:
+            refined_order["InvoicePeriod"]["EndDate"] = updates["EndDate"]
+
+        if "AccountingSupplierParty" in updates:
+            refined_order["AccountingSupplierParty"] = updates[
+                "AccountingSupplierParty"
+            ]
+
+        if "AccountingCustomerParty" in updates:
+            refined_order["AccountingCustomerParty"] = updates[
+                "AccountingCustomerParty"
+            ]
+
+        if "TotalAmount" in updates:
+            raise HTTPException(
+                status_code=400,
+                detail="Cannot Change CurrTotal Amount. Use currency api",
+            )
+
+        if "Currency" in updates:
+            raise HTTPException(
+                status_code=400, detail="Cannot Change Currency. Use currency api"
+            )
+
+        if "InvoiceID" in updates:
+            raise HTTPException(status_code=400, detail="Cannot Change InvoiceId.")
+
+        if "InvoiceLine" in updates:
+            raise HTTPException(status_code=400, detail="Cannot Change Items.")
+
+        errors = []
+
+        issue_date = refined_order["IssueDate"]
+        start_date = refined_order["InvoicePeriod"]["StartDate"]
+        end_date = refined_order["InvoicePeriod"]["EndDate"]
+
+        if not valid_date(issue_date):
+            errors.append("Invalid IssueDate format. Must be in format (YYYY-MM-DD).")
+        if not valid_date(start_date):
+            errors.append("Invalid StartDate format. Must be in format (YYYY-MM-DD).")
+        if not valid_date(end_date):
+            errors.append("Invalid EndDate format. Must be in format (YYYY-MM-DD).")
+        if valid_date(start_date) and valid_date(end_date):
+            if datetime.fromisoformat(end_date) < datetime.fromisoformat(start_date):
+                errors.append("EndDate must be after StartDate.")
+
+        if not isinstance(refined_order["AccountingSupplierParty"], str):
+            errors.append("Supplier Name must be a string.")
+
+        if not isinstance(refined_order["AccountingCustomerParty"], str):
+            errors.append("Customer Name must be a string.")
+
+        if errors:
+            raise HTTPException(status_code=400, detail=errors)
+
+        refined_order = json.dumps(refined_order)
+        return refined_order
+
+    except HTTPException as http_exc:
+        raise http_exc
+
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from exc
+
+
+@app.put("/ubl/order/currency/v2", tags=["DATA VALIDATION"])
+async def currency_edit(payload: dict = Body(...)):
+    """_summary_
+
+    Edits a parsed invoice JSON's currency.\n
+
+    Args:\n
+        refined_order (dict): JSON representation of the order document.\n
+        updates (dict): Dictionary of updates to apply to the order document.\n
+
+    Raises:\n
+        HTTPException: If no JSON data is provided.\n
+        HTTPException: If the JSON data is invalid.\n
+        HTTPException: If an edit is invalid.\n
+
+    Returns:\n
+        dict: Validated order details or errors if missing fields.\n
+    """
+    refined_order = json.loads(payload["invoice_json"])
+    updates = payload["updates"]
+
+    try:
+        if refined_order is None:
+            raise HTTPException(status_code=400, detail="No invoice data provided")
+
+        if updates is None:
+            raise HTTPException(status_code=400, detail="No edits provided")
+
+        currency = refined_order["LegalMonetaryTotal"]["Currency"]
+
+        errors = []
+
+        c = CurrencyConverter()
+
+        if not valid_currency(updates["Currency"]):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid currency: {updates['Currency']}. Must be valid currency code.",
+            )
+
+        updates["Currency"] = updates["Currency"].upper()
+
+        refined_order["LegalMonetaryTotal"]["Currency"] = updates["Currency"]
+        for i, line in enumerate(refined_order["InvoiceLine"]):
+            try:
+                line["Currency"] = updates["Currency"]
+                amount = float(line["Value"])
+                line["Value"] = round(
+                    c.convert(amount, currency, updates["Currency"]), 2
+                )
+            except (ValueError, TypeError, KeyError):
+                errors.append(f"Item {i+1}: Invalid value or conversion failed.")
+        total = 0
+        for i, line in enumerate(refined_order["InvoiceLine"]):
+            try:
+                amount = float(line["Value"])
+                total += amount
+            except (ValueError, TypeError):
+                errors.append(f"Item {i+1}: Invalid value or conversion failed.")
+        refined_order["LegalMonetaryTotal"]["Value"] = round(total, 2)
+
+        if errors:
+            raise HTTPException(status_code=400, detail=errors)
+
+        refined_order = json.dumps(refined_order)
+        return refined_order
+
+    except HTTPException as http_exc:
+        raise http_exc
+
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from exc
+
+
+@app.post("/ubl/order/email/v2", tags=["DATA VALIDATION"])
+async def email_invoice(to_email: str = Form(...), attachment: UploadFile = Form(...)):
+    """_summary_
+
+    Send the invoice as an attatchement to email\n
+
+    Args:\n
+        to_email (str): Email address to send the invoice to.\n
+        attachment (UploadFile): Invoice to send.\n
+
+    Raises:\n
+        HTTPException: If no email is provided.\n
+        HTTPException: If no invoice is provided.\n
+
+    Returns:\n
+        dict: A success message.\n
+    """
+
+    if to_email is None:
+        raise HTTPException(status_code=400, detail="No email provided")
+
+    if attachment is None:
+        raise HTTPException(status_code=400, detail="No invoice provided")
+    smtp_port = 587
+    smtp_server = "smtp.gmail.com"
+
+    email_from = "wubenny2@gmail.com"
+    pswd = "rhtp imjq hoch enpv "
+
+    subject = "Invoice"
+    body = "Hello,\nThank you for using our service. Attached below is your invoice."
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = email_from
+    msg["To"] = to_email
+    msg.set_content(body)
+
+    file_content = await attachment.read()
+    msg.add_attachment(
+        file_content,
+        maintype="application",
+        subtype="octet-stream",
+        filename=attachment.filename,
+    )
+
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as smtp:
+            smtp.starttls()
+            smtp.login(email_from, pswd)
+            smtp.send_message(msg)
+        return {"message": "Invoice sent successfully."}
+    except (
+        smtplib.SMTPException,
+        ConnectionRefusedError,
+        TimeoutError,
+        OSError,
+        ValueError,
+    ) as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @app.post("/ubl/invoice/pdf", tags=["INVOICE MANIPULATION"])
@@ -386,9 +845,9 @@ async def xml_to_pdf(file: UploadFile = File(...)):
     root = tree.getroot()
 
     def extract_text_with_titles(element, indent=0):
-        """ Recursively extract tag names and their text content """
+        """Recursively extract tag names and their text content"""
         content = []
-        tag_name = element.tag.split('}')[-1]  # Remove namespace if present
+        tag_name = element.tag.split("}")[-1]  # Remove namespace if present
         if element.text and element.text.strip():
             content.append(f"{'  ' * indent}{tag_name}: {element.text.strip()}")
         for child in element:
@@ -414,16 +873,21 @@ async def xml_to_pdf(file: UploadFile = File(...)):
 # Initialize Jinja2 templates
 templates = Jinja2Templates(directory="src/tests/resources")
 
-@app.post("/ubl/invoice/preview", response_class=HTMLResponse, tags=["INVOICE MANIPULATION"])
+
+@app.post(
+    "/ubl/invoice/preview", response_class=HTMLResponse, tags=["INVOICE MANIPULATION"]
+)
 async def preview_invoice(request: Request, file: UploadFile = File(...)):
-    """
+    """_summary_
+
+
     Upload an XML invoice document and preview its information in HTML format.
 
-    Args:
-        request (Request): The request object.
+    Args:\n
+        request (Request): The request object.\n
         file (UploadFile): The UBL XML invoice document.
 
-    Returns:
+    Returns:\n
         HTMLResponse: Rendered HTML page displaying the invoice information.
     """
     try:
@@ -434,8 +898,8 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
 
         # Namespaces for parsing
         namespaces = {
-            'cbc': 'urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2',
-            'cac': 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2',
+            "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
         }
 
         # Extract relevant info from XML
@@ -443,19 +907,20 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
             "InvoiceID": root.findtext(".//cbc:ID", namespaces=namespaces),
             "IssueDate": root.findtext(".//cbc:IssueDate", namespaces=namespaces),
             "SupplierName": root.findtext(
-                ".//cac:AccountingSupplierParty//cbc:Name",
-                namespaces=namespaces),
+                ".//cac:AccountingSupplierParty//cbc:Name", namespaces=namespaces
+            ),
             "CustomerName": root.findtext(
-                ".//cac:AccountingCustomerParty//cbc:Name",
-                namespaces=namespaces),
+                ".//cac:AccountingCustomerParty//cbc:Name", namespaces=namespaces
+            ),
             "TotalAmount": root.findtext(
-                ".//cbc:LegalMonetaryTotal//cbc:PayableAmount",
-                namespaces=namespaces),
+                ".//cbc:LegalMonetaryTotal//cbc:PayableAmount", namespaces=namespaces
+            ),
             "Currency": root.findtext(
                 ".//cbc:LegalMonetaryTotal//cbc:PayableAmount",
                 "currencyID",
-                namespaces=namespaces),
-            "items": []
+                namespaces=namespaces,
+            ),
+            "items": [],
         }
 
         if not invoice_data["InvoiceID"]:
@@ -463,28 +928,28 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
 
         # Render HTML page with invoice data
         return templates.TemplateResponse(
-            request, "invoice_preview.html",
-            {"invoice": invoice_data}
+            request, "invoice_preview.html", {"invoice": invoice_data}
         )
 
     except ET.ParseError as ex:
         raise HTTPException(status_code=400, detail="Invalid XML format") from ex
     except Exception as ex:
         raise HTTPException(
-            status_code=400,
-            detail=f"Error processing invoice preview: {str(ex)}"
+            status_code=400, detail=f"Error processing invoice preview: {str(ex)}"
         ) from ex
 
 
 @app.post("/ubl/invoice/cancel", tags=["INVOICE MANIPULATION"])
 async def cancel_invoice_creation():
-    """
+    """_summary_
+
+
     Simulate cancellation of invoice creation.
 
-    Returns:
+    Returns:\n
         JSONResponse: Confirmation message.
     """
     return JSONResponse(
         status_code=200,
-        content={"message": "Invoice creation has been canceled successfully."}
+        content={"message": "Invoice creation has been canceled successfully."},
     )
