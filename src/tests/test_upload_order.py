@@ -441,3 +441,9 @@ def test_invoice_preview_missing_invoice_id():
 
     assert response.status_code == 400
     assert "Invoice ID: None" in response.text
+    
+def test_invoice_cancel():
+    """Tests the successful cancelation of invoice creation"""
+    response = client.post("/ubl/invoice/cancel")
+    assert response.status_code == 200
+    assert response.json() == {"message": "Invoice creation has been canceled successfully."}
