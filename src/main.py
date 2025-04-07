@@ -474,7 +474,7 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
             status_code=400,
             detail=f"Error processing invoice preview: {str(ex)}"
         ) from ex
-    
+
 
 @app.post("/ubl/invoice/cancel", tags=["INVOICE MANIPULATION"])
 async def cancel_invoice_creation():
