@@ -7,15 +7,13 @@ import xml.dom.minidom
 from email.message import EmailMessage
 import smtplib
 from datetime import datetime
-from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Form
-from fastapi.responses import JSONResponse
-import xmltodict
-import pycountry
-from currency_converter import CurrencyConverter
-from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Request
+from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Form, Request
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
+import xmltodict
+import pycountry
+from currency_converter import CurrencyConverter
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
