@@ -4,28 +4,48 @@ import json
 import random
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
+from email.message import EmailMessage
+import smtplib
+from datetime import datetime
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Form
 from fastapi.responses import JSONResponse
 import xmltodict
-from datetime import datetime
 import pycountry
-import smtplib
-from email.message import EmailMessage
 from currency_converter import CurrencyConverter
 
 
 def valid_date(date_str):
+    """_summary_
+
+    Checks if the provided string is a valid date
+
+    Args:
+        date_str (str): Date to check
+
+    Returns:
+        True or false based on the check
+    """
     try:
         datetime.fromisoformat(date_str)
         return True
-    except:
+    except ValueError:
         return False
 
 
 def valid_currency(code):
+    """_summary_
+
+    Checks if the provided currency code is valid
+
+    Args:
+        code (str): Currency code to check
+
+    Returns:
+        True or false based on the check
+    """
     try:
         return pycountry.currencies.get(alpha_3=code.upper()) is not None
-    except:
+    except AttributeError:
         return False
 
 
@@ -371,7 +391,7 @@ async def create_invoice(invoice_json: str = Body(...)):
 
 
 @app.post("/ubl/order/upload/v2", tags=["DATA VALIDATION"])
-async def parse_ubl_order(file: UploadFile = File(...)):
+async def uploadv2(file: UploadFile = File(...)):
     """_summary_
 
     Parses an uploaded UBL XML order document into JSON format.\n
@@ -400,8 +420,9 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Invalid XML file") from e
 
 
+# pylint: disable=too-many-branches, too-many-statements
 @app.post("/ubl/order/validate/v2", tags=["DATA VALIDATION"])
-async def validate_order(order_json: str = Body(...)):
+async def validate_v2(order_json: str = Body(...)):
     """_summary_
 
     Validates a parsed UBL order document.\n
@@ -488,18 +509,18 @@ async def validate_order(order_json: str = Body(...)):
 
         errors = []
 
-        issue_date = refined_order["IssueDate"]
-        start_date = refined_order["InvoicePeriod"]["StartDate"]
-        end_date = refined_order["InvoicePeriod"]["EndDate"]
-
-        if not valid_date(issue_date):
+        if not valid_date(refined_order["IssueDate"]):
             errors.append("Invalid IssueDate format. Must be in format (YYYY-MM-DD).")
-        if not valid_date(start_date):
+        if not valid_date(refined_order["InvoicePeriod"]["StartDate"]):
             errors.append("Invalid StartDate format. Must be in format (YYYY-MM-DD).")
-        if not valid_date(end_date):
+        if not valid_date(refined_order["InvoicePeriod"]["EndDate"]):
             errors.append("Invalid EndDate format. Must be in format (YYYY-MM-DD).")
-        if valid_date(start_date) and valid_date(end_date):
-            if datetime.fromisoformat(end_date) < datetime.fromisoformat(start_date):
+        if valid_date(refined_order["InvoicePeriod"]["StartDate"]) and valid_date(
+            refined_order["InvoicePeriod"]["EndDate"]
+        ):
+            if datetime.fromisoformat(
+                refined_order["InvoicePeriod"]["EndDate"]
+            ) < datetime.fromisoformat(refined_order["InvoicePeriod"]["StartDate"]):
                 errors.append("EndDate must be after StartDate.")
 
         if not isinstance(refined_order["AccountingSupplierParty"], str):
@@ -514,7 +535,7 @@ async def validate_order(order_json: str = Body(...)):
 
         try:
             float(refined_order["LegalMonetaryTotal"]["Value"])
-        except:
+        except (TypeError, ValueError):
             errors.append("Total Amount must be a number.")
 
         for i, line in enumerate(refined_order["InvoiceLine"]):
@@ -528,7 +549,7 @@ async def validate_order(order_json: str = Body(...)):
                     )
                 if not isinstance(line["Description"], str):
                     errors.append(f"Item {i+1}: Description must be a string.")
-            except:
+            except (TypeError, ValueError, AttributeError):
                 errors.append(f"Item {i+1}: Invalid item data.")
 
         if errors:
@@ -540,8 +561,8 @@ async def validate_order(order_json: str = Body(...)):
     except HTTPException as http_exc:
         raise http_exc
 
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid JSON data")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from exc
 
 
 @app.put("/ubl/order/edit/v2", tags=["DATA VALIDATION"])
@@ -638,12 +659,12 @@ async def edit_invoice(payload: dict = Body(...)):
     except HTTPException as http_exc:
         raise http_exc
 
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid JSON data")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from exc
 
 
 @app.put("/ubl/order/currency/v2", tags=["DATA VALIDATION"])
-async def edit_invoice(payload: dict = Body(...)):
+async def currency_edit(payload: dict = Body(...)):
     """_summary_
 
     Edits a parsed invoice JSON's currency.\n
@@ -692,14 +713,14 @@ async def edit_invoice(payload: dict = Body(...)):
                 line["Value"] = round(
                     c.convert(amount, currency, updates["Currency"]), 2
                 )
-            except Exception:
+            except (ValueError, TypeError, KeyError):
                 errors.append(f"Item {i+1}: Invalid value or conversion failed.")
         total = 0
         for i, line in enumerate(refined_order["InvoiceLine"]):
             try:
                 amount = float(line["Value"])
                 total += amount
-            except Exception:
+            except (ValueError, TypeError):
                 errors.append(f"Item {i+1}: Invalid value or conversion failed.")
         refined_order["LegalMonetaryTotal"]["Value"] = round(total, 2)
 
@@ -712,12 +733,12 @@ async def edit_invoice(payload: dict = Body(...)):
     except HTTPException as http_exc:
         raise http_exc
 
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid JSON data")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from exc
 
 
 @app.post("/ubl/order/email/v2", tags=["DATA VALIDATION"])
-async def edit_invoice(to_email: str = Form(...), attachment: UploadFile = Form(...)):
+async def email_invoice(to_email: str = Form(...), attachment: UploadFile = Form(...)):
     """_summary_
 
     Send the invoice as an attatchement to email\n
@@ -767,5 +788,11 @@ async def edit_invoice(to_email: str = Form(...), attachment: UploadFile = Form(
             smtp.login(email_from, pswd)
             smtp.send_message(msg)
         return {"message": "Invoice sent successfully."}
-    except Exception as e:
+    except (
+        smtplib.SMTPException,
+        ConnectionRefusedError,
+        TimeoutError,
+        OSError,
+        ValueError,
+    ) as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
