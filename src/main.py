@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body
 from fastapi.openapi.utils import get_openapi
+from fastapi.responses import JSONResponse
 import xmltodict
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -405,3 +406,16 @@ async def xml_to_pdf(file: UploadFile = File(...)):
             y_position = height - 40
 
     can.save()
+
+@app.post("/ubl/invoice/cancel", tags=["INVOICE MANIPULATION"])
+async def cancel_invoice_creation():
+    """
+    Simulate cancellation of invoice creation.
+
+    Returns:
+        JSONResponse: Confirmation message.
+    """
+    return JSONResponse(
+        status_code=200,
+        content={"message": "Invoice creation has been canceled successfully."}
+    )
