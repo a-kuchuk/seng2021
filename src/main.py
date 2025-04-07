@@ -12,6 +12,12 @@ from fastapi.responses import JSONResponse
 import xmltodict
 import pycountry
 from currency_converter import CurrencyConverter
+from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Request
+from fastapi.openapi.utils import get_openapi
+from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.templating import Jinja2Templates
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
 
 def valid_date(date_str):
@@ -52,17 +58,7 @@ def valid_currency(code):
 DESCRIPTION = """
 API that takes an XML order document and provides a XML invoice
 with the elements extracted from the order doc and mapped to the invoice.
-
-## Validation
-
-You can validate oder data
-
-## Generation
-
-Generates invoice
-
 """
-
 
 tags_metadata = [
     {
@@ -84,18 +80,52 @@ tags_metadata = [
 ]
 
 app = FastAPI(
-    title="Invoice Creation API",
-    version="0.0.1",
+    title="The Real Guy Chilcott",
+    version="2.0.1",
     description=DESCRIPTION,
     openapi_tags=tags_metadata,
+    contact={
+        "name": "Andrea Kuchuk",
+        "url": "https://www.linkedin.com/in/andrea-kuchuk/",
+        "email": "z5477474@ad.unsw.edu.au",
+    },
+    license_info={
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
 )
+
+
+def custom_openapi():
+    """_summary_
+
+    Generates OpenAPI documentation (available at /redoc) based on codebase and provided metadata
+
+    """
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="The Real Guy Chilcott",
+        version="2.0.1",
+        summary="Invoice Generation OpenAPI schema",
+        description="Our updated OpenAPI schema, available on web and for download",
+        routes=app.routes,
+    )
+    openapi_schema["info"]["x-logo"] = {
+        "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
+    }
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
 
 
 @app.get("/", tags=["HEALTH"])
 def hello_world():
     """_summary_
 
-    default hello world route
+    Default hello world route
 
     """
     return {"details": "Hello, World!"}
@@ -103,18 +133,20 @@ def hello_world():
 
 @app.post("/ubl/order/upload", tags=["DATA VALIDATION"])
 async def upload_order_document(file: UploadFile = File(None)):
-    """Upload an XML order document and extract the order ID
+    """_summary_
 
-    Args:
+    Upload an XML order document and extract the order ID
+
+    Args:\n
         file (UploadFile, optional): the UBL XML order document. Defaults to File(None).
 
-    Raises:
-        HTTPException: No file provided
-        HTTPException: File must be an XML file
-        HTTPException: Order ID not found
+    Raises:\n
+        HTTPException: No file provided\n
+        HTTPException: File must be an XML file\n
+        HTTPException: Order ID not found\n
         HTTPException: Invalid XML format
 
-    Returns:
+    Returns:\n
         text: the order ID extracted from the XML document
     """
 
@@ -156,14 +188,14 @@ async def parse_ubl_order(file: UploadFile = File(...)):
 
     Parses an uploaded UBL XML order document into JSON format.
 
-    Args:
+    Args:\n
         file (UploadFile): XML file uploaded by the user.
 
-    Raises:
-        HTTPException: If no file is provided.
-        HTTPException: If the XML file is invalid.
+    Raises:\n
+        HTTPException: If no file is provided.\n
+        HTTPException: If the XML file is invalid.\n
 
-    Returns:
+    Returns:\n
         dict: Parsed XML data in JSON format.
     """
     if file is None:
@@ -181,8 +213,8 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         # return json.loads(json_data)
 
         return json_data
-    except Exception as e:
-        raise HTTPException(status_code=400, detail="Invalid XML file") from e
+    except Exception as ex:
+        raise HTTPException(status_code=400, detail="Invalid XML file") from ex
 
 
 @app.post("/ubl/order/validate", tags=["DATA VALIDATION"])
@@ -191,14 +223,14 @@ async def validate_order(order_json: str = Body(...)):
 
     Validates a parsed UBL order document.
 
-    Args:
+    Args:\n
         order_json (str): JSON string representation of the order document.
 
-    Raises:
-        HTTPException: If no JSON data is provided.
+    Raises:\n
+        HTTPException: If no JSON data is provided.\n
         HTTPException: If the JSON data is invalid.
 
-    Returns:
+    Returns:\n
         dict: Validated order details or errors if missing fields.
     """
     try:
@@ -276,8 +308,8 @@ async def validate_order(order_json: str = Body(...)):
         refined_order = json.dumps(refined_order)
         return refined_order
 
-    except Exception as e:
-        raise HTTPException(status_code=400, detail="Invalid JSON data") from e
+    except Exception as ex:
+        raise HTTPException(status_code=400, detail="Invalid JSON data") from ex
 
 
 @app.post("/ubl/invoice/create", tags=["INVOICE GENERATION"])
@@ -286,16 +318,16 @@ async def create_invoice(invoice_json: str = Body(...)):
 
     Generates an XML invoice from validated order data.
 
-    Args:
+    Args:\n
         invoice_json (str): JSON string representation of the validated invoice data.
 
-    Raises:
-        HTTPException: If the JSON input is empty.
-        HTTPException: If the JSON format is invalid.
-        HTTPException: If the parsed JSON is empty.
+    Raises:\n
+        HTTPException: If the JSON input is empty.\n
+        HTTPException: If the JSON format is invalid.\n
+        HTTPException: If the parsed JSON is empty.\n
         HTTPException: If the invoice XML file creation fails.
 
-    Returns:
+    Returns:\n
         dict: Confirmation message for XML file creation.
     """
     if not invoice_json.strip():  # Check if the input is empty
@@ -796,3 +828,130 @@ async def email_invoice(to_email: str = Form(...), attachment: UploadFile = Form
         ValueError,
     ) as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+@app.post("/ubl/invoice/pdf", tags=["INVOICE MANIPULATION"])
+async def xml_to_pdf(file: UploadFile = File(...)):
+    """_summary_
+
+    Upload an XML invoice document and converts in into a PDF
+
+    Args:\n
+        file (UploadFile, optional): the UBL XML invoice document. Defaults to File(None).
+
+    Returns:\n
+        none
+    """
+    contents = await file.read()
+    tree = ET.ElementTree(ET.fromstring(contents))
+    root = tree.getroot()
+
+    def extract_text_with_titles(element, indent=0):
+        """Recursively extract tag names and their text content"""
+        content = []
+        tag_name = element.tag.split("}")[-1]  # Remove namespace if present
+        if element.text and element.text.strip():
+            content.append(f"{'  ' * indent}{tag_name}: {element.text.strip()}")
+        for child in element:
+            content.extend(extract_text_with_titles(child, indent=indent + 1))
+        return content
+
+    content = extract_text_with_titles(root)
+
+    can = canvas.Canvas("invoice.pdf", pagesize=letter)
+    height = letter[1]
+    y_position = height - 40  # Start position from the top
+
+    for line in content:
+        can.drawString(40, y_position, line)
+        y_position -= 20  # Move down for the next line
+        if y_position < 40:  # Start a new page if needed
+            can.showPage()
+            y_position = height - 40
+
+    can.save()
+
+
+# Initialize Jinja2 templates
+templates = Jinja2Templates(directory="src/tests/resources")
+
+
+@app.post(
+    "/ubl/invoice/preview", response_class=HTMLResponse, tags=["INVOICE MANIPULATION"]
+)
+async def preview_invoice(request: Request, file: UploadFile = File(...)):
+    """_summary_
+
+
+    Upload an XML invoice document and preview its information in HTML format.
+
+    Args:\n
+        request (Request): The request object.\n
+        file (UploadFile): The UBL XML invoice document.
+
+    Returns:\n
+        HTMLResponse: Rendered HTML page displaying the invoice information.
+    """
+    try:
+        # Read and parse XML content
+        contents = await file.read()
+        tree = ET.ElementTree(ET.fromstring(contents))
+        root = tree.getroot()
+
+        # Namespaces for parsing
+        namespaces = {
+            "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        }
+
+        # Extract relevant info from XML
+        invoice_data = {
+            "InvoiceID": root.findtext(".//cbc:ID", namespaces=namespaces),
+            "IssueDate": root.findtext(".//cbc:IssueDate", namespaces=namespaces),
+            "SupplierName": root.findtext(
+                ".//cac:AccountingSupplierParty//cbc:Name", namespaces=namespaces
+            ),
+            "CustomerName": root.findtext(
+                ".//cac:AccountingCustomerParty//cbc:Name", namespaces=namespaces
+            ),
+            "TotalAmount": root.findtext(
+                ".//cbc:LegalMonetaryTotal//cbc:PayableAmount", namespaces=namespaces
+            ),
+            "Currency": root.findtext(
+                ".//cbc:LegalMonetaryTotal//cbc:PayableAmount",
+                "currencyID",
+                namespaces=namespaces,
+            ),
+            "items": [],
+        }
+
+        if not invoice_data["InvoiceID"]:
+            raise HTTPException(status_code=400, detail="Invoice ID: None")
+
+        # Render HTML page with invoice data
+        return templates.TemplateResponse(
+            request, "invoice_preview.html", {"invoice": invoice_data}
+        )
+
+    except ET.ParseError as ex:
+        raise HTTPException(status_code=400, detail="Invalid XML format") from ex
+    except Exception as ex:
+        raise HTTPException(
+            status_code=400, detail=f"Error processing invoice preview: {str(ex)}"
+        ) from ex
+
+
+@app.post("/ubl/invoice/cancel", tags=["INVOICE MANIPULATION"])
+async def cancel_invoice_creation():
+    """_summary_
+
+
+    Simulate cancellation of invoice creation.
+
+    Returns:\n
+        JSONResponse: Confirmation message.
+    """
+    return JSONResponse(
+        status_code=200,
+        content={"message": "Invoice creation has been canceled successfully."},
+    )

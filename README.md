@@ -1,7 +1,7 @@
 ### requirements
 
-- python3 version 10 ish ig
-- docker version 28 ish
+- python3 version 10 ish
+- docker version 28 ish (for local deployments)
 
 
 ### docker guide
@@ -12,12 +12,7 @@ build: `docker compose up --build` (sudo optional)
 
 ### deployment info
 
-app is deployed automatically from main branch on https://the-real-guy-chilcott.vercel.app/docs
+app is deployed automatically from main branch on https://the-real-guy-chilcott.vercel.app and swagger docs can be found on https://the-real-guy-chilcott.vercel.app/docs
 
-```
-note from andrea:
-
-**DO NOT PUSH UNTESTED CODE TO MAIN BRANCH**
-
-we(i) should set up a testing branch and/or pipeline so we dont deploy any untested code
-```
+### setup 
+to make sure all relevant packages are installed and up to date we have made a requirements file. to use it, run 'pip install -r src/requirements.txt'

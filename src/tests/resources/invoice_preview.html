@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice Preview</title>
+</head>
+<body>
+    <h1>Invoice Preview</h1>
+    <p><strong>Invoice ID:</strong> {{ invoice.id }}</p>
+    <p><strong>Issue Date:</strong> {{ invoice.issue_date }}</p>
+    <p><strong>Supplier:</strong> {{ invoice.supplier }}</p>
+    <p><strong>Customer:</strong> {{ invoice.customer }}</p>
+    <p><strong>Total Amount:</strong> {{ invoice.total_amount }}</p>
+    
+    <h2>Items</h2>
+    <ul>
+    {% for item in invoice["items"] %}
+        <li>{{ item.description }} - {{ item.amount }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

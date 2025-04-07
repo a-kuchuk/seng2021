@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-
 def get_xml(file_name):
     """Function to read the content of an XML file."""
     valid_xml_file_path = Path(__file__).parent / "resources" / file_name
