@@ -416,14 +416,16 @@ templates = Jinja2Templates(directory="src/tests/resources")
 
 @app.post("/ubl/invoice/preview", response_class=HTMLResponse, tags=["INVOICE MANIPULATION"])
 async def preview_invoice(request: Request, file: UploadFile = File(...)):
-    """
+    """_summary_
+
+
     Upload an XML invoice document and preview its information in HTML format.
 
-    Args:
-        request (Request): The request object.
+    Args:\n
+        request (Request): The request object.\n
         file (UploadFile): The UBL XML invoice document.
 
-    Returns:
+    Returns:\n
         HTMLResponse: Rendered HTML page displaying the invoice information.
     """
     try:
@@ -478,10 +480,12 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
 
 @app.post("/ubl/invoice/cancel", tags=["INVOICE MANIPULATION"])
 async def cancel_invoice_creation():
-    """
+    """_summary_
+
+    
     Simulate cancellation of invoice creation.
 
-    Returns:
+    Returns:\n
         JSONResponse: Confirmation message.
     """
     return JSONResponse(
