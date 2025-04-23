@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PaperJetAPI - Login/Register</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">PaperJetAPI</div>
+      <div class="header-buttons">
+        <button class="btn">contact</button>
+        <button class="btn">subscribe</button>
+        <div class="avatar"></div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="auth-section">
+      <div class="auth-container">
+        <div class="auth-panel">
+          <h2 class="auth-title">Login</h2>
+          <form class="auth-form">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" name="login-username" placeholder="Enter your username" />
+
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="login-password" placeholder="Enter your password" />
+
+            <div class="forgot-password">
+              <a href="#">Forgot Password?</a>
+            </div>
+
+            <a class="btn primary" onclick="location.href='LandingPageUser.html'">Login</div>
+          </form>
+        </div>
+
+        <div class="auth-panel">
+          <h2 class="auth-title">Register</h2>
+          <form class="auth-form">
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" name="register-email" placeholder="Enter your email" />
+
+            <label for="register-username">Username</label>
+            <input type="text" id="register-username" name="register-username" placeholder="Choose a username" />
+
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" name="register-password" placeholder="Create a password" />
+
+            <label for="register-confirm-password">Confirm Password</label>
+            <input type="password" id="register-confirm-password" name="register-confirm-password" placeholder="Confirm your password" />
+
+            <button class="btn primary" onclick="location.href='LandingPageUser.html'" >Register</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="github-icon">🐱‍👤</div>
+      <div class="footer-buttons">
+        <button class="btn dark">contact</button>
+        <button class="btn dark">subscribe</button>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
