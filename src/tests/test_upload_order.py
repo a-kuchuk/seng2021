@@ -960,7 +960,6 @@ def test_currency_lower():
     )
     assert response3.status_code == 200
     parsed_invoicexml = response3.json()
-    print(parsed_invoicexml)
 
 
 def test_currency_invalid():
@@ -982,4 +981,13 @@ def test_currency_invalid():
     )
     assert response3.status_code == 400
     parsed_invoicexml = response3.json()
-    print(parsed_invoicexml)
+
+
+def test_chatbot():
+    """_summary_
+
+    Test chatbot
+    """
+    response = client.post("/invoice/ai/v2", json="how do i set up bulk invoices?")
+    parsed_order = response.json()
+    print(parsed_order)

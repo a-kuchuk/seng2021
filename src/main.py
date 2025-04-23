@@ -2,6 +2,10 @@
 
 import json
 import random
+import base64
+import os
+from google import genai
+from google.genai import types
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from email.message import EmailMessage
@@ -953,3 +957,50 @@ async def cancel_invoice_creation():
         status_code=200,
         content={"message": "Invoice creation has been canceled successfully."},
     )
+
+
+@app.post("/invoice/ai/v2", tags=["INVOICE MANIPULATION"])
+async def preview_invoice(user_input: str = Body(...)):
+    """_summary_
+
+
+    Ai chatbot for answering user questions
+
+    Args:\n
+        input(str): The user input.\n
+
+    Returns:\n
+        Str: The response from the chatbot.
+    """
+    client = genai.Client(
+        api_key="AIzaSyBzA5qWviwGXH0Cp5jwOoxkdi73vt2pMPk",
+    )
+
+    model = "gemini-1.5-flash-8b"
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text=user_input),
+            ],
+        ),
+    ]
+    generate_content_config = types.GenerateContentConfig(
+        thinking_config=types.ThinkingConfig(
+            thinking_budget=0,
+        ),
+        response_mime_type="text/plain",
+        system_instruction=[
+            types.Part.from_text(
+                text="""You are a chatbot that is here to help a user navigate a invoice generation website. Please try give a general guide. To create an invoice you can either enter information throught the website or add in a ubl file. This will give a invoice in either pdf or ubl format. Bulk invoice is fore premium members."""
+            ),
+        ],
+    )
+    response = ""
+    for chunk in client.models.generate_content_stream(
+        model=model,
+        contents=contents,
+        config=generate_content_config,
+    ):
+        response += chunk.text
+    return response
