@@ -960,6 +960,7 @@ def test_currency_lower():
     )
     assert response3.status_code == 200
     parsed_invoicexml = response3.json()
+    print(parsed_invoicexml)
 
 
 def test_currency_invalid():
@@ -981,6 +982,7 @@ def test_currency_invalid():
     )
     assert response3.status_code == 400
     parsed_invoicexml = response3.json()
+    print(parsed_invoicexml)
 
 
 def test_chatbot():
