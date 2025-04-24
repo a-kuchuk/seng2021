@@ -1,75 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaperJetAPI - Login/Register</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./vars.css">
+  <link rel="stylesheet" href="./LoginPage.css">
+  
+  
+  <style>
+   a,
+   button,
+   input,
+   select,
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   * {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       border: none;
+       text-decoration: none;
+       background: none;
+   
+       -webkit-font-smoothing: antialiased;
+   }
+   
+   menu, ol, ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+   }
+   </style>
+  <title>Document</title>
 </head>
 <body>
-  <div class="app">
-
-    <!-- Header -->
-    <header class="header">
-      <div class="logo">PaperJetAPI</div>
-      <div class="header-buttons">
-        <button class="btn">contact</button>
-        <button class="btn">subscribe</button>
-        <div class="avatar"></div>
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="auth-section">
-      <div class="auth-container">
-        <div class="auth-panel">
-          <h2 class="auth-title">Login</h2>
-          <form class="auth-form">
-            <label for="login-username">Username</label>
-            <input type="text" id="login-username" name="login-username" placeholder="Enter your username" />
-
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" name="login-password" placeholder="Enter your password" />
-
-            <div class="forgot-password">
-              <a href="#">Forgot Password?</a>
-            </div>
-
-            <a class="btn primary" onclick="location.href='LandingPageUser.html'">Login</div>
-          </form>
-        </div>
-
-        <div class="auth-panel">
-          <h2 class="auth-title">Register</h2>
-          <form class="auth-form">
-            <label for="register-email">Email</label>
-            <input type="email" id="register-email" name="register-email" placeholder="Enter your email" />
-
-            <label for="register-username">Username</label>
-            <input type="text" id="register-username" name="register-username" placeholder="Choose a username" />
-
-            <label for="register-password">Password</label>
-            <input type="password" id="register-password" name="register-password" placeholder="Create a password" />
-
-            <label for="register-confirm-password">Confirm Password</label>
-            <input type="password" id="register-confirm-password" name="register-confirm-password" placeholder="Confirm your password" />
-
-            <button class="btn primary" onclick="location.href='LandingPageUser.html'" >Register</button>
-          </form>
-        </div>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="github-icon">🐱‍👤</div>
-      <div class="footer-buttons">
-        <button class="btn dark">contact</button>
-        <button class="btn dark">subscribe</button>
-      </div>
-    </footer>
-
+  <div class="login-page">
+    <div class="desktop-2">
+      <a class="paper-jet-api" href="LandingPageMain.html">PaperJetAPI</a>
+      <div class="rectangle-1"></div>
+      <a class="subscribe2" href="SubscribePage.html">subscribe</a>
+      <a href="LoginPage.html">
+        <img class="user" src="user0.svg" />
+      </a>
+      <div class="rectangle-12"></div>
+      <a class="contact2" href="Contact.html">contact</a>
   </div>
+    <div class="login">
+      <div class="rectangle-4"></div>
+      <div class="login2">Login</div>
+      <div class="register">Register</div>
+      <div class="line-1"></div>
+      <a class="login-button" href="LandingPageUser.html">
+        <div class="rectangle-13"></div>
+        <div class="login3">Login</div>
+      </a>
+      <a class="register-button" href="LandingPageUser.html">
+        <div class="rectangle-14"></div>
+        <div class="register2">Register</div>
+      </a>
+      <input type="text" class="rectangle-7" placeholder="Enter your username" />
+      <input type="password" class="rectangle-8" placeholder="Enter your Password" />
+      <a class="forgot-password" href="Forget.html">Forgot Password?</a>
+      <div class="rectangle-9"></div>
+      <div class="rectangle-10"></div>
+      <input type="text" class="rectangle-9" placeholder="Enter your Email" />
+      <input type="text" class="rectangle-10" placeholder="Choose Username" />
+      <input type="password" class="rectangle-11" placeholder="Choose Password" />
+      <input type="password" class="rectangle-122" placeholder="Confirm Password" />
+    </div>
+    <div class="desktop-5">
+      <div class="rectangle-15"></div>
+      <a class="subscribe3" href="SubscribePage.html">subscribe</a>
+      <div class="rectangle-16"></div>
+      <a class="contact3" href="Contact.html">contact</a>
+      <a href="https://github.com/a-kuchuk/seng2021">
+        <img class="github" src="github0.svg" />
+      </a>
+  </div>
+  </div> 
 </body>
 </html>
