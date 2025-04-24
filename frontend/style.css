@@ -1,18 +1,1471 @@
+body {
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  background-color: #6A7192;
+  color: white;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background-color: #0F1324;
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 18px;
+  color: #c7d0e4;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  background-color: #e5e5e5;
+  color: #0F1324;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e5e5e5;
+}
+
+/* Panels */
+.panels {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
+
+.panel {
+  background-color: #151A33;
+  border-radius: 16px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.panel h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.card {
+  background-color: #e0e0e0;
+  border-radius: 16px;
+  padding: 20px;
+  color: #000;
+}
+
+.card p {
+  font-size: 14px;
+  margin: 10px 0 4px;
+}
+
+.inner-btn {
+  background-color: #6A7192;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* Footer */
+.footer {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+}
+
+.github-icon {
+  font-size: 20px;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn.dark {
+  background-color: #0F1324;
+  color: white;
+}
+
+.footer-toolbar {
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.landing-page-main,
+.landing-page-main * {
+  box-sizing: border-box;
+}
+.landing-page-main {
+  background: #ffffff;
+  height: 179.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0.0625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
 .user {
-    height: auto;
-    position: absolute;
-    left: 84.25rem;
-    top: 1.125rem;
-    overflow: visible;
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.desktop-3 {
+  background: #ffffff;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 173.25rem;
+  overflow: hidden;
+}
+.rectangle-13 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.rectangle-14 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
 }
 .github {
-    width: 3rem;
-    height: 3rem;
-    position: absolute;
-    left: 2.125rem;
-    top: 1.8125rem;
-    overflow: visible;
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 1.8125rem;
+  overflow: visible;
 }
+.home-image {
+  width: 90rem;
+  height: 60rem;
+  position: absolute;
+  left: 0rem;
+  top: 6.1875rem;
+  overflow: hidden;
+}
+._5166950-1 {
+  width: 90rem;
+  height: 60rem;
+  position: absolute;
+  left: 0rem;
+  top: 0.0625rem;
+  object-fit: cover;
+  aspect-ratio: 3/2;
+}
+.an-api-which-can-help-your-business-elevate-its-logistical-performance {
+  color: #6a7192;
+  text-align: left;
+  font-family: "-", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 5.625rem;
+  top: 26.375rem;
+}
+.an-api-which-can-help-your-business-elevate-its-logistical-performance-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+}
+.an-api-which-can-help-your-business-elevate-its-logistical-performance-span2 {
+  color: #6a7192;
+  font-family: "Roboto-Italic", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  font-style: italic;
+}
+.an-api-which-can-help-your-business-elevate-its-logistical-performance-span3 {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+}
+.paper-jet-api2 {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-Bold", sans-serif;
+  font-size: 6rem;
+  font-weight: 700;
+  position: absolute;
+  left: 5.625rem;
+  top: 19.25rem;
+}
+.invoice {
+  background: #151a33;
+  width: 90rem;
+  height: 35.6875rem;
+  position: absolute;
+  left: 0rem;
+  top: 137.5625rem;
+  overflow: hidden;
+}
+.rectangle-2 {
+  background: #d9d9d9;
+  width: 27.4375rem;
+  height: 29.3125rem;
+  position: absolute;
+  left: 4.4375rem;
+  top: 3.375rem;
+}
+.is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  position: absolute;
+  left: 36.3125rem;
+  top: 9.4375rem;
+}
+.is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency-span2 {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.xml-version-1-0-encoding-utf-8-invoice-xmlns-urn-oasis-names-specification-ubl-schema-xsd-invoice-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-cbc-id-123-cbc-id-cbc-issue-date-2011-09-22-cbc-issue-date-cac-invoice-period-cbc-start-date-2011-08-01-cbc-start-date-cbc-end-date-2011-08-31-cbc-end-date-cac-invoice-period-cac-accounting-supplier-party-cac-party-cac-party-name-cbc-name-custom-cotter-pins-cbc-name-cac-party-name-cac-party-cac-accounting-supplier-party-cac-accounting-customer-party-cac-party-cac-party-name-cbc-name-north-american-veeblefetzer-cbc-name-cac-party-name-cac-party-cac-accounting-customer-party-cac-legal-monetary-total-cbc-payable-amount-currency-id-cad-100-00-cbc-payable-amount-cac-legal-monetary-total-cac-invoice-line-cbc-id-1-cbc-id-cbc-line-extension-amount-currency-id-cad-100-00-cbc-line-extension-amount-cac-item-cbc-description-cotter-pin-mil-spec-cbc-description-cac-item-cac-invoice-line-invoice {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 5.125rem;
+  top: 4.125rem;
+  width: 25.5rem;
+}
+.invoice-generation {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  position: absolute;
+  left: 36.3125rem;
+  top: 4.625rem;
+}
+.delivery {
+  background: #ffffff;
+  width: 90rem;
+  height: 35.6875rem;
+  position: absolute;
+  left: 0rem;
+  top: 101.875rem;
+  overflow: hidden;
+}
+.rectangle-22 {
+  background: #d9d9d9;
+  width: 22.3125rem;
+  height: 29.3125rem;
+  position: absolute;
+  left: 63.625rem;
+  top: 3.5rem;
+}
+.xml-version-1-0-encoding-utf-8-despatch-advice-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-urn-oasis-names-specification-ubl-schema-xsd-despatch-advice-2-cbc-ubl-version-id-2-0-cbc-ubl-version-id-cbc-customization-id-urn-oasis-names-specification-ubl-xpath-despatch-advice-2-0-sbs-1-0-draft-cbc-customization-id-cbc-profile-id-bpid-urn-oasis-names-draft-bpss-ubl-2-sbs-despatch-advice-notification-draft-cbc-profile-id-cbc-id-565899-cbc-id-cbc-copy-indicator-false-cbc-copy-indicator-cbc-uuid-88-c-7280-e-8-f-10-419-f-9949-8-efffa-2842-b-8-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cbc-document-status-code-no-status-cbc-document-status-code-cbc-despatch-advice-type-code-delivery-cbc-despatch-advice-type-code-cbc-note-sample-cbc-note-cac-order-reference-cbc-id-aeg-012345-cbc-id-cbc-sales-order-id-con-0095678-cbc-sales-order-id-cbc-uuid-6-e-09886-b-dc-6-e-439-f-82-d-1-7-ccac-7-f-4-e-3-b-1-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cac-order-reference-cac-despatch-supplier-party-cbc-customer-assigned-account-id-co-001-cbc-customer-assigned-account-id-cac-party-cac-party-name-cbc-name-consortial-cbc-name-cac-party-name-cac-postal-address-cbc-street-name-busy-street-cbc-street-name {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 64.5625rem;
+  top: 4.125rem;
+  width: 20.5625rem;
+  height: 28.3125rem;
+}
+.wondering-how-to-transfer-your-goods-or-services-between-the-dispatch-party-and-delivery-party-in-response-to-an-order-document-and-other-provided-data-this-function-will-create-a-standardised-ubl-dispatch-advice-document-this-function-will-help-automatically-determine-fields-such-as-delivery-date-and-flexibly-sort-and-store-delivery-information-in-a-format-that-is-widely-recognised-as-universal-within-the-business-world {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  position: absolute;
+  left: 4.625rem;
+  top: 9.1875rem;
+}
+.dispatch-advice-generation {
+  color: #151a33;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  position: absolute;
+  left: 4.625rem;
+  top: 4.375rem;
+}
+.order-creation {
+  background: #151a33;
+  width: 90rem;
+  height: 35.6875rem;
+  position: absolute;
+  left: 0rem;
+  top: 66.1875rem;
+  overflow: hidden;
+}
+.need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  position: absolute;
+  left: 36.3125rem;
+  top: 9.4375rem;
+}
+.need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email-span2 {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.xml-version-1-0-encoding-utf-8-order-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-urn-oasis-names-specification-ubl-schema-xsd-order-2-cbc-ubl-version-id-2-0-cbc-ubl-version-id-cbc-customization-id-urn-oasis-names-specification-ubl-xpath-order-2-0-sbs-1-0-draft-cbc-customization-id-cbc-profile-id-bpid-urn-oasis-names-draft-bpss-ubl-2-sbs-order-with-simple-response-draft-cbc-profile-id-cbc-id-aeg-012345-cbc-id-cbc-sales-order-id-con-0095678-cbc-sales-order-id-cbc-copy-indicator-false-cbc-copy-indicator-cbc-uuid-6-e-09886-b-dc-6-e-439-f-82-d-1-7-ccac-7-f-4-e-3-b-1-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cbc-note-sample-cbc-note-cac-buyer-customer-party-cbc-customer-assigned-account-id-xfb-01-cbc-customer-assigned-account-id-cbc-supplier-assigned-account-id-gt-00978567-cbc-supplier-assigned-account-id-cac-party-cac-party-name-cbc-name-iyt-corporation-cbc-name-cac-party-name-cac-postal-address-cbc-street-name-avon-way-cbc-street-name-cbc-building-name-thereabouts-cbc-building-name-cbc-building-number-56-a-cbc-building-number-cbc-city-name-bridgtow-cbc-city-name-cbc-postal-zone-zz-99-1-zz-cbc-postal-zone-cbc-country-subentity-avon-cbc-country-subentity-cac-address-line-cbc-line-3rd-floor-room-5-cbc-line-cac-address-line-cac-country-cbc-identification-code-gb-cbc-identification-code-cac-country {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 5.3125rem;
+  top: 4.25rem;
+  width: 25.5rem;
+  height: 27.6875rem;
+}
+.order-creation2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  position: absolute;
+  left: 36.3125rem;
+  top: 4.625rem;
+}
+
+.subscribe-page,
+.subscribe-page * {
+  box-sizing: border-box;
+}
+.subscribe-page {
+  background: #ffffff;
+  height: 119.6875rem;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.options {
+  background: #d9d9d9;
+  width: 90rem;
+  height: 42.3125rem;
+  position: absolute;
+  left: 0rem;
+  top: 6.3125rem;
+  overflow: hidden;
+}
+.premium {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-4 {
+  background: linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33);
+  border-radius: 1.875rem;
+  width: 56.5rem;
+  height: 33.9375rem;
+  position: absolute;
+  left: 29.625rem;
+  top: 4.1875rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25),
+    inset 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+._10 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 8.75rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 33.625rem;
+  top: 9.3125rem;
+}
+.month {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 46.875rem;
+  top: 14.875rem;
+}
+.premium2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 50.1875rem;
+  top: 6.0625rem;
+}
+.line-1 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #d9d9d9;
+  border-width: 0.1875rem 0 0 0;
+  width: 23.75125rem;
+  height: 0rem;
+  position: absolute;
+  left: 57.88rem;
+  top: 11.5rem;
+  transform-origin: 0 0;
+  transform: rotate(90.614deg) scale(1, 1);
+}
+.order-creation-dispatch-advice-generation-invoice-generation {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  position: absolute;
+  left: 32.5625rem;
+  top: 18.6875rem;
+  width: 23.375rem;
+  height: 11.125rem;
+}
+.subscribe3 {
+  width: 21.4375rem;
+  height: 4.1875rem;
+  position: static;
+}
+.rectangle-13 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 21.4375rem;
+  height: 4.1875rem;
+  position: absolute;
+  left: 33.5rem;
+  top: 31.5rem;
+}
+.subscribe-now {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 35.375rem;
+  top: 32.1875rem;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.75rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 59.5625rem;
+  top: 11.8125rem;
+  width: 24rem;
+  height: 24.3125rem;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 28px;
+  line-height: 42px;
+  font-weight: 400;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more-span2 {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 28px;
+  line-height: 42px;
+  font-weight: 400;
+}
+.free {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-3 {
+  background: linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33);
+  border-radius: 1.875rem;
+  width: 22.125rem;
+  height: 33.9375rem;
+  position: absolute;
+  left: 3.9375rem;
+  top: 4.1875rem;
+}
+.free2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 10.625rem;
+  top: 6.0625rem;
+}
+.order-creation-dispatch-advice-generation-invoice-generation2 {
+  color: #6a7192;
+  text-align: left;
+  position: absolute;
+  left: 4.9375rem;
+  top: 11.4375rem;
+  width: 19.3125rem;
+  height: 17.125rem;
+}
+.order-creation-dispatch-advice-generation-invoice-generation-2-span {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  line-height: 45px;
+  font-weight: 400;
+}
+.order-creation-dispatch-advice-generation-invoice-generation-2-span2 {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 36px;
+  line-height: 45px;
+  font-weight: 400;
+}
+.all-in-standardised-ubl-format-xml-file {
+  color: #6a7192;
+  text-align: center;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  position: absolute;
+  left: 5.6875rem;
+  top: 26.8125rem;
+}
+.table {
+  width: 90rem;
+  height: 66.0625rem;
+  position: absolute;
+  left: 0rem;
+  top: 45.5rem;
+  overflow: hidden;
+}
+.rectangle-5 {
+  background: #ffffff;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem;
+  width: 77.3125rem;
+  height: 55.5625rem;
+  position: absolute;
+  left: 6.3125rem;
+  top: 7rem;
+}
+.register-login-logout-update-reset-user-details-etc-return-user-s-order-statistics-create-delete-list-delete-unsend-update-order-create-order-from-csv-create-multiple-orders-in-bulk-create-delete-dispatch-get-list-of-items-off-dipsatch-get-shipment-details-and-arrival-period-create-invoice-export-invoice-in-xml-export-invoice-in-pdf-send-invoice-via-email-currency-conversion-language-translation {
+  color: #131a40;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  line-height: 3.5625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 18.9375rem;
+  top: 12.6875rem;
+}
+.rectangle-6 {
+  background: #d9d9d9;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem;
+  width: 77.3125rem;
+  height: 5.6875rem;
+  position: absolute;
+  left: 6.3125rem;
+  top: 7rem;
+}
+.line-2 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 55.5625rem;
+  height: 0rem;
+  position: absolute;
+  left: 59.5625rem;
+  top: 7rem;
+  transform-origin: 0 0;
+  transform: rotate(89.936deg) scale(1, 1);
+}
+.line-3 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 55.375rem;
+  height: 0rem;
+  position: absolute;
+  left: 71.375rem;
+  top: 7.1875rem;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-4 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 55.5625rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 7rem;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.area {
+  color: #151a33;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 2.5rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.125rem;
+  top: 8.5rem;
+}
+.user2 {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.5625rem;
+  top: 13rem;
+}
+.order {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.125rem;
+  top: 20.8125rem;
+}
+.dispatch {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 7.625rem;
+  top: 31.5rem;
+}
+.invoice {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 8.4375rem;
+  top: 42.1875rem;
+}
+.premium3 {
+  color: #151a33;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 2.5rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.875rem;
+  top: 8.5rem;
+}
+.function {
+  color: #151a33;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 2.5rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 20.125rem;
+  top: 8.5rem;
+}
+.free3 {
+  color: #151a33;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 2.5rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 62.6875rem;
+  top: 8.5rem;
+}
+.line-5 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.1875rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 16.25rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.052deg) scale(1, 1);
+}
+.line-6 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 77.25rem;
+  height: 0rem;
+  position: absolute;
+  left: 6.375rem;
+  top: 19.8725rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.091deg) scale(1, 1);
+}
+.line-7 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.125rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 23.4375rem;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.line-8 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.125rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 27.0625rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.056deg) scale(1, 1);
+}
+.line-9 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 77.25rem;
+  height: 0rem;
+  position: absolute;
+  left: 6.3125rem;
+  top: 30.56rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.091deg) scale(1, 1);
+}
+.line-10 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.125rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 34.120625rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-11 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.125rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 37.7475rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-12 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 77.25rem;
+  height: 0rem;
+  position: absolute;
+  left: 6.3125rem;
+  top: 41.308125rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.091deg) scale(1, 1);
+}
+.line-13 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 44.7475rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-14 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 48.308125rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-15 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.49125rem;
+  top: 51.9975rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-16 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.49125rem;
+  top: 55.558125rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-17 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.49125rem;
+  top: 58.9975rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.check-square {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.25rem;
+  top: 13.125rem;
+  overflow: visible;
+}
+.check-square2 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 13.125rem;
+  overflow: visible;
+}
+.check-square3 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.25rem;
+  top: 20.5rem;
+  overflow: visible;
+}
+.check-square4 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 20.5rem;
+  overflow: visible;
+}
+.check-square5 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.25rem;
+  top: 30.75rem;
+  overflow: visible;
+}
+.check-square6 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 31.0625rem;
+  overflow: visible;
+}
+.check-square7 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 34.6875rem;
+  overflow: visible;
+}
+.check-square8 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.0625rem;
+  top: 38.3125rem;
+  overflow: visible;
+}
+.check-square9 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 38.3125rem;
+  overflow: visible;
+}
+.check-square10 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.0625rem;
+  top: 41.75rem;
+  overflow: visible;
+}
+.check-square11 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 41.75rem;
+  overflow: visible;
+}
+.check-square12 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.0625rem;
+  top: 45.1875rem;
+  overflow: visible;
+}
+.check-square13 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 45.25rem;
+  overflow: visible;
+}
+.check-square14 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 48.875rem;
+  overflow: visible;
+}
+.check-square15 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 52.5rem;
+  overflow: visible;
+}
+.check-square16 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 56rem;
+  overflow: visible;
+}
+.check-square17 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 59.5rem;
+  overflow: visible;
+}
+.check-square18 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 16.75rem;
+  overflow: visible;
+}
+.check-square19 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 27.375rem;
+  overflow: visible;
+}
+.check-square20 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 24rem;
+  overflow: visible;
+}
+.desktop-4 {
+  background: #ffffff;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 113.4375rem;
+  overflow: hidden;
+}
+.rectangle-14 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe4 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.rectangle-15 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
+}
+.github {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 1.8125rem;
+  overflow: visible;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  background-color: #6A7192;
+  color: white;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background-color: #0F1324;
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 18px;
+  color: #c7d0e4;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  background-color: #e5e5e5;
+  color: #0F1324;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e5e5e5;
+}
+
+/* Panels */
+.panels {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.panel {
+  background-color: #151A33;
+  border-radius: 16px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.panel h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.card {
+  background-color: #e0e0e0;
+  border-radius: 16px;
+  padding: 20px;
+  color: #000;
+}
+
+.card p {
+  font-size: 14px;
+  margin: 10px 0 4px;
+}
+
+.inner-btn {
+  background-color: #6A7192;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* Footer */
+.footer {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+}
+
+.github-icon {
+  font-size: 20px;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn.dark {
+  background-color: #0F1324;
+  color: white;
+}
+
+.footer-toolbar {
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 
 /* General Styles */
 body {
@@ -146,6 +1599,1249 @@ body {
   display: flex;
   gap: 20px;
 }
+
+.account-page,
+.account-page * {
+  box-sizing: border-box;
+}
+.account-page {
+  background: #1d192b;
+  display: flex;
+  flex-direction: row;
+  row-gap: 23px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  flex-shrink: 0;
+  width: 1440px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 38px;
+  top: 30px;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 10px;
+  width: 167px;
+  height: 54px;
+  position: absolute;
+  left: 1149px;
+  top: 23px;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1164px;
+  top: 36px;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 1348px;
+  top: 18px;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 10px;
+  width: 137px;
+  height: 54px;
+  position: absolute;
+  left: 975px;
+  top: 23px;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 990px;
+  top: 36px;
+}
+.frame-1 {
+  margin: 0 0 0 -69px;
+  flex-shrink: 0;
+  width: 694px;
+  height: 833px;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-24 {
+  background: #d9d9d9;
+  border-radius: 20px;
+  width: 468px;
+  height: 575px;
+  position: absolute;
+  left: 48px;
+  top: 129px;
+}
+.details {
+  position: absolute;
+  inset: 0;
+}
+.full-name {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 167px;
+  width: 199px;
+  height: 29px;
+}
+.email {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 468px;
+  width: 127px;
+  height: 29px;
+}
+.rectangle-16 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 505px;
+}
+.rectangle-17 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 307px;
+}
+.rectangle-18 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 208px;
+}
+.username {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 269px;
+  width: 212px;
+  height: 29px;
+}
+.john-william-smith {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 94px;
+  top: 219px;
+  width: 332px;
+  height: 40px;
+}
+.john-w-smith-gmail-com {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 515px;
+  width: 332px;
+  height: 40px;
+}
+.johnsmith-123 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 318px;
+  width: 332px;
+  height: 40px;
+}
+.rectangle-22 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 406px;
+}
+.password {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 368px;
+  width: 212px;
+  height: 29px;
+}
+.bad-password-1 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 417px;
+  width: 332px;
+  height: 40px;
+}
+.rectangle-21 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 613px;
+}
+.phone-number {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 575px;
+  width: 212px;
+  height: 29px;
+}
+._61-412-345-678 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 624px;
+  width: 332px;
+  height: 40px;
+}
+.logout {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-13 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 119px;
+  height: 54px;
+  position: absolute;
+  left: 27px;
+  top: 741px;
+}
+.logout2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 308px);
+  top: 754px;
+  width: 92px;
+}
+.delete {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-14 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 244px;
+  height: 54px;
+  position: absolute;
+  left: 167px;
+  top: 741px;
+}
+.delete-account {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 166px);
+  top: 754px;
+}
+.edit {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-15 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 97px;
+  height: 54px;
+  position: absolute;
+  left: 432px;
+  top: 741px;
+}
+.edit2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - -104px);
+  top: 754px;
+  width: 64.97px;
+}
+.rectangle-25 {
+  margin: 0 0 0 -69px;
+  background: #6a7192;
+  border-radius: 20px;
+  flex-shrink: 0;
+  width: 697px;
+  height: 783px;
+  position: relative;
+}
+.desktop-6 {
+  margin: 0 0 0 -69px;
+  background: #ffffff;
+  flex-shrink: 0;
+  width: 1440px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-19 {
+  background: #151a33;
+  border-radius: 10px;
+  width: 167px;
+  height: 54px;
+  position: absolute;
+  left: 1230px;
+  top: 23px;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1245px;
+  top: 36px;
+}
+.rectangle-110 {
+  background: #151a33;
+  border-radius: 10px;
+  width: 137px;
+  height: 54px;
+  position: absolute;
+  left: 1051px;
+  top: 23px;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1066px;
+  top: 36px;
+}
+.github {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 34px;
+  top: 29px;
+  overflow: visible;
+}
+.account-details {
+  margin: 0 0 0 -69px;
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 70px;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 53px;
+  top: 143px;
+  width: 635px;
+  height: 89px;
+}
+.rectangle-26 {
+  margin: 0 0 0 -69px;
+  background: #d9d9d9;
+  border-radius: 20px;
+  flex-shrink: 0;
+  width: 608px;
+  height: 595px;
+  position: absolute;
+  left: 720px;
+  top: 280px;
+}
+.details2 {
+  margin: 0 0 0 -69px;
+  flex-shrink: 0;
+  width: 520px;
+  height: 538px;
+  position: static;
+}
+.total-documents-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 317px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-182 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 169px;
+  height: 50px;
+  position: absolute;
+  left: 1113px;
+  top: 306px;
+}
+._3000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 317px;
+  width: 136px;
+  height: 40px;
+}
+.total-orders-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 388px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-192 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 377px;
+}
+._1000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 388px;
+  width: 136px;
+  height: 40px;
+}
+.total-dispatches-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 459px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-20 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 448px;
+}
+._10002 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 459px;
+  width: 136px;
+  height: 40px;
+}
+.total-invoices-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 530px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-212 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 519px;
+}
+._10003 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 530px;
+  width: 136px;
+  height: 40px;
+}
+.latest-5-documents-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 601px;
+  width: 434px;
+  height: 29px;
+}
+.rectangle-222 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 520px;
+  height: 199px;
+  position: absolute;
+  left: 762px;
+  top: 645px;
+}
+.invoice-12345-croissant-order-batch-74-dispatch-12345-croissant-order-batch-74-order-12345-croissant-order-batch-74-invoice-12344-croissant-order-batch-73-dispatch-12344-croissant-order-batch-73 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 23px;
+  line-height: 35px;
+  font-weight: 400;
+  position: absolute;
+  left: 771px;
+  top: 657px;
+  width: 488px;
+  height: 176px;
+}
+.user-statistics {
+  margin: 0 0 0 -69px;
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 69px;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 745px;
+  top: 183px;
+  width: 603px;
+  height: 97px;
+}
+
+.account-page,
+.account-page * {
+  box-sizing: border-box;
+}
+.account-page {
+  background: #1d192b;
+  display: flex;
+  flex-direction: row;
+  row-gap: 23px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  flex-shrink: 0;
+  width: 1440px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 38px;
+  top: 30px;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 10px;
+  width: 167px;
+  height: 54px;
+  position: absolute;
+  left: 1149px;
+  top: 23px;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1164px;
+  top: 36px;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 1348px;
+  top: 18px;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 10px;
+  width: 137px;
+  height: 54px;
+  position: absolute;
+  left: 975px;
+  top: 23px;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 990px;
+  top: 36px;
+}
+.frame-1 {
+  margin: 0 0 0 -69px;
+  flex-shrink: 0;
+  width: 694px;
+  height: 833px;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-24 {
+  background: #d9d9d9;
+  border-radius: 20px;
+  width: 468px;
+  height: 575px;
+  position: absolute;
+  left: 48px;
+  top: 129px;
+}
+.details {
+  position: absolute;
+  inset: 0;
+}
+.full-name {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 167px;
+  width: 199px;
+  height: 29px;
+}
+.email {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 468px;
+  width: 127px;
+  height: 29px;
+}
+.rectangle-16 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 505px;
+}
+.rectangle-17 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 307px;
+}
+.rectangle-18 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 208px;
+}
+.username {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 269px;
+  width: 212px;
+  height: 29px;
+}
+.john-william-smith {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 94px;
+  top: 219px;
+  width: 332px;
+  height: 40px;
+}
+.john-w-smith-gmail-com {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 515px;
+  width: 332px;
+  height: 40px;
+}
+.johnsmith-123 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 318px;
+  width: 332px;
+  height: 40px;
+}
+.rectangle-22 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 406px;
+}
+.password {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 368px;
+  width: 212px;
+  height: 29px;
+}
+.bad-password-1 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 417px;
+  width: 332px;
+  height: 40px;
+}
+.rectangle-21 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 613px;
+}
+.phone-number {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 575px;
+  width: 212px;
+  height: 29px;
+}
+._61-412-345-678 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 624px;
+  width: 332px;
+  height: 40px;
+}
+.logout {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-13 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 119px;
+  height: 54px;
+  position: absolute;
+  left: 27px;
+  top: 741px;
+}
+.logout2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 308px);
+  top: 754px;
+  width: 92px;
+}
+.delete {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-14 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 244px;
+  height: 54px;
+  position: absolute;
+  left: 167px;
+  top: 741px;
+}
+.delete-account {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 166px);
+  top: 754px;
+}
+.edit {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-15 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 97px;
+  height: 54px;
+  position: absolute;
+  left: 432px;
+  top: 741px;
+}
+.edit2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - -104px);
+  top: 754px;
+  width: 64.97px;
+}
+.rectangle-25 {
+  margin: 0 0 0 -69px;
+  background: #6a7192;
+  border-radius: 20px;
+  flex-shrink: 0;
+  width: 697px;
+  height: 783px;
+  position: relative;
+}
+.desktop-6 {
+  margin: 0 0 0 -69px;
+  background: #ffffff;
+  flex-shrink: 0;
+  width: 1440px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-19 {
+  background: #151a33;
+  border-radius: 10px;
+  width: 167px;
+  height: 54px;
+  position: absolute;
+  left: 1230px;
+  top: 23px;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1245px;
+  top: 36px;
+}
+.rectangle-110 {
+  background: #151a33;
+  border-radius: 10px;
+  width: 137px;
+  height: 54px;
+  position: absolute;
+  left: 1051px;
+  top: 23px;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1066px;
+  top: 36px;
+}
+.github {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 34px;
+  top: 29px;
+  overflow: visible;
+}
+.account-details {
+  margin: 0 0 0 -69px;
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 70px;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 53px;
+  top: 143px;
+  width: 635px;
+  height: 89px;
+}
+.rectangle-26 {
+  margin: 0 0 0 -69px;
+  background: #d9d9d9;
+  border-radius: 20px;
+  flex-shrink: 0;
+  width: 400px;
+  height: 100;
+  position: absolute;
+  left: 720px;
+  top: 280px;
+}
+.details2 {
+  margin: 0 0 0 -69px;
+  flex-shrink: 0;
+  width: 400;
+  height: 100;
+  position: static;
+}
+.total-documents-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: absolute;
+  left: 670px;
+  top: 317px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-182 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 169px;
+  height: 50px;
+  position: absolute;
+  left: 1113px;
+  top: 306px;
+}
+._3000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 317px;
+  width: 136px;
+  height: 40px;
+}
+.total-orders-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: absolute;
+  left: 670px;
+  top: 388px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-192 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 377px;
+}
+._1000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 388px;
+  width: 136px;
+  height: 40px;
+}
+.total-dispatches-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: absolute;
+  left: 670px;
+  top: 459px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-20 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 448px;
+}
+._10002 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 459px;
+  width: 136px;
+  height: 40px;
+}
+.total-invoices-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 530px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-212 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 519px;
+}
+._10003 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 530px;
+  width: 136px;
+  height: 40px;
+}
+.latest-5-documents-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 601px;
+  width: 434px;
+  height: 29px;
+}
+.rectangle-222 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 520px;
+  height: 199px;
+  position: absolute;
+  left: 762px;
+  top: 645px;
+}
+.invoice-12345-croissant-order-batch-74-dispatch-12345-croissant-order-batch-74-order-12345-croissant-order-batch-74-invoice-12344-croissant-order-batch-73-dispatch-12344-croissant-order-batch-73 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 23px;
+  line-height: 35px;
+  font-weight: 400;
+  position: absolute;
+  left: 771px;
+  top: 657px;
+  width: 488px;
+  height: 176px;
+}
+.user-statistics {
+  margin: 0 0 0 -69px;
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 69px;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 745px;
+  top: 183px;
+  width: 603px;
+  height: 97px;
+}
+
 
 .history-page-1,
 .history-page-1 * {
