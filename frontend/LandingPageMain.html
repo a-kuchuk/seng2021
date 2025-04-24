@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="./vars.css">
   <link rel="stylesheet" href="./LandingPageMain.css">
   <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto&display=swap" rel="stylesheet">
-  
+  <script defer src="chat.js"></script>
+
   <style>
    a,
    button,
@@ -49,6 +50,18 @@
       </a>
       <div class="rectangle-12"></div>
       <a class="contact2" href="Contact.html">contact</a>
+    </div>
+    <a href="#" onclick="show('chatbox')">
+      <img class="chat" src="chat-bubble.svg" />
+    </a>
+    <div class="popup" id="chatbox">
+      <div class="paper-jet-bot">PaperJetBot</div>
+      <input type="text" class="chat-rectangle" placeholder="Enter Input:"></input>
+      <div class="send-rect"></div>
+      <a class="send" href="LandingPageMain.html">Send</a>
+      <a href="#" onclick="hide('chatbox')">
+        <img class="x" src="x0.svg" />
+      </a>
     </div>
     <div class="home-image">
       <img class="_5166950-1" src="_5166950-10.png" />
