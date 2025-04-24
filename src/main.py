@@ -5,8 +5,10 @@ import random
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from email.message import EmailMessage
-import smtplib
 from datetime import datetime
+import smtplib
+from google import genai
+from google.genai import types
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Form, Request
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -360,12 +362,6 @@ async def create_invoice(invoice_json: str = Body(...)):
     ET.SubElement(invoice_period, "cbc:EndDate").text = (
         f"{data['InvoicePeriod']['EndDate']}"
     )
-
-    # Supplier details
-    # supplier = ET.SubElement(invoice, "cac:AccountingSupplierParty")
-    # supplier_party = ET.SubElement(supplier, "cac:Party")
-    # supplier_party_name = ET.SubElement(supplier_party, "cac:PartyName")
-    # ET.SubElement(supplier_party_name, "cbc:Name").text = f"{data['AccountingSupplierParty']}"
     ET.SubElement(
         ET.SubElement(
             ET.SubElement(invoice, "cac:AccountingSupplierParty"), "cac:Party"
@@ -373,11 +369,6 @@ async def create_invoice(invoice_json: str = Body(...)):
         "cac:PartyName",
     )
     ET.SubElement(invoice[-1], "cbc:Name").text = f"{data['AccountingSupplierParty']}"
-    # Customer details
-    # customer = ET.SubElement(invoice, "cac:AccountingCustomerParty")
-    # customer_party = ET.SubElement(customer, "cac:Party")
-    # customer_party_name = ET.SubElement(customer_party, "cac:PartyName")
-    # ET.SubElement(customer_party_name, "cbc:Name").text = f"{data['AccountingCustomerParty']}"
     ET.SubElement(
         ET.SubElement(
             ET.SubElement(invoice, "cac:AccountingCustomerParty"), "cac:Party"
@@ -394,7 +385,6 @@ async def create_invoice(invoice_json: str = Body(...)):
     ).text = f"{data['LegalMonetaryTotal']['Value']}"
 
     for line in data["InvoiceLine"]:
-        # Invoice Line Item
         invoice_line = ET.SubElement(invoice, "cac:InvoiceLine")
         ET.SubElement(invoice_line, "cbc:ID").text = f"{line['ID']}"
 
@@ -404,20 +394,10 @@ async def create_invoice(invoice_json: str = Body(...)):
         ET.SubElement(
             ET.SubElement(invoice_line, "cac:Item"), "cbc:Description"
         ).text = f"{line['Description']}"
-    # Convert to XML string and save to file
     xml_str = ET.tostring(invoice, encoding="utf-8")
 
-    # Format the XML file so it's not a single line
     pretty_xml = xml.dom.minidom.parseString(xml_str).toprettyxml(indent="\t")
     return pretty_xml
-
-    # try:
-    #     with open("invoice.xml", "w", encoding="utf-8") as file:
-    #         file.write(pretty_xml)
-    # except Exception as ex:
-    #     raise HTTPException(status_code=500, detail=f"Failed to create XML file {ex}") from ex
-
-    # return {"details": "XML file successful"}
 
 
 @app.post("/ubl/order/upload/v2", tags=["DATA VALIDATION"])
@@ -870,7 +850,6 @@ async def xml_to_pdf(file: UploadFile = File(...)):
     can.save()
 
 
-# Initialize Jinja2 templates
 templates = Jinja2Templates(directory="src/tests/resources")
 
 
@@ -902,7 +881,6 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
             "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
         }
 
-        # Extract relevant info from XML
         invoice_data = {
             "InvoiceID": root.findtext(".//cbc:ID", namespaces=namespaces),
             "IssueDate": root.findtext(".//cbc:IssueDate", namespaces=namespaces),
@@ -926,7 +904,6 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
         if not invoice_data["InvoiceID"]:
             raise HTTPException(status_code=400, detail="Invoice ID: None")
 
-        # Render HTML page with invoice data
         return templates.TemplateResponse(
             request, "invoice_preview.html", {"invoice": invoice_data}
         )
@@ -953,3 +930,55 @@ async def cancel_invoice_creation():
         status_code=200,
         content={"message": "Invoice creation has been canceled successfully."},
     )
+
+
+@app.post("/invoice/ai/v2", tags=["INVOICE MANIPULATION"])
+async def aichat(user_input: str = Body(...)):
+    """_summary_
+
+
+    Ai chatbot for answering user questions
+
+    Args:\n
+        input(str): The user input.\n
+
+    Returns:\n
+        Str: The response from the chatbot.
+    """
+    client = genai.Client(
+        api_key="AIzaSyBzA5qWviwGXH0Cp5jwOoxkdi73vt2pMPk",
+    )
+
+    model = "gemini-1.5-flash-8b"
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text=user_input),
+            ],
+        ),
+    ]
+    generate_content_config = types.GenerateContentConfig(
+        thinking_config=types.ThinkingConfig(
+            thinking_budget=0,
+        ),
+        response_mime_type="text/plain",
+        system_instruction=[
+            types.Part.from_text(
+                text="""You are a chatbot that is here to help a user navigate
+                a invoice generation website. Welcome the user as a Paper Jet ai chatbot.
+                Please try give a general guide. To create an invoice you can either enter 
+                information throught the website or add in a ubl file. 
+                This will give a invoice in either pdf or ubl format.
+                Bulk invoice is fore premium members."""
+            ),
+        ],
+    )
+    response = ""
+    for chunk in client.models.generate_content_stream(
+        model=model,
+        contents=contents,
+        config=generate_content_config,
+    ):
+        response += chunk.text
+    return response
