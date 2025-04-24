@@ -23,7 +23,7 @@
 .paper-jet-api {
   color: #c5cfff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 2.5rem;
   font-weight: 400;
   position: absolute;
@@ -46,7 +46,7 @@
 .subscribe2 {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -76,7 +76,7 @@
 .contact2 {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -111,7 +111,7 @@
 .subscribe3 {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -130,7 +130,7 @@
 .contact3 {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;

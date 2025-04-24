@@ -33,7 +33,7 @@
 .subscribe2 {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -56,7 +56,7 @@
 .contact2 {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -83,7 +83,7 @@
 .paper-jet-api {
   color: #c5cfff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 2.5rem;
   font-weight: 400;
   position: absolute;
@@ -102,7 +102,7 @@
 .subscribe3 {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -128,7 +128,7 @@
 .contact3 {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -147,7 +147,7 @@
 .full-name {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -159,7 +159,7 @@
 .email {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -198,7 +198,7 @@
 .username {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -255,7 +255,7 @@
 .password {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -288,7 +288,7 @@
 .phone-number {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -321,11 +321,11 @@
 .logout {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
-  left: calc(50% - 37.2rem);
+  left: calc(50% - 37.7rem);
   top: 54.8125rem;
   width: 5.75rem;
 }
@@ -341,11 +341,11 @@
 .delete-account {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
-  left: calc(50% - 28rem);
+  left: calc(50% - 28.8rem);
   top: 54.8125rem;
 }
 .rectangle-110 {
@@ -360,11 +360,11 @@
 .edit {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
-  left: calc(50% - 11.7rem);
+  left: calc(50% - 12.1rem);
   top: 54.8125rem;
   width: 4.060625rem;
 }
@@ -402,7 +402,7 @@
 .total-documents-made {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -435,7 +435,7 @@
 .total-orders-made {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -468,7 +468,7 @@
 .total-dispatches-made {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -501,7 +501,7 @@
 .total-invoices-made {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -534,7 +534,7 @@
 .latest-5-documents-made {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;

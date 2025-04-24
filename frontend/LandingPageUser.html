@@ -1,69 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaperJetAPI</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./vars.css">
+  <link rel="stylesheet" href="./LandingPageUser.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto&display=swap" rel="stylesheet">
+  
+  <style>
+   a,
+   button,
+   input,
+   select,
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   * {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       border: none;
+       text-decoration: none;
+       background: none;
+   
+       -webkit-font-smoothing: antialiased;
+   }
+   
+   menu, ol, ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+   }
+   </style>
+  <title>Document</title>
 </head>
 <body>
-  <div class="app">
-    <!-- Header -->
-    <header class="header">
-      <div class="logo">PaperJetAPI</div>
-      <div class="header-buttons">
-        <button class="btn">contact</button>
-        <button class="btn">subscribe</button>
-        <a href="LoginPage.html">
-          <img class="user" src="user0.svg" />
-        </a>
+  <div class="landing-page-user">
+    <div class="desktop-2">
+      <a class="paper-jet-api" href="LandingPageMain.html">PaperJetAPI</a>
+      <div class="rectangle-1"></div>
+      <a class="subscribe2" href="SubscribePage.html">subscribe</a>
+      <a href="AccountPage.html">
+        <img class="user" src="user0.svg" />
+      </a>
+      <div class="rectangle-12"></div>
+      <a class="contact2" href="Contact.html">contact</a>
+    </div>
+    <div class="despatch">
+      <div class="rectangle-3"></div>
+      <div class="rectangle-18"></div>
+      <div class="order-creation">Order Creation</div>
+      <div class="find">
+        <div class="rectangle-13"></div>
+        <a class="upload" href="InvoicePreview.html">Upload</a>
       </div>
-    </header>
-
-    <!-- Main Panels -->
-    <section class="panels">
-      <div class="panel">
-        <h2>Order<br />Creation</h2>
-        <div class="card">
-          <p>Upload User Data</p>
-          <button class="inner-btn">Upload</button>
-          <p>View Order History</p>
-          <button class="inner-btn" onclick="location.href='./History1.html'">Find</button>
-        </div>
+      <div class="upload2">
+        <div class="rectangle-14"></div>
+        <a class="upload3" href="InvoicePreview.html">Upload</a>
       </div>
-
-      <div class="panel">
-        <h2>Dispatch<br />Advice<br />Generation</h2>
-        <div class="card">
-          <p>Upload an Order Document</p>
-          <button class="inner-btn">Upload</button>
-          <p>Use an Order Document stored in History</p>
-          <button class="inner-btn" onclick="location.href='./History2.html'">Find</button>
-        </div>
+      <div class="create-orders-in-bulk">
+        Create Orders
+        <br />
+        in bulk
       </div>
-
-      <div class="panel">
-        <h2>Invoice<br />Generation</h2>
-        <div class="card">
-          <p>Upload an Order Document</p>
-          <button class="inner-btn" onclick="location.href='./InvoicePreview.html'">Upload</button>
-          <p>Use an Order Document stored in History</p>
-          <button class="inner-btn" onclick="location.href='./History3.html'">Find</button>
-        </div>
+      <div class="upload-user-data">
+        Upload
+        <br />
+        User Data
       </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <a href="https://github.com/a-kuchuk/seng2021">
-          <img class="github" src="github0.svg" />
-        </a>
-        <div class="footer-buttons">
-        <button class="btn dark">contact</button>
-        <button class="btn dark">subscribe</button>
-        </div>
-    </footer>
+    </div>
+    <div class="despatch">
+      <div class="rectangle-32"></div>
+      <div class="rectangle-182"></div>
+      <div class="dispatch-advice-generation">Dispatch Advice Generation</div>
+      <div class="find">
+        <div class="rectangle-15"></div>
+        <a class="find2" href="History1.html">Find</a>
+      </div>
+      <div class="upload2">
+        <div class="rectangle-16"></div>
+        <a class="upload4" href="InvoicePreview.html">Upload</a>
+      </div>
+      <div class="use-an-order-document-stored-in-history">
+        Use an Order
+        <br />
+        Document
+        <br />
+        stored in History
+      </div>
+      <div class="upload-an-order-document">
+        Upload an
+        <br />
+        Order
+        <br />
+        Document
+      </div>
+    </div>
+    <div class="invoice">
+      <div class="rectangle-33"></div>
+      <div class="rectangle-17"></div>
+      <div class="invoice-generation">Invoice Generation</div>
+      <div class="find">
+        <div class="rectangle-19"></div>
+        <a class="find3" href="History1.html">Find</a>
+      </div>
+      <div class="upload2">
+        <div class="rectangle-110"></div>
+        <a class="upload5" href="InvoicePreview.html">Upload</a>
+      </div>
+      <div class="use-an-order-document-stored-in-history2">
+        Use an Order
+        <br />
+        Document
+        <br />
+        stored in History
+      </div>
+      <div class="upload-an-order-document2">
+        Upload an
+        <br />
+        Order
+        <br />
+        Document
+      </div>
+    </div>
+    <div class="desktop-5">
+      <div class="rectangle-111"></div>
+      <a class="subscribe3" href="SubscribePage.html">subscribe</a>
+      <div class="rectangle-112"></div>
+      <a class="contact3" href="Contact.html">contact</a>
+      <a href="https://github.com/a-kuchuk/seng2021">
+        <img class="github" src="github0.svg" />
+      </a>
+    </div>
   </div>
+  
 </body>
 </html>

@@ -23,7 +23,7 @@
 .paper-jet-api {
   color: #c5cfff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 2.5rem;
   font-weight: 400;
   position: absolute;
@@ -50,7 +50,7 @@
 .subscribe2 {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -80,7 +80,7 @@
 .contact2 {
   color: #000000;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -135,7 +135,7 @@
 .paper-jet-api2 {
   color: #c5cfff;
   text-align: left;
-  font-family: "AnonymousPro-Bold", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 6rem;
   font-weight: 700;
   position: absolute;
@@ -197,7 +197,7 @@
 .order-creation2 {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 4rem;
   font-weight: 400;
   position: absolute;
@@ -229,7 +229,7 @@
   position: absolute;
   left: 64.5625rem;
   top: 4.125rem;
-  width: 20.5625rem;
+  width: 17.5625rem;
   height: 28.3125rem;
 }
 .wondering-how-to-transfer-your-goods-or-services-between-the-dispatch-party-and-delivery-party-in-response-to-an-order-document-and-other-provided-data-this-function-will-create-a-standardised-ubl-dispatch-advice-document-this-function-will-help-automatically-determine-fields-such-as-delivery-date-and-flexibly-sort-and-store-delivery-information-in-a-format-that-is-widely-recognised-as-universal-within-the-business-world {
@@ -245,7 +245,7 @@
 .dispatch-advice-generation {
   color: #151a33;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 4rem;
   font-weight: 400;
   position: absolute;
@@ -298,7 +298,7 @@
 .invoice-generation {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 4rem;
   font-weight: 400;
   position: absolute;
@@ -325,7 +325,7 @@
 .subscribe3 {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
@@ -344,7 +344,7 @@
 .contact3 {
   color: #ffffff;
   text-align: left;
-  font-family: "AnonymousPro-Regular", sans-serif;
+  font-family: 'Anonymous Pro', monospace;
   font-size: 1.75rem;
   font-weight: 400;
   position: absolute;
