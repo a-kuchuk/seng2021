@@ -1,72 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PaperJetAPI</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./vars.css">
+  <link rel="stylesheet" href="./AccountPage.css">
+  
+  
+  <style>
+   a,
+   button,
+   input,
+   select,
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   * {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       border: none;
+       text-decoration: none;
+       background: none;
+   
+       -webkit-font-smoothing: antialiased;
+   }
+   
+   menu, ol, ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+   }
+   </style>
+  <title>Document</title>
 </head>
 <body>
-    <div class="app">
-        <header class="header">
-            <div class="logo">PaperJetAPI</div>
-            <div class="header-buttons">
-              <button class="btn">contact</button>
-              <button class="btn">subscribe</button>
-              <div class="avatar"></div>
-            </div>
-          </header>
-          <main class="auth-section">
-              <div class="auth-container">
-                <div class="auth-panel">
-                  <h2 class="auth-title">User Statistics</h2>
-                  <form class="auth-form">
-                      <p>Full Name</p>
-                    <input type="email" id="register-email" name="register-email" placeholder="John Smith" />
-        
-                      <p>Username</p>
-                    <input type="text" id="register-username" name="register-username" placeholder="j0hnnnysm!th" />
-        
-                      <p>Password</p>
-                    <input type="password" id="register-password" name="register-password" placeholder="***********" />
-        
-                      <p>Email</p>
-                    <input type="password" id="register-confirm-password" name="register-confirm-password" placeholder="john.smith@gmail.com" />
-        
-                      <p>Phone Number</p>
-                      <input type="password" id="register-confirm-password" name="register-confirm-password" placeholder="0420 696 969" />
-                    </form>
-                </div>
-              <div class="auth-panel">
-                <h2 class="auth-title">Account Details</h2>
-                <form class="auth-form">
-
-                    <p>Label</p>
-                  <input type="text" id="login-username" name="login-username" placeholder="Enter your username" />
-                          <p>Label</p>
-                  <input type="password" id="login-password" name="login-password" placeholder="Enter your password" />
-      
-                  <div class="forgot-password">
-                    <a href="#">Forgot Password?</a>
-                  </div>
-      
-                  <button class="btn primary">Login</button>
-                </form>
-              </div>
-      
-            </div>
-          </main>
-      
-          <!-- Footer -->
-          <footer class="footer">
-              <div class="github-icon">🐱‍👤</div>
-              <div class="footer-buttons">
-              <button class="btn dark">contact</button>
-              <button class="btn dark">subscribe</button>
-              </div>
-          </footer>
-      </div>
-      
+  <div class="account-page">
+    <div class="desktop-5">
+      <div class="rectangle-1"></div>
+      <a class="subscribe2" href="SubscribePage.html">subscribe</a>
+      <div class="rectangle-12"></div>
+      <a class="contact2" href="Contact.html">contact</a>
+      <a href="https://github.com/a-kuchuk/seng2021">
+        <img class="github" src="github0.svg" />
+      </a>
+    </div>
+    <div class="desktop-2">
+      <a class="paper-jet-api" href="LandingPageUser.html">PaperJetAPI</a>
+      <div class="rectangle-13"></div>
+      <a class="subscribe3" href="SubscribePage.html">subscribe</a>
+      <a href="AccountPage.html">
+        <img class="user" src="user0.svg" />
+      </a>
+      <div class="rectangle-14"></div>
+      <a class="contact3" href="Contact.html">contact</a>
+    </div>
+    <div class="rectangle-24"></div>
+    <div class="full-name">Full Name:</div>
+    <div class="email">Email:</div>
+    <div class="rectangle-16"></div>
+    <div class="rectangle-17"></div>
+    <div class="rectangle-18"></div>
+    <div class="username">Username:</div>
+    <div class="john-william-smith">John William Smith</div>
+    <div class="john-w-smith-gmail-com">john.w.smith@gmail.com</div>
+    <div class="johnsmith-123">hello</div>
+    <div class="rectangle-22"></div>
+    <div class="password">Password:</div>
+    <div class="bad-password-1">password</div>
+    <div class="rectangle-21"></div>
+    <div class="phone-number">Phone Number:</div>
+    <div class="_61-412-345-678">+61 412 345 678</div>
+    <div class="rectangle-15"></div>
+    <a class="logout" href="LoginPage.html">logout</a>
+    <div class="rectangle-19"></div>
+    <a class="delete-account" href="LandingPageMain.html">delete account</a>
+    <div class="rectangle-110"></div>
+    <div class="edit">edit</div>
+    <div class="rectangle-25"></div>
+    <div class="account-details">Account Details</div>
+    <div class="rectangle-26"></div>
+    <div class="total-documents-made">Total Documents made:</div>
+    <div class="rectangle-182"></div>
+    <div class="_3000">3000</div>
+    <div class="total-orders-made">Total Orders made:</div>
+    <div class="rectangle-192"></div>
+    <div class="_1000">1000</div>
+    <div class="total-dispatches-made">Total Dispatches made:</div>
+    <div class="rectangle-20"></div>
+    <div class="_10002">1000</div>
+    <div class="total-invoices-made">Total Invoices made:</div>
+    <div class="rectangle-212"></div>
+    <div class="_10003">1000</div>
+    <div class="latest-5-documents-made">Latest 5 Documents made:</div>
+    <div class="rectangle-222"></div>
+    <div
+      class="invoice-12345-croissant-order-batch-74-dispatch-12345-croissant-order-batch-74-order-12345-croissant-order-batch-74-invoice-12344-croissant-order-batch-73-dispatch-12344-croissant-order-batch-73"
+    >
+      <ul
+        class="invoice-12345-croissant-order-batch-74-dispatch-12345-croissant-order-batch-74-order-12345-croissant-order-batch-74-invoice-12344-croissant-order-batch-73-dispatch-12344-croissant-order-batch-73-span"
+      >
+        <li>Invoice #12345 - Croissant order, batch 74</li>
+        <li>Dispatch #12345 - Croissant order, batch 74</li>
+        <li>Order #12345 - Croissant order, batch 74</li>
+        <li>Invoice #12344 - Croissant order, batch 73</li>
+        <li>Dispatch #12344 - Croissant order, batch 73</li>
+      </ul>
+    </div>
+    <div class="user-statistics">User Statistics</div>
+  </div>  
 </body>
 </html>

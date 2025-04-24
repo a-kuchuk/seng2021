@@ -1,0 +1,581 @@
+.account-page,
+.account-page * {
+  box-sizing: border-box;
+}
+.account-page {
+  background: #1d192b;
+  height: 67.4375rem;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-5 {
+  background: #ffffff;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 61.25rem;
+  overflow: hidden;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
+}
+.github {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 1.8125rem;
+  overflow: visible;
+}
+.desktop-2 {
+  background: #151a33;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.rectangle-13 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+}
+.subscribe3 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.rectangle-14 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.rectangle-24 {
+  background: #d9d9d9;
+  border-radius: 1.25rem;
+  width: 29.25rem;
+  height: 35.9375rem;
+  position: absolute;
+  left: 6.6875rem;
+  top: 15.75rem;
+}
+.full-name {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.1875rem;
+  top: 18.125rem;
+  width: 12.4375rem;
+  height: 1.8125rem;
+}
+.email {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.1875rem;
+  top: 36.9375rem;
+  width: 7.9375rem;
+  height: 1.8125rem;
+}
+.rectangle-16 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 8.9375rem;
+  top: 39.25rem;
+}
+.rectangle-17 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 8.9375rem;
+  top: 26.875rem;
+}
+.rectangle-18 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 8.9375rem;
+  top: 20.6875rem;
+}
+.username {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.1875rem;
+  top: 24.5rem;
+  width: 13.25rem;
+  height: 1.8125rem;
+}
+.john-william-smith {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.5625rem;
+  top: 21.375rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.john-w-smith-gmail-com {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.75rem;
+  top: 39.875rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.johnsmith-123 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.75rem;
+  top: 27.5625rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.rectangle-22 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 8.9375rem;
+  top: 33.0625rem;
+}
+.password {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.1875rem;
+  top: 30.6875rem;
+  width: 13.25rem;
+  height: 1.8125rem;
+}
+.bad-password-1 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.75rem;
+  top: 33.75rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.rectangle-21 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 8.9375rem;
+  top: 46rem;
+}
+.phone-number {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.1875rem;
+  top: 43.625rem;
+  width: 13.25rem;
+  height: 1.8125rem;
+}
+._61-412-345-678 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.75rem;
+  top: 46.6875rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.rectangle-15 {
+  background: #6a7192;
+  border-radius: 0.625rem;
+  width: 7.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 5.375rem;
+  top: 54rem;
+}
+.logout {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 37.2rem);
+  top: 54.8125rem;
+  width: 5.75rem;
+}
+.rectangle-19 {
+  background: #6a7192;
+  border-radius: 0.625rem;
+  width: 15.25rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 14.125rem;
+  top: 54rem;
+}
+.delete-account {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 28rem);
+  top: 54.8125rem;
+}
+.rectangle-110 {
+  background: #6a7192;
+  border-radius: 0.625rem;
+  width: 6.0625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 30.6875rem;
+  top: 54rem;
+}
+.edit {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 11.7rem);
+  top: 54.8125rem;
+  width: 4.060625rem;
+}
+.rectangle-25 {
+  background: #6a7192;
+  border-radius: 1.25rem;
+  width: 43.5625rem;
+  height: 48.9375rem;
+  position: absolute;
+  left: 42.75rem;
+  top: 9.25rem;
+}
+.account-details {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4.375rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 3.3125rem;
+  top: 8.9375rem;
+  width: 39.6875rem;
+  height: 5.5625rem;
+}
+.rectangle-26 {
+  background: #d9d9d9;
+  border-radius: 1.25rem;
+  width: 38rem;
+  height: 37.1875rem;
+  position: absolute;
+  left: 45rem;
+  top: 17.5rem;
+}
+.total-documents-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 47.625rem;
+  top: 19.8125rem;
+  width: 22.375rem;
+  height: 1.8125rem;
+}
+.rectangle-182 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 10.5625rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 69.5625rem;
+  top: 19.125rem;
+}
+._3000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 70.5625rem;
+  top: 19.8125rem;
+  width: 8.5rem;
+  height: 2.5rem;
+}
+.total-orders-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 47.625rem;
+  top: 24.25rem;
+  width: 22.375rem;
+  height: 1.8125rem;
+}
+.rectangle-192 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 10.625rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 69.5rem;
+  top: 23.5625rem;
+}
+._1000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 70.5625rem;
+  top: 24.25rem;
+  width: 8.5rem;
+  height: 2.5rem;
+}
+.total-dispatches-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 47.625rem;
+  top: 28.6875rem;
+  width: 22.375rem;
+  height: 1.8125rem;
+}
+.rectangle-20 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 10.625rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 69.5rem;
+  top: 28rem;
+}
+._10002 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 70.5625rem;
+  top: 28.6875rem;
+  width: 8.5rem;
+  height: 2.5rem;
+}
+.total-invoices-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 47.625rem;
+  top: 33.125rem;
+  width: 22.375rem;
+  height: 1.8125rem;
+}
+.rectangle-212 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 10.625rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 69.5rem;
+  top: 32.4375rem;
+}
+._10003 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 70.5625rem;
+  top: 33.125rem;
+  width: 8.5rem;
+  height: 2.5rem;
+}
+.latest-5-documents-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 47.625rem;
+  top: 37.5625rem;
+  width: 27.125rem;
+  height: 1.8125rem;
+}
+.rectangle-222 {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 32.5rem;
+  height: 12.4375rem;
+  position: absolute;
+  left: 47.625rem;
+  top: 40.3125rem;
+}
+.invoice-12345-croissant-order-batch-74-dispatch-12345-croissant-order-batch-74-order-12345-croissant-order-batch-74-invoice-12344-croissant-order-batch-73-dispatch-12344-croissant-order-batch-73 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.4375rem;
+  line-height: 2.1875rem;
+  font-weight: 400;
+  position: absolute;
+  left: 48.1875rem;
+  top: 41.0625rem;
+  width: 30.5rem;
+  height: 11rem;
+  padding-left: 5px;
+}
+.user-statistics {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4.3125rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 46.5625rem;
+  top: 11.4375rem;
+  width: 37.6875rem;
+  height: 6.0625rem;
+}
