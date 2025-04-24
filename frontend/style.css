@@ -664,7 +664,7 @@
   top: 7rem;
 }
 .register-login-logout-update-reset-user-details-etc-return-user-s-order-statistics-create-delete-list-delete-unsend-update-order-create-order-from-csv-create-multiple-orders-in-bulk-create-delete-dispatch-get-list-of-items-off-dipsatch-get-shipment-details-and-arrival-period-create-invoice-export-invoice-in-xml-export-invoice-in-pdf-send-invoice-via-email-currency-conversion-language-translation {
-  color: #151a33;
+  color: #131a40;
   text-align: left;
   font-family: "Roboto-Regular", sans-serif;
   font-size: 1.5rem;
@@ -1256,6 +1256,11 @@ body {
   gap: 40px;
   padding: 40px 20px;
   flex-wrap: wrap;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .panel {
@@ -1461,4 +1466,625 @@ body {
 .footer-buttons {
   display: flex;
   gap: 20px;
+}
+
+.account-page,
+.account-page * {
+  box-sizing: border-box;
+}
+.account-page {
+  background: #1d192b;
+  display: flex;
+  flex-direction: row;
+  row-gap: 23px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  flex-shrink: 0;
+  width: 1440px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 38px;
+  top: 30px;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 10px;
+  width: 167px;
+  height: 54px;
+  position: absolute;
+  left: 1149px;
+  top: 23px;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1164px;
+  top: 36px;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 1348px;
+  top: 18px;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 10px;
+  width: 137px;
+  height: 54px;
+  position: absolute;
+  left: 975px;
+  top: 23px;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 990px;
+  top: 36px;
+}
+.frame-1 {
+  margin: 0 0 0 -69px;
+  flex-shrink: 0;
+  width: 694px;
+  height: 833px;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-24 {
+  background: #d9d9d9;
+  border-radius: 20px;
+  width: 468px;
+  height: 575px;
+  position: absolute;
+  left: 48px;
+  top: 129px;
+}
+.details {
+  position: absolute;
+  inset: 0;
+}
+.full-name {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 167px;
+  width: 199px;
+  height: 29px;
+}
+.email {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 468px;
+  width: 127px;
+  height: 29px;
+}
+.rectangle-16 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 505px;
+}
+.rectangle-17 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 307px;
+}
+.rectangle-18 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 208px;
+}
+.username {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 269px;
+  width: 212px;
+  height: 29px;
+}
+.john-william-smith {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 94px;
+  top: 219px;
+  width: 332px;
+  height: 40px;
+}
+.john-w-smith-gmail-com {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 515px;
+  width: 332px;
+  height: 40px;
+}
+.johnsmith-123 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 318px;
+  width: 332px;
+  height: 40px;
+}
+.rectangle-22 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 406px;
+}
+.password {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 368px;
+  width: 212px;
+  height: 29px;
+}
+.bad-password-1 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 417px;
+  width: 332px;
+  height: 40px;
+}
+.rectangle-21 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 391px;
+  height: 50px;
+  position: absolute;
+  left: 84px;
+  top: 613px;
+}
+.phone-number {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 88px;
+  top: 575px;
+  width: 212px;
+  height: 29px;
+}
+._61-412-345-678 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 97px;
+  top: 624px;
+  width: 332px;
+  height: 40px;
+}
+.logout {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-13 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 119px;
+  height: 54px;
+  position: absolute;
+  left: 27px;
+  top: 741px;
+}
+.logout2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 308px);
+  top: 754px;
+  width: 92px;
+}
+.delete {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-14 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 244px;
+  height: 54px;
+  position: absolute;
+  left: 167px;
+  top: 741px;
+}
+.delete-account {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 166px);
+  top: 754px;
+}
+.edit {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-15 {
+  background: #6a7192;
+  border-radius: 10px;
+  width: 97px;
+  height: 54px;
+  position: absolute;
+  left: 432px;
+  top: 741px;
+}
+.edit2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - -104px);
+  top: 754px;
+  width: 64.97px;
+}
+.rectangle-25 {
+  margin: 0 0 0 -69px;
+  background: #6a7192;
+  border-radius: 20px;
+  flex-shrink: 0;
+  width: 697px;
+  height: 783px;
+  position: relative;
+}
+.desktop-6 {
+  margin: 0 0 0 -69px;
+  background: #ffffff;
+  flex-shrink: 0;
+  width: 1440px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-19 {
+  background: #151a33;
+  border-radius: 10px;
+  width: 167px;
+  height: 54px;
+  position: absolute;
+  left: 1230px;
+  top: 23px;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1245px;
+  top: 36px;
+}
+.rectangle-110 {
+  background: #151a33;
+  border-radius: 10px;
+  width: 137px;
+  height: 54px;
+  position: absolute;
+  left: 1051px;
+  top: 23px;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 1066px;
+  top: 36px;
+}
+.github {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 34px;
+  top: 29px;
+  overflow: visible;
+}
+.account-details {
+  margin: 0 0 0 -69px;
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 70px;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 53px;
+  top: 143px;
+  width: 635px;
+  height: 89px;
+}
+.rectangle-26 {
+  margin: 0 0 0 -69px;
+  background: #d9d9d9;
+  border-radius: 20px;
+  flex-shrink: 0;
+  width: 608px;
+  height: 595px;
+  position: absolute;
+  left: 720px;
+  top: 280px;
+}
+.details2 {
+  margin: 0 0 0 -69px;
+  flex-shrink: 0;
+  width: 520px;
+  height: 538px;
+  position: static;
+}
+.total-documents-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 317px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-182 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 169px;
+  height: 50px;
+  position: absolute;
+  left: 1113px;
+  top: 306px;
+}
+._3000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 317px;
+  width: 136px;
+  height: 40px;
+}
+.total-orders-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 388px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-192 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 377px;
+}
+._1000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 388px;
+  width: 136px;
+  height: 40px;
+}
+.total-dispatches-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 459px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-20 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 448px;
+}
+._10002 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 459px;
+  width: 136px;
+  height: 40px;
+}
+.total-invoices-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 530px;
+  width: 358px;
+  height: 29px;
+}
+.rectangle-212 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 1112px;
+  top: 519px;
+}
+._10003 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1129px;
+  top: 530px;
+  width: 136px;
+  height: 40px;
+}
+.latest-5-documents-made {
+  color: #000000;
+  text-align: left;
+  font-family: "AnonymousPro-Regular", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 762px;
+  top: 601px;
+  width: 434px;
+  height: 29px;
+}
+.rectangle-222 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 520px;
+  height: 199px;
+  position: absolute;
+  left: 762px;
+  top: 645px;
+}
+.invoice-12345-croissant-order-batch-74-dispatch-12345-croissant-order-batch-74-order-12345-croissant-order-batch-74-invoice-12344-croissant-order-batch-73-dispatch-12344-croissant-order-batch-73 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 23px;
+  line-height: 35px;
+  font-weight: 400;
+  position: absolute;
+  left: 771px;
+  top: 657px;
+  width: 488px;
+  height: 176px;
+}
+.user-statistics {
+  margin: 0 0 0 -69px;
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 69px;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 745px;
+  top: 183px;
+  width: 603px;
+  height: 97px;
 }
