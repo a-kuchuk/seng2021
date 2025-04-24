@@ -1,0 +1,461 @@
+.preview-page,
+.preview-page * {
+  box-sizing: border-box;
+}
+.preview-page {
+  background: #6a7192;
+  height: 67.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.desktop-5 {
+  background: #ffffff;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 61.25rem;
+  overflow: hidden;
+}
+.rectangle-13 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.rectangle-14 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
+}
+.github {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 1.8125rem;
+  overflow: visible;
+}
+.rectangle-19 {
+  background: #d9d9d9;
+  border-radius: 0.3125rem;
+  border-style: solid;
+  border-color: #151a33;
+  border-width: 0.1875rem;
+  width: 33.625rem;
+  height: 49.75rem;
+  position: absolute;
+  left: 2.875rem;
+  top: 9rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0.3125rem rgba(0, 0, 0, 0.25);
+}
+.preview-frame {
+  width: 33.5rem;
+  height: 49.75rem;
+  position: absolute;
+  left: 3rem;
+  top: 9rem;
+  overflow-y: auto;
+}
+.xml-version-1-0-encoding-utf-8-invoice-xmlns-urn-oasis-names-specification-ubl-schema-xsd-invoice-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-cbc-id-123-cbc-id-cbc-issue-date-2011-09-22-cbc-issue-date-cac-invoice-period-cbc-start-date-2011-08-01-cbc-start-date-cbc-end-date-2011-08-31-cbc-end-date-cac-invoice-period-cac-accounting-supplier-party-cac-party-cac-party-name-cbc-name-custom-cotter-pins-cbc-name-cac-party-name-cac-party-cac-accounting-supplier-party-cac-accounting-customer-party-cac-party-cac-party-name-cbc-name-north-american-veeblefetzer-cbc-name-cac-party-name-cac-party-cac-accounting-customer-party-cac-legal-monetary-total-cbc-payable-amount-currency-id-cad-100-00-cbc-payable-amount-cac-legal-monetary-total-cac-invoice-line-cbc-id-1-cbc-id-cbc-line-extension-amount-currency-id-cad-100-00-cbc-line-extension-amount-cac-item-cbc-description-cotter-pin-mil-spec-cbc-description-cac-item-cac-invoice-line-invoice {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 1.875rem;
+  top: 2rem;
+  width: 29.0625rem;
+  height: 45.0625rem;
+}
+.generate {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-15 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 33.375rem;
+  height: 8.375rem;
+  position: absolute;
+  left: 45rem;
+  top: 48.375rem;
+}
+.generate2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 6rem;
+  font-weight: 400;
+  position: absolute;
+  left: 48.5625rem;
+  top: 49.5625rem;
+}
+.writing-options {
+  position: absolute;
+  inset: 0;
+}
+.translate-my-document-into {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 39.6875rem;
+  top: 16rem;
+  width: 26rem;
+  height: 1.8125rem;
+}
+.send-my-document-to {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 39.6875rem;
+  top: 32.9375rem;
+  width: 26rem;
+  height: 1.8125rem;
+}
+.change-currency-to {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 39.6875rem;
+  top: 24.8125rem;
+  width: 26rem;
+  height: 1.8125rem;
+}
+.rectangle-7 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 39.375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 39.6875rem;
+  top: 18.5625rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+.rectangle-8 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 39.375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 39.6875rem;
+  top: 27.375rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+.rectangle-9 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 39.375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 39.6875rem;
+  top: 35.5rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+.enter-language {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 40.3125rem;
+  top: 19.25rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.enter-currency {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 40.25rem;
+  top: 28rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.email-address {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 40.5rem;
+  top: 36.125rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.preview {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 6rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 39.6875rem;
+  top: 8.625rem;
+}
+.go-button {
+  width: 4.1875rem;
+  height: 3.125rem;
+  position: static;
+}
+.rectangle-16 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 4.1875rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 81.0625rem;
+  top: 35.5rem;
+}
+.go {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 82.25rem;
+  top: 36.1875rem;
+  width: 2.6875rem;
+  height: 1.625rem;
+}
+.rectangle-17 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 4.1875rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 81.0625rem;
+  top: 27.375rem;
+}
+.go2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 82.25rem;
+  top: 28.0625rem;
+  width: 2.6875rem;
+  height: 1.625rem;
+}
+.rectangle-18 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 4.1875rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 81.0625rem;
+  top: 18.5625rem;
+}
+.go3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 82.25rem;
+  top: 19.25rem;
+  width: 2.6875rem;
+  height: 1.625rem;
+}
+.convert {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-110 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 15.125rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 39.6875rem;
+  top: 41.8125rem;
+}
+.convert-to-pdf {
+  color: #ffffff;
+  text-align: center;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 4.3125rem);
+  top: 42.625rem;
+  width: 15.125rem;
+}
+.edit {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-111 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 12.875rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 72.375rem;
+  top: 41.8125rem;
+}
+.cancel {
+  color: #ffffff;
+  text-align: center;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% + 28.1875rem);
+  top: 42.625rem;
+  width: 13.29rem;
+}
+.rectangle-112 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 14.9375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 56.3125rem;
+  top: 41.8125rem;
+}
+.edit-document {
+  color: #ffffff;
+  text-align: center;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% + 13.13625rem);
+  top: 42.625rem;
+  width: 13.29rem;
+}
