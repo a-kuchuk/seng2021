@@ -1,12 +1,17 @@
 """invoicve generation api"""
 
+# pylint: disable=too-many-lines
 import json
 import random
+import os
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from email.message import EmailMessage
 from datetime import datetime
 import smtplib
+import hashlib
+from dotenv import load_dotenv
+from web3 import Web3
 from google import genai
 from google.genai import types
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Form, Request
@@ -60,6 +65,30 @@ API that takes an XML order document and provides a XML invoice
 with the elements extracted from the order doc and mapped to the invoice.
 """
 
+contract_abi = [
+    {
+        "inputs": [{"internalType": "string", "name": "hash", "type": "string"}],
+        "name": "storeInvoiceHash",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function",
+    },
+    {
+        "inputs": [{"internalType": "string", "name": "", "type": "string"}],
+        "name": "invoiceHashes",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function",
+    },
+    {
+        "inputs": [{"internalType": "string", "name": "hash", "type": "string"}],
+        "name": "verifyInvoiceHash",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function",
+    },
+]
+
 tags_metadata = [
     {
         "name": "DATA VALIDATION",
@@ -78,6 +107,18 @@ tags_metadata = [
         "description": "Verifies deployment",
     },
 ]
+
+load_dotenv(dotenv_path="src/.env")
+private_key = os.getenv("PRIVATE_KEY")
+wallet_address = os.getenv("WALLET_ADDRESS")
+w3 = Web3(
+    Web3.HTTPProvider(
+        "https://eth-sepolia.g.alchemy.com/v2/k7RuL3d8f0gJ8kHjWSaEq1HWuz3yDXBC"
+    )
+)
+contract_address = Web3.to_checksum_address(
+    "0xb95e170275b5736a249e0ea89d3a1c992080354a"
+)
 
 app = FastAPI(
     title="The Real Guy Chilcott",
@@ -149,12 +190,9 @@ async def upload_order_document(file: UploadFile = File(None)):
     Returns:\n
         text: the order ID extracted from the XML document
     """
-
-    # Check if file is provided
     if file is None:
         raise HTTPException(status_code=400, detail="No file provided")
 
-    # Check if file is XML text
     filename = file.filename
     if not filename.lower().endswith(".xml"):
         raise HTTPException(status_code=400, detail="File must be an XML file")
@@ -163,20 +201,15 @@ async def upload_order_document(file: UploadFile = File(None)):
         contents = await file.read()
         tree = ET.ElementTree(ET.fromstring(contents))
         root = tree.getroot()
-
-        # Extract order ID - ensuring it's directly inside <Order>
         cbc_ns = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
         order_id = root.find(f"{{{cbc_ns}}}ID")
 
-        # Check order id exists in file and is not empty
         if order_id is not None and order_id.text and order_id.text.strip():
             return {"order_id": order_id.text}
 
-        # Raise error if order id not found
         raise HTTPException(status_code=400, detail="Order ID not found")
 
     except ET.ParseError as exc:
-        # Invalid XML format includes empty file, missing root element
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
     except Exception as exc:
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
@@ -206,12 +239,6 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         data_dict = xmltodict.parse(xml_content, process_namespaces=False)
 
         json_data = json.dumps(data_dict, indent=4)
-
-        # This uncommented code turns the JSON data into a file
-        # with open("data.json", "w") as json_file:
-        #     json_file.write(json_data)
-        # return json.loads(json_data)
-
         return json_data
     except Exception as ex:
         raise HTTPException(status_code=400, detail="Invalid XML file") from ex
@@ -982,3 +1009,58 @@ async def aichat(user_input: str = Body(...)):
     ):
         response += chunk.text
     return response
+
+
+@app.post("/invoice/hash/v2", tags=["INVOICE MANIPULATION"])
+async def hasher(file: UploadFile = File(...)):
+    """_summary_
+
+
+    Upload an XML invoice document and hash its content.
+
+    Args:\n
+        file (UploadFile): The UBL XML invoice document.
+
+    Returns:\n
+        Str: The hash value of the invoice content.
+    """
+    contents = await file.read()
+    contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+    invoice_hash = hashlib.sha256(contents).hexdigest()
+    nonce = w3.eth.get_transaction_count(wallet_address)
+    txn = contract.functions.storeInvoiceHash(invoice_hash).build_transaction(
+        {
+            "chainId": 11155111,
+            "gas": 200000,
+            "gasPrice": w3.to_wei("10", "gwei"),
+            "nonce": nonce,
+        }
+    )
+    signed_txn = w3.eth.account.sign_transaction(txn, private_key=private_key)
+    tx_hash = w3.eth.send_raw_transaction(signed_txn.raw_transaction)
+    w3.eth.wait_for_transaction_receipt(tx_hash)
+    print("Hash stored! Transaction hash:", tx_hash.hex())
+    print("Invoice hash:", invoice_hash)
+    return {"invoice_hash": invoice_hash, "tx_hash": "0x" + tx_hash.hex()}
+
+
+@app.post("/invoice/verify/v2", tags=["INVOICE MANIPULATION"])
+async def verify(file: UploadFile = File(...)):
+    """_summary_
+
+
+    Upload an XML invoice document and verify its content.
+
+    Args:\n
+        file (UploadFile): The UBL XML invoice document.
+
+    Returns:\n
+        Str: The hash value of the invoice content.
+        Boolean: If the invoice is recorded.
+    """
+    contents = await file.read()
+    contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+    invoice_hash = hashlib.sha256(contents).hexdigest()
+    contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+    is_recorded = contract.functions.verifyInvoiceHash(invoice_hash).call()
+    return {"invoice_hash": invoice_hash, "is_recorded": is_recorded}
