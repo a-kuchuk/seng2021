@@ -42,7 +42,7 @@ body.show-chatbot #chatbot-toggler span:last-child{
   height: 500px;
   background: #fff;
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 10px;
   opacity: 0;
   transform: scale(0.2);
   transform-origin: bottom right;
@@ -61,7 +61,7 @@ body.show-chatbot .chatbot-popup {
 .chat-header {
   display: flex;
   align-items: center;
-  background: #6a7192;
+  background: #151a33;
   padding: 15px 22px;
   justify-content: space-between;
   font-family: "Anonymous Pro", monospace;
@@ -220,7 +220,7 @@ body.show-chatbot .chatbot-popup {
   display: flex;
   align-items: center;
   background: white;
-  border-radius: 32px;
+  border-radius: 10px;
   outline: 1px solid #cccce5;
 }
 
