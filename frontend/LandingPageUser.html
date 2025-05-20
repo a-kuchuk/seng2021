@@ -35,7 +35,7 @@
        padding: 0;
    }
    </style>
-  <title>Document</title>
+  <title>PaperJetAPI</title>
 </head>
 <body>
   <div class="landing-page-user">
@@ -107,10 +107,28 @@
         <div class="rectangle-19"></div>
         <a class="find3" href="History1.html">Find</a>
       </div>
-      <div class="upload2">
+      <!-- <form class="upload2" action="InvoicePreview.html" method="post" enctype="multipart/form-data">
+        <div class="rectangle-110"></div>
+        <input type="file" id="fileInput" name="uploadedFile" style="display: none;" onchange="this.form.submit()" />
+        <label class="upload5" for="fileInput" style="cursor: pointer;">Upload</label>
+      </form> -->
+      <div class="rectangle-110"></div>
+
+      <input type="file" id="fileInput" style="display: none;" />
+
+      <a class="upload5" href="#" onclick="document.getElementById('fileInput').click(); return false;">Upload</a>
+
+      <script>
+        document.getElementById('fileInput').addEventListener('change', function () {
+          // File was selected – now redirect
+          window.location.href = 'InvoicePreview.html';
+        });
+      </script>
+
+      <!-- <div class="upload2">
         <div class="rectangle-110"></div>
         <a class="upload5" href="InvoicePreview.html">Upload</a>
-      </div>
+      </div> -->
       <div class="use-an-order-document-stored-in-history2">
         Use an Order
         <br />

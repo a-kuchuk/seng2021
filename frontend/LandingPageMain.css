@@ -1,3 +1,6 @@
+/* Importing Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
 .landing-page-main,
 .landing-page-main * {
   box-sizing: border-box;
@@ -93,14 +96,13 @@
   height: 60rem;
   position: relative;
   overflow: hidden;
-  z-index: 1;
+  z-index: 2;
 }
 ._5166950-1 {
   width: 90rem;
   height: 60rem;
   position: absolute;
   left: 0rem;
-  top: 0.0625rem;
   object-fit: cover;
   aspect-ratio: 3/2;
 }
@@ -360,7 +362,7 @@
   top: 1.8125rem;
   overflow: visible;
 }
-
+/* 
 .chatbot,
 .chatbot * {
   box-sizing: border-box;
@@ -449,4 +451,4 @@
   left: 0.9375rem;
   top: 0.875rem;
   overflow: visible;
-}
+} */

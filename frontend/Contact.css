@@ -159,12 +159,12 @@
 .contact-us {
   color: #c5cfff;
   text-align: left;
-  font-family: "AnonymousPro-Bold", sans-serif;
+  font-family: "Anonymous Pro", monospace;
   font-size: 6rem;
   font-weight: 700;
   position: absolute;
   left: 5.3125rem;
-  top: 23.375rem;
+  top: 23rem;
   width: 32.8125rem;
   height: 6rem;
 }
