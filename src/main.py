@@ -1,12 +1,19 @@
 """invoicve generation api"""
 
+# pylint: disable=too-many-lines
 import json
 import random
+import os
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 from email.message import EmailMessage
-import smtplib
 from datetime import datetime
+import smtplib
+import hashlib
+from dotenv import load_dotenv
+from web3 import Web3
+from google import genai
+from google.genai import types
 from fastapi import FastAPI, UploadFile, File, HTTPException, Body, Form, Request
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -58,6 +65,30 @@ API that takes an XML order document and provides a XML invoice
 with the elements extracted from the order doc and mapped to the invoice.
 """
 
+contract_abi = [
+    {
+        "inputs": [{"internalType": "string", "name": "hash", "type": "string"}],
+        "name": "storeInvoiceHash",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function",
+    },
+    {
+        "inputs": [{"internalType": "string", "name": "", "type": "string"}],
+        "name": "invoiceHashes",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function",
+    },
+    {
+        "inputs": [{"internalType": "string", "name": "hash", "type": "string"}],
+        "name": "verifyInvoiceHash",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function",
+    },
+]
+
 tags_metadata = [
     {
         "name": "DATA VALIDATION",
@@ -76,6 +107,18 @@ tags_metadata = [
         "description": "Verifies deployment",
     },
 ]
+
+load_dotenv(dotenv_path="src/.env")
+private_key = os.getenv("PRIVATE_KEY")
+wallet_address = os.getenv("WALLET_ADDRESS")
+w3 = Web3(
+    Web3.HTTPProvider(
+        "https://eth-sepolia.g.alchemy.com/v2/k7RuL3d8f0gJ8kHjWSaEq1HWuz3yDXBC"
+    )
+)
+contract_address = Web3.to_checksum_address(
+    "0xb95e170275b5736a249e0ea89d3a1c992080354a"
+)
 
 app = FastAPI(
     title="The Real Guy Chilcott",
@@ -147,12 +190,9 @@ async def upload_order_document(file: UploadFile = File(None)):
     Returns:\n
         text: the order ID extracted from the XML document
     """
-
-    # Check if file is provided
     if file is None:
         raise HTTPException(status_code=400, detail="No file provided")
 
-    # Check if file is XML text
     filename = file.filename
     if not filename.lower().endswith(".xml"):
         raise HTTPException(status_code=400, detail="File must be an XML file")
@@ -161,20 +201,15 @@ async def upload_order_document(file: UploadFile = File(None)):
         contents = await file.read()
         tree = ET.ElementTree(ET.fromstring(contents))
         root = tree.getroot()
-
-        # Extract order ID - ensuring it's directly inside <Order>
         cbc_ns = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
         order_id = root.find(f"{{{cbc_ns}}}ID")
 
-        # Check order id exists in file and is not empty
         if order_id is not None and order_id.text and order_id.text.strip():
             return {"order_id": order_id.text}
 
-        # Raise error if order id not found
         raise HTTPException(status_code=400, detail="Order ID not found")
 
     except ET.ParseError as exc:
-        # Invalid XML format includes empty file, missing root element
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
     except Exception as exc:
         raise HTTPException(status_code=400, detail="Invalid XML format") from exc
@@ -204,12 +239,6 @@ async def parse_ubl_order(file: UploadFile = File(...)):
         data_dict = xmltodict.parse(xml_content, process_namespaces=False)
 
         json_data = json.dumps(data_dict, indent=4)
-
-        # This uncommented code turns the JSON data into a file
-        # with open("data.json", "w") as json_file:
-        #     json_file.write(json_data)
-        # return json.loads(json_data)
-
         return json_data
     except Exception as ex:
         raise HTTPException(status_code=400, detail="Invalid XML file") from ex
@@ -360,12 +389,6 @@ async def create_invoice(invoice_json: str = Body(...)):
     ET.SubElement(invoice_period, "cbc:EndDate").text = (
         f"{data['InvoicePeriod']['EndDate']}"
     )
-
-    # Supplier details
-    # supplier = ET.SubElement(invoice, "cac:AccountingSupplierParty")
-    # supplier_party = ET.SubElement(supplier, "cac:Party")
-    # supplier_party_name = ET.SubElement(supplier_party, "cac:PartyName")
-    # ET.SubElement(supplier_party_name, "cbc:Name").text = f"{data['AccountingSupplierParty']}"
     ET.SubElement(
         ET.SubElement(
             ET.SubElement(invoice, "cac:AccountingSupplierParty"), "cac:Party"
@@ -373,11 +396,6 @@ async def create_invoice(invoice_json: str = Body(...)):
         "cac:PartyName",
     )
     ET.SubElement(invoice[-1], "cbc:Name").text = f"{data['AccountingSupplierParty']}"
-    # Customer details
-    # customer = ET.SubElement(invoice, "cac:AccountingCustomerParty")
-    # customer_party = ET.SubElement(customer, "cac:Party")
-    # customer_party_name = ET.SubElement(customer_party, "cac:PartyName")
-    # ET.SubElement(customer_party_name, "cbc:Name").text = f"{data['AccountingCustomerParty']}"
     ET.SubElement(
         ET.SubElement(
             ET.SubElement(invoice, "cac:AccountingCustomerParty"), "cac:Party"
@@ -394,7 +412,6 @@ async def create_invoice(invoice_json: str = Body(...)):
     ).text = f"{data['LegalMonetaryTotal']['Value']}"
 
     for line in data["InvoiceLine"]:
-        # Invoice Line Item
         invoice_line = ET.SubElement(invoice, "cac:InvoiceLine")
         ET.SubElement(invoice_line, "cbc:ID").text = f"{line['ID']}"
 
@@ -404,20 +421,10 @@ async def create_invoice(invoice_json: str = Body(...)):
         ET.SubElement(
             ET.SubElement(invoice_line, "cac:Item"), "cbc:Description"
         ).text = f"{line['Description']}"
-    # Convert to XML string and save to file
     xml_str = ET.tostring(invoice, encoding="utf-8")
 
-    # Format the XML file so it's not a single line
     pretty_xml = xml.dom.minidom.parseString(xml_str).toprettyxml(indent="\t")
     return pretty_xml
-
-    # try:
-    #     with open("invoice.xml", "w", encoding="utf-8") as file:
-    #         file.write(pretty_xml)
-    # except Exception as ex:
-    #     raise HTTPException(status_code=500, detail=f"Failed to create XML file {ex}") from ex
-
-    # return {"details": "XML file successful"}
 
 
 @app.post("/ubl/order/upload/v2", tags=["DATA VALIDATION"])
@@ -870,7 +877,6 @@ async def xml_to_pdf(file: UploadFile = File(...)):
     can.save()
 
 
-# Initialize Jinja2 templates
 templates = Jinja2Templates(directory="src/tests/resources")
 
 
@@ -902,7 +908,6 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
             "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
         }
 
-        # Extract relevant info from XML
         invoice_data = {
             "InvoiceID": root.findtext(".//cbc:ID", namespaces=namespaces),
             "IssueDate": root.findtext(".//cbc:IssueDate", namespaces=namespaces),
@@ -926,7 +931,6 @@ async def preview_invoice(request: Request, file: UploadFile = File(...)):
         if not invoice_data["InvoiceID"]:
             raise HTTPException(status_code=400, detail="Invoice ID: None")
 
-        # Render HTML page with invoice data
         return templates.TemplateResponse(
             request, "invoice_preview.html", {"invoice": invoice_data}
         )
@@ -953,3 +957,110 @@ async def cancel_invoice_creation():
         status_code=200,
         content={"message": "Invoice creation has been canceled successfully."},
     )
+
+
+@app.post("/invoice/ai/v2", tags=["INVOICE MANIPULATION"])
+async def aichat(user_input: str = Body(...)):
+    """_summary_
+
+
+    Ai chatbot for answering user questions
+
+    Args:\n
+        input(str): The user input.\n
+
+    Returns:\n
+        Str: The response from the chatbot.
+    """
+    client = genai.Client(
+        api_key="AIzaSyBzA5qWviwGXH0Cp5jwOoxkdi73vt2pMPk",
+    )
+
+    model = "gemini-1.5-flash-8b"
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text=user_input),
+            ],
+        ),
+    ]
+    generate_content_config = types.GenerateContentConfig(
+        thinking_config=types.ThinkingConfig(
+            thinking_budget=0,
+        ),
+        response_mime_type="text/plain",
+        system_instruction=[
+            types.Part.from_text(
+                text="""You are a chatbot that is here to help a user navigate
+                a invoice generation website. Welcome the user as a Paper Jet ai chatbot.
+                Please try give a general guide. To create an invoice you can either enter 
+                information throught the website or add in a ubl file. 
+                This will give a invoice in either pdf or ubl format.
+                Bulk invoice is fore premium members."""
+            ),
+        ],
+    )
+    response = ""
+    for chunk in client.models.generate_content_stream(
+        model=model,
+        contents=contents,
+        config=generate_content_config,
+    ):
+        response += chunk.text
+    return response
+
+
+@app.post("/invoice/hash/v2", tags=["INVOICE MANIPULATION"])
+async def hasher(file: UploadFile = File(...)):
+    """_summary_
+
+
+    Upload an XML invoice document and hash its content.
+
+    Args:\n
+        file (UploadFile): The UBL XML invoice document.
+
+    Returns:\n
+        Str: The hash value of the invoice content.
+    """
+    contents = await file.read()
+    contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+    invoice_hash = hashlib.sha256(contents).hexdigest()
+    nonce = w3.eth.get_transaction_count(wallet_address)
+    txn = contract.functions.storeInvoiceHash(invoice_hash).build_transaction(
+        {
+            "chainId": 11155111,
+            "gas": 200000,
+            "gasPrice": w3.to_wei("10", "gwei"),
+            "nonce": nonce,
+        }
+    )
+    signed_txn = w3.eth.account.sign_transaction(txn, private_key=private_key)
+    tx_hash = w3.eth.send_raw_transaction(signed_txn.raw_transaction)
+    w3.eth.wait_for_transaction_receipt(tx_hash)
+    print("Hash stored! Transaction hash:", tx_hash.hex())
+    print("Invoice hash:", invoice_hash)
+    return {"invoice_hash": invoice_hash, "tx_hash": "0x" + tx_hash.hex()}
+
+
+@app.post("/invoice/verify/v2", tags=["INVOICE MANIPULATION"])
+async def verify(file: UploadFile = File(...)):
+    """_summary_
+
+
+    Upload an XML invoice document and verify its content.
+
+    Args:\n
+        file (UploadFile): The UBL XML invoice document.
+
+    Returns:\n
+        Str: The hash value of the invoice content.
+        Boolean: If the invoice is recorded.
+    """
+    contents = await file.read()
+    contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+    invoice_hash = hashlib.sha256(contents).hexdigest()
+    contract = w3.eth.contract(address=contract_address, abi=contract_abi)
+    is_recorded = contract.functions.verifyInvoiceHash(invoice_hash).call()
+    return {"invoice_hash": invoice_hash, "is_recorded": is_recorded}
