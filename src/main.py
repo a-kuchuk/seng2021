@@ -109,8 +109,8 @@ tags_metadata = [
 ]
 
 load_dotenv(dotenv_path="src/.env")
-private_key = os.getenv("PRIVATE_KEY")
-wallet_address = os.getenv("WALLET_ADDRESS")
+private_key = "9bff58b75edcf72a2b4be2b3fa8d3d0b8607acbbba3a0b7f293d8a621dd9db2d"
+wallet_address = "0x417CC4c9200a1E58f7b5Cad4Fe77814c6C006f10"
 w3 = Web3(
     Web3.HTTPProvider(
         "https://eth-sepolia.g.alchemy.com/v2/k7RuL3d8f0gJ8kHjWSaEq1HWuz3yDXBC"
