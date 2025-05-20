@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./vars.css">
+  <link rel="stylesheet" href="./chat.css">
+  <link rel="stylesheet" href="./LandingPageUser.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <script defer src="chat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+  
+  <style>
+   a,
+   button,
+   input,
+   select,
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   * {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       border: none;
+       text-decoration: none;
+       background: none;
+   
+       -webkit-font-smoothing: antialiased;
+   }
+   
+   menu, ol, ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+   }
+   </style>
+  <title>PaperJetAPI</title>
+</head>
+<body>
+  <!-- Chatbot stuff -->
+  <button id="chatbot-toggler">
+    <span class="material-symbols-outlined">mode_comment</span>
+    <span class="material-symbols-rounded">close</span>
+  </button>
+
+  <div class="chatbot-popup">
+    <!-- Chatbot Header -->
+    <div class="chat-header">
+      <div class="header-info">
+        <svg 
+          class="chatbot-logo"
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 1024 1024"
+        >
+          <path
+            d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"
+          ></path>
+        </svg>
+
+        <h2 class="logo-text">PaperJetBot</h2>
+      </div>
+      <button id="close-chatbot"
+      class="material-symbols-rounded">keyboard_arrow_down</button>
+    </div>
+
+    <!-- Chatbot Body -->
+    <div class="chat-body">
+      <div class="message bot-message">
+        <svg 
+          class="bot-avatar"
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 1024 1024"
+        >
+        <path
+            d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"
+          ></path>
+        </svg>
+        <div class="message-text">
+          How can I help you today?
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Chatbot Footer -->
+    <div class="chat-footer">
+      <form action="#" class="chat-form">
+        <textarea placeholder="Message..." class="message-input" required></textarea>
+        <div class="chat-controls">
+          <button type="button" id="emoji-picker" class="material-symbols-rounded">sentiment_satisfied</button>
+          <div class="file-upload-wrapper">
+            <input type="file" accept="images/*" id="file-input" hidden>
+            <button type="button" id="file-upload" class="material-symbols-rounded">attach_file</button>
+          </div>
+          <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="landing-page-user">
+    <div class="desktop-2">
+      <a class="paper-jet-api" href="LandingPageMain.html">PaperJetAPI</a>
+      <div class="rectangle-1"></div>
+      <a class="subscribe2" href="SubscribePage.html">subscribe</a>
+      <a href="AccountPage.html">
+        <img class="user" src="user0.svg" />
+      </a>
+      <div class="rectangle-12"></div>
+      <a class="contact2" href="Contact.html">contact</a>
+    </div>
+    <div class="despatch">
+      <div class="rectangle-3"></div>
+      <div class="rectangle-18"></div>
+      <div class="order-creation">Order Creation</div>
+      <div class="find">
+        <div class="rectangle-13"></div>
+        <a class="upload" href="InvoicePreview.html">Upload</a>
+      </div>
+      <div class="upload2">
+        <div class="rectangle-14"></div>
+        <a class="upload3" href="InvoicePreview.html">Upload</a>
+      </div>
+      <div class="create-orders-in-bulk">
+        Create Orders
+        <br />
+        in bulk
+      </div>
+      <div class="upload-user-data">
+        Upload
+        <br />
+        User Data
+      </div>
+    </div>
+    <div class="despatch">
+      <div class="rectangle-32"></div>
+      <div class="rectangle-182"></div>
+      <div class="dispatch-advice-generation">Dispatch Advice Generation</div>
+      <div class="find">
+        <div class="rectangle-15"></div>
+        <a class="find2" href="History1.html">Find</a>
+      </div>
+      <div class="upload2">
+        <div class="rectangle-16"></div>
+        <a class="upload4" href="InvoicePreview.html">Upload</a>
+      </div>
+      <div class="use-an-order-document-stored-in-history">
+        Use an Order
+        <br />
+        Document
+        <br />
+        stored in History
+      </div>
+      <div class="upload-an-order-document">
+        Upload an
+        <br />
+        Order
+        <br />
+        Document
+      </div>
+    </div>
+    <div class="invoice">
+      <div class="rectangle-33"></div>
+      <div class="rectangle-17"></div>
+      <div class="invoice-generation">Invoice Generation</div>
+      <div class="find">
+        <div class="rectangle-19"></div>
+        <a class="find3" href="History1.html">Find</a>
+      </div>
+      <!-- <form class="upload2" action="InvoicePreview.html" method="post" enctype="multipart/form-data">
+        <div class="rectangle-110"></div>
+        <input type="file" id="fileInput" name="uploadedFile" style="display: none;" onchange="this.form.submit()" />
+        <label class="upload5" for="fileInput" style="cursor: pointer;">Upload</label>
+      </form> -->
+      <div class="rectangle-110"></div>
+
+      <input type="file" id="fileInput" style="display: none;" />
+
+      <a class="upload5" href="#" onclick="document.getElementById('fileInput').click(); return false;">Upload</a>
+
+      <script>
+        document.getElementById('fileInput').addEventListener('change', function () {
+          // File was selected – now redirect
+          window.location.href = 'InvoicePreview.html';
+        });
+      </script>
+
+      <!-- <div class="upload2">
+        <div class="rectangle-110"></div>
+        <a class="upload5" href="InvoicePreview.html">Upload</a>
+      </div> -->
+      <div class="use-an-order-document-stored-in-history2">
+        Use an Order
+        <br />
+        Document
+        <br />
+        stored in History
+      </div>
+      <div class="upload-an-order-document2">
+        Upload an
+        <br />
+        Order
+        <br />
+        Document
+      </div>
+    </div>
+    <div class="desktop-5">
+      <div class="rectangle-111"></div>
+      <a class="subscribe3" href="SubscribePage.html">subscribe</a>
+      <div class="rectangle-112"></div>
+      <a class="contact3" href="Contact.html">contact</a>
+      <a href="https://github.com/a-kuchuk/seng2021">
+        <img class="github" src="github0.svg" />
+      </a>
+    </div>
+  </div>
+  
+</body>
+</html>

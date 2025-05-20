@@ -2,6 +2,7 @@
 Unit tests for FastAPI UBL Order parsing endpoints.
 """
 
+# pylint: disable=too-many-lines
 import json
 import io
 from fastapi.testclient import TestClient
@@ -993,3 +994,25 @@ def test_chatbot():
     response = client.post("/invoice/ai/v2", json="how do i set up bulk invoices?")
     parsed_order = response.json()
     print(parsed_order)
+
+
+def test_hashing():
+    """_summary_
+
+    Tests creation of an invoice from a validated order document and hashing
+    """
+    xml_content = get_xml("order_provided_valid.xml")
+    # Pass in the order document in XML format to the /ubl/order/parse endpoint
+    # and then pass into the /ubl/order/validate endpoint
+    files = {"file": ("test.xml", xml_content, "text/xml")}
+    response4 = client.post("/invoice/hash/v2", files=files)
+    assert response4.status_code == 200
+    data = response4.json()
+    assert "invoice_hash" in data
+    assert "tx_hash" in data
+    assert data["tx_hash"].startswith("0x")
+    verify_response = client.post("/invoice/verify/v2", files=files)
+    assert verify_response.status_code == 200
+    verify_data = verify_response.json()
+    assert verify_data["invoice_hash"] == data["invoice_hash"]
+    assert verify_data["is_recorded"] is True

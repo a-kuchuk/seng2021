@@ -1,0 +1,842 @@
+.subscribe-page,
+.subscribe-page * {
+  box-sizing: border-box;
+}
+.subscribe-page {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.options {
+  background: #d9d9d9;
+  padding: 4.1875rem 3.875rem 4.1875rem 3.875rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.free {
+  flex-shrink: 0;
+  width: 22.125rem;
+  height: 33.9375rem;
+  position: static;
+}
+.rectangle-3 {
+  background: linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33);
+  border-radius: 1.875rem;
+  width: 22.125rem;
+  height: 33.9375rem;
+  position: absolute;
+  left: 3.875rem;
+  top: 4.1875rem;
+}
+.free2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 10.5625rem;
+  top: 6.0625rem;
+}
+.order-creation-dispatch-advice-generation-invoice-generation {
+  color: #6a7192;
+  text-align: left;
+  position: absolute;
+  left: 4.875rem;
+  top: 11.4375rem;
+  width: 19.3125rem;
+  height: 17.125rem;
+}
+.order-creation-dispatch-advice-generation-invoice-generation-span {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  line-height: 45px;
+  font-weight: 400;
+}
+.order-creation-dispatch-advice-generation-invoice-generation-span2 {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 36px;
+  line-height: 45px;
+  font-weight: 400;
+}
+.all-in-standardised-ubl-format-xml-file {
+  color: #6a7192;
+  text-align: center;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  position: absolute;
+  left: 5.625rem;
+  top: 26.8125rem;
+}
+.premium {
+  flex-shrink: 0;
+  width: 56.5rem;
+  height: 33.9375rem;
+  position: static;
+}
+.rectangle-4 {
+  background: linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33);
+  border-radius: 1.875rem;
+  width: 56.5rem;
+  height: 33.9375rem;
+  position: absolute;
+  left: 29.625rem;
+  top: 4.1875rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25),
+    inset 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+._10 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 8.75rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 33.625rem;
+  top: 9.3125rem;
+}
+.month {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 48.875rem;
+  top: 15.875rem;
+}
+.premium2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 50.1875rem;
+  top: 6.0625rem;
+}
+.line-1 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #d9d9d9;
+  border-width: 0.1875rem 0 0 0;
+  width: 23.75125rem;
+  height: 0rem;
+  position: absolute;
+  left: 57.88rem;
+  top: 11.5rem;
+  transform-origin: 0 0;
+  transform: rotate(90.614deg) scale(1, 1);
+}
+.order-creation-dispatch-advice-generation-invoice-generation2 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  position: absolute;
+  left: 32.5625rem;
+  top: 18.6875rem;
+  width: 23.375rem;
+  height: 11.125rem;
+}
+.subscribe3 {
+  width: 21.4375rem;
+  height: 4.1875rem;
+  position: static;
+}
+.rectangle-13 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 21.4375rem;
+  height: 4.1875rem;
+  position: absolute;
+  left: 33.5rem;
+  top: 31.5rem;
+}
+.subscribe-now {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 35.375rem;
+  top: 32.1875rem;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.75rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 59.5625rem;
+  top: 11.8125rem;
+  width: 24rem;
+  height: 24.3125rem;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 28px;
+  line-height: 42px;
+  font-weight: 400;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more-span2 {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 28px;
+  line-height: 42px;
+  font-weight: 400;
+}
+.table {
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 66.0625rem;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-5 {
+  background: #ffffff;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem;
+  width: 77.3125rem;
+  height: 55.5625rem;
+  position: absolute;
+  left: 6.3125rem;
+  top: 7rem;
+}
+.register-login-logout-update-reset-user-details-etc-return-user-s-order-statistics-create-delete-list-delete-unsend-update-order-create-order-from-csv-create-multiple-orders-in-bulk-create-delete-dispatch-get-list-of-items-off-dipsatch-get-shipment-details-and-arrival-period-create-invoice-export-invoice-in-xml-export-invoice-in-pdf-send-invoice-via-email-currency-conversion-language-translation {
+  color: #131a40;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  line-height: 3.5625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 18.9375rem;
+  top: 12.6875rem;
+}
+.rectangle-6 {
+  background: #d9d9d9;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem;
+  width: 77.3125rem;
+  height: 5.6875rem;
+  position: absolute;
+  left: 6.3125rem;
+  top: 7rem;
+}
+.line-2 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 55.5625rem;
+  height: 0rem;
+  position: absolute;
+  left: 59.5625rem;
+  top: 7rem;
+  transform-origin: 0 0;
+  transform: rotate(89.936deg) scale(1, 1);
+}
+.line-3 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 55.375rem;
+  height: 0rem;
+  position: absolute;
+  left: 71.375rem;
+  top: 7.1875rem;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-4 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 55.5625rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 7rem;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.area {
+  color: #151a33;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.125rem;
+  top: 8.5rem;
+}
+.user2 {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.5625rem;
+  top: 13rem;
+}
+.order {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 9.125rem;
+  top: 20.8125rem;
+}
+.dispatch {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 7.625rem;
+  top: 31.5rem;
+}
+.invoice {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 8.4375rem;
+  top: 42.1875rem;
+}
+.premium3 {
+  color: #151a33;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.875rem;
+  top: 8.5rem;
+}
+.function {
+  color: #151a33;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 20.125rem;
+  top: 8.5rem;
+}
+.free3 {
+  color: #151a33;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  line-height: 2.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 62.6875rem;
+  top: 8.5rem;
+}
+.line-5 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.1875rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 16.25rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.052deg) scale(1, 1);
+}
+.line-6 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 77.25rem;
+  height: 0rem;
+  position: absolute;
+  left: 6.375rem;
+  top: 19.8725rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.091deg) scale(1, 1);
+}
+.line-7 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.125rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 23.4375rem;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.line-8 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.125rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 27.0625rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.056deg) scale(1, 1);
+}
+.line-9 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 77.25rem;
+  height: 0rem;
+  position: absolute;
+  left: 6.3125rem;
+  top: 30.56rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.091deg) scale(1, 1);
+}
+.line-10 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.125rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 34.120625rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-11 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.125rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 37.7475rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-12 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 77.25rem;
+  height: 0rem;
+  position: absolute;
+  left: 6.3125rem;
+  top: 41.308125rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.091deg) scale(1, 1);
+}
+.line-13 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 44.7475rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-14 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.4375rem;
+  top: 48.308125rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-15 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.49125rem;
+  top: 51.9975rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-16 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.49125rem;
+  top: 55.558125rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.line-17 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #6a7192;
+  border-width: 0.1875rem 0 0 0;
+  width: 66.134375rem;
+  height: 0rem;
+  position: absolute;
+  left: 17.49125rem;
+  top: 58.9975rem;
+  transform-origin: 0 0;
+  transform: rotate(-0.078deg) scale(1, 1);
+}
+.check-square {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.25rem;
+  top: 13.125rem;
+  overflow: visible;
+}
+.check-square2 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 13.125rem;
+  overflow: visible;
+}
+.check-square3 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.25rem;
+  top: 20.5rem;
+  overflow: visible;
+}
+.check-square4 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 20.5rem;
+  overflow: visible;
+}
+.check-square5 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.25rem;
+  top: 30.75rem;
+  overflow: visible;
+}
+.check-square6 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 31.0625rem;
+  overflow: visible;
+}
+.check-square7 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 34.6875rem;
+  overflow: visible;
+}
+.check-square8 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.0625rem;
+  top: 38.3125rem;
+  overflow: visible;
+}
+.check-square9 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 38.3125rem;
+  overflow: visible;
+}
+.check-square10 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.0625rem;
+  top: 41.75rem;
+  overflow: visible;
+}
+.check-square11 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 41.75rem;
+  overflow: visible;
+}
+.check-square12 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 64.0625rem;
+  top: 45.1875rem;
+  overflow: visible;
+}
+.check-square13 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 45.25rem;
+  overflow: visible;
+}
+.check-square14 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 48.875rem;
+  overflow: visible;
+}
+.check-square15 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 52.5rem;
+  overflow: visible;
+}
+.check-square16 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 56rem;
+  overflow: visible;
+}
+.check-square17 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 59.5rem;
+  overflow: visible;
+}
+.check-square18 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 16.75rem;
+  overflow: visible;
+}
+.check-square19 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 27.375rem;
+  overflow: visible;
+}
+.check-square20 {
+  width: 2.3125rem;
+  height: 2.3125rem;
+  position: absolute;
+  left: 76.5rem;
+  top: 24rem;
+  overflow: visible;
+}
+.desktop-4 {
+  background: #ffffff;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-14 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe4 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.rectangle-15 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
+}
+.github {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 1.8125rem;
+  overflow: visible;
+}

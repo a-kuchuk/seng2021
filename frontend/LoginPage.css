@@ -1,0 +1,376 @@
+.login-page,
+.login-page * {
+  box-sizing: border-box;
+}
+.login-page {
+  background: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  gap: 10.5625rem;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.login {
+  flex-shrink: 0;
+  width: 56.5rem;
+  height: 33.9375rem;
+  position: static;
+}
+.rectangle-4 {
+  background: #6a7192;
+  border-radius: 1.875rem;
+  width: 56.5rem;
+  height: 33.9375rem;
+  position: absolute;
+  left: 16.75rem;
+  top: 16.8125rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25),
+    inset 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+.login2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 25.25rem;
+  top: 18.6875rem;
+}
+.register {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 51.0625rem;
+  top: 18.6875rem;
+}
+.line-1 {
+  margin-top: -0.1875rem;
+  border-style: solid;
+  border-color: #d9d9d9;
+  border-width: 0.1875rem 0 0 0;
+  width: 28.00125rem;
+  height: 0rem;
+  position: absolute;
+  left: 45rem;
+  top: 19.875rem;
+  transform-origin: 0 0;
+  transform: rotate(90.512deg) scale(1, 1);
+}
+.login-button {
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: static;
+}
+.rectangle-13 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 25.25rem;
+  top: 39.125rem;
+}
+.login3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 28.0625rem;
+  top: 39.9375rem;
+}
+.register-button {
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: static;
+}
+.rectangle-14 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 53.5625rem;
+  top: 41.375rem;
+}
+.register2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 54.9375rem;
+  top: 42.1875rem;
+}
+.rectangle-7 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 22.3125rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 19.75rem;
+  top: 28.375rem;
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+.rectangle-8 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 22.3125rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 19.75rem;
+  top: 32.25rem;
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+.rectangle-8::placeholder {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+}
+.rectangle-7::placeholder {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+}
+.forgot-password {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "Roboto-LightItalic", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 300;
+  font-style: italic;
+  position: absolute;
+  left: 20.0625rem;
+  top: 35.875rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.rectangle-9 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 22.3125rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 47.875rem;
+  top: 24.875rem;
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+
+.rectangle-9::placeholder {
+    color: #6a7192;
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 1.5rem;
+  }
+
+.rectangle-10 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 22.3125rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 47.875rem;
+  top: 28.75rem;
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+
+.rectangle-10::placeholder {
+    color: #6a7192;
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 1.5rem;
+  }
+
+.rectangle-11 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 22.3125rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 47.875rem;
+  top: 32.625rem;
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+
+.rectangle-11::placeholder {
+    color: #6a7192;
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 1.5rem;
+}
+
+.rectangle-122 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 22.3125rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 47.875rem;
+  top: 36.5rem;
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  padding-left: 10px;
+}
+
+.rectangle-122::placeholder {
+    color: #6a7192;
+    text-align: left;
+    font-family: "Roboto-Regular", sans-serif;
+    font-size: 1.5rem;
+}
+
+.desktop-5 {
+  background: #ffffff;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-15 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.rectangle-16 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
+}
+.github {
+  width: 3rem;
+  height: 3rem;
+}

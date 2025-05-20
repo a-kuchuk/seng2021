@@ -1,0 +1,222 @@
+.forgot-password-page,
+.forgot-password-page * {
+  box-sizing: border-box;
+}
+.forgot-password-page {
+  background: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  gap: 14rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.forgot {
+  flex-shrink: 0;
+  width: 27.25rem;
+  height: 27rem;
+  position: static;
+}
+.rectangle-4 {
+  background: #6a7192;
+  border-radius: 1.875rem;
+  width: 27.25rem;
+  height: 27rem;
+  position: absolute;
+  left: 31.375rem;
+  top: 20.25rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25),
+    inset 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+.enter-your-email-below-to-reset-your-password {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  position: absolute;
+  left: 34.6875rem;
+  top: 33.5625rem;
+}
+.forgot-password {
+  color: #ffffff;
+  text-align: center;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 35.6875rem;
+  top: 22.875rem;
+}
+.register-button {
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: static;
+}
+.rectangle-13 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 39.6875rem;
+  top: 40rem;
+}
+.send {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 43rem;
+  top: 40.8125rem;
+}
+.rectangle-9 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 22.3125rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 34.25rem;
+  top: 35.375rem;
+}
+.email {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 34.875rem;
+  top: 36.0625rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.desktop-5 {
+  background: #ffffff;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-14 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.rectangle-15 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
+}
+.github {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 1.8125rem;
+  overflow: visible;
+}

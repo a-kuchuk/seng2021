@@ -1,0 +1,454 @@
+/* Importing Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+.landing-page-main,
+.landing-page-main * {
+  box-sizing: border-box;
+}
+.landing-page-main {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0.0625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.home-image {
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 60rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+._5166950-1 {
+  width: 90rem;
+  height: 60rem;
+  position: absolute;
+  left: 0rem;
+  object-fit: cover;
+  aspect-ratio: 3/2;
+}
+.an-api-which-can-help-your-business-elevate-its-logistical-performance {
+  color: #6a7192;
+  text-align: left;
+  font-family: "-", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 5.625rem;
+  top: 26.375rem;
+}
+.an-api-which-can-help-your-business-elevate-its-logistical-performance-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+}
+.an-api-which-can-help-your-business-elevate-its-logistical-performance-span2 {
+  color: #6a7192;
+  font-family: "Roboto-Italic", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  font-style: italic;
+}
+.an-api-which-can-help-your-business-elevate-its-logistical-performance-span3 {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+}
+.paper-jet-api2 {
+  color: #c5cfff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 6rem;
+  font-weight: 700;
+  position: absolute;
+  left: 5.625rem;
+  top: 19.25rem;
+}
+.order-creation {
+  background: #151a33;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 35.6875rem;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-2 {
+  background: #d9d9d9;
+  width: 27.4375rem;
+  height: 29.3125rem;
+  position: absolute;
+  left: 4.4375rem;
+  top: 3.375rem;
+}
+.need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  position: absolute;
+  left: 36.3125rem;
+  top: 9.4375rem;
+}
+.need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email-span2 {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.xml-version-1-0-encoding-utf-8-order-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-urn-oasis-names-specification-ubl-schema-xsd-order-2-cbc-ubl-version-id-2-0-cbc-ubl-version-id-cbc-customization-id-urn-oasis-names-specification-ubl-xpath-order-2-0-sbs-1-0-draft-cbc-customization-id-cbc-profile-id-bpid-urn-oasis-names-draft-bpss-ubl-2-sbs-order-with-simple-response-draft-cbc-profile-id-cbc-id-aeg-012345-cbc-id-cbc-sales-order-id-con-0095678-cbc-sales-order-id-cbc-copy-indicator-false-cbc-copy-indicator-cbc-uuid-6-e-09886-b-dc-6-e-439-f-82-d-1-7-ccac-7-f-4-e-3-b-1-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cbc-note-sample-cbc-note-cac-buyer-customer-party-cbc-customer-assigned-account-id-xfb-01-cbc-customer-assigned-account-id-cbc-supplier-assigned-account-id-gt-00978567-cbc-supplier-assigned-account-id-cac-party-cac-party-name-cbc-name-iyt-corporation-cbc-name-cac-party-name-cac-postal-address-cbc-street-name-avon-way-cbc-street-name-cbc-building-name-thereabouts-cbc-building-name-cbc-building-number-56-a-cbc-building-number-cbc-city-name-bridgtow-cbc-city-name-cbc-postal-zone-zz-99-1-zz-cbc-postal-zone-cbc-country-subentity-avon-cbc-country-subentity-cac-address-line-cbc-line-3rd-floor-room-5-cbc-line-cac-address-line-cac-country-cbc-identification-code-gb-cbc-identification-code-cac-country {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 5.3125rem;
+  top: 4.25rem;
+  width: 25.5rem;
+  height: 27.6875rem;
+}
+.order-creation2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 4rem;
+  font-weight: 400;
+  position: absolute;
+  left: 36.3125rem;
+  top: 4.625rem;
+}
+.delivery {
+  background: #ffffff;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 35.6875rem;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-22 {
+  background: #d9d9d9;
+  width: 22.3125rem;
+  height: 29.3125rem;
+  position: absolute;
+  left: 63.625rem;
+  top: 3.5rem;
+}
+.xml-version-1-0-encoding-utf-8-despatch-advice-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-urn-oasis-names-specification-ubl-schema-xsd-despatch-advice-2-cbc-ubl-version-id-2-0-cbc-ubl-version-id-cbc-customization-id-urn-oasis-names-specification-ubl-xpath-despatch-advice-2-0-sbs-1-0-draft-cbc-customization-id-cbc-profile-id-bpid-urn-oasis-names-draft-bpss-ubl-2-sbs-despatch-advice-notification-draft-cbc-profile-id-cbc-id-565899-cbc-id-cbc-copy-indicator-false-cbc-copy-indicator-cbc-uuid-88-c-7280-e-8-f-10-419-f-9949-8-efffa-2842-b-8-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cbc-document-status-code-no-status-cbc-document-status-code-cbc-despatch-advice-type-code-delivery-cbc-despatch-advice-type-code-cbc-note-sample-cbc-note-cac-order-reference-cbc-id-aeg-012345-cbc-id-cbc-sales-order-id-con-0095678-cbc-sales-order-id-cbc-uuid-6-e-09886-b-dc-6-e-439-f-82-d-1-7-ccac-7-f-4-e-3-b-1-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cac-order-reference-cac-despatch-supplier-party-cbc-customer-assigned-account-id-co-001-cbc-customer-assigned-account-id-cac-party-cac-party-name-cbc-name-consortial-cbc-name-cac-party-name-cac-postal-address-cbc-street-name-busy-street-cbc-street-name {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 64.5625rem;
+  top: 4.125rem;
+  width: 17.5625rem;
+  height: 28.3125rem;
+}
+.wondering-how-to-transfer-your-goods-or-services-between-the-dispatch-party-and-delivery-party-in-response-to-an-order-document-and-other-provided-data-this-function-will-create-a-standardised-ubl-dispatch-advice-document-this-function-will-help-automatically-determine-fields-such-as-delivery-date-and-flexibly-sort-and-store-delivery-information-in-a-format-that-is-widely-recognised-as-universal-within-the-business-world {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  position: absolute;
+  left: 4.625rem;
+  top: 9.1875rem;
+}
+.dispatch-advice-generation {
+  color: #151a33;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 4rem;
+  font-weight: 400;
+  position: absolute;
+  left: 4.625rem;
+  top: 4.375rem;
+}
+.invoice {
+  background: #151a33;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 35.6875rem;
+  position: relative;
+  overflow: hidden;
+}
+.is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  position: absolute;
+  left: 36.3125rem;
+  top: 9.4375rem;
+}
+.is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency-span2 {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.xml-version-1-0-encoding-utf-8-invoice-xmlns-urn-oasis-names-specification-ubl-schema-xsd-invoice-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-cbc-id-123-cbc-id-cbc-issue-date-2011-09-22-cbc-issue-date-cac-invoice-period-cbc-start-date-2011-08-01-cbc-start-date-cbc-end-date-2011-08-31-cbc-end-date-cac-invoice-period-cac-accounting-supplier-party-cac-party-cac-party-name-cbc-name-custom-cotter-pins-cbc-name-cac-party-name-cac-party-cac-accounting-supplier-party-cac-accounting-customer-party-cac-party-cac-party-name-cbc-name-north-american-veeblefetzer-cbc-name-cac-party-name-cac-party-cac-accounting-customer-party-cac-legal-monetary-total-cbc-payable-amount-currency-id-cad-100-00-cbc-payable-amount-cac-legal-monetary-total-cac-invoice-line-cbc-id-1-cbc-id-cbc-line-extension-amount-currency-id-cad-100-00-cbc-line-extension-amount-cac-item-cbc-description-cotter-pin-mil-spec-cbc-description-cac-item-cac-invoice-line-invoice {
+  color: #151a33;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 5.125rem;
+  top: 4.125rem;
+  width: 25.5rem;
+}
+.invoice-generation {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 4rem;
+  font-weight: 400;
+  position: absolute;
+  left: 36.3125rem;
+  top: 4.625rem;
+}
+.desktop-3 {
+  background: #ffffff;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.rectangle-13 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.rectangle-14 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
+}
+.github {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 1.8125rem;
+  overflow: visible;
+}
+/* 
+.chatbot,
+.chatbot * {
+  box-sizing: border-box;
+}
+
+.chat {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 8.8125rem;
+  overflow: visible;
+  z-index: 20;
+  filter: invert(1);
+}
+.popup {
+  display: none;
+  position: absolute;
+  padding: 10px;
+  width: 20.0625rem;
+  height: 20.4375rem;
+  top: 20rem;
+  left: 5%;
+  border-radius: 1.875rem;
+  background: #d9d9d9;
+  z-index: 20;
+}
+.chatbox {
+  -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+}
+.paper-jet-bot {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  position: absolute;
+  left: 3.8125rem;
+  top: 1.4375rem;
+}
+.chat-rectangle {
+  background: #ffffff;
+  border-radius: 0.625rem;
+  width: 16.5625rem;
+  height: 12.4375rem;
+  position: absolute;
+  left: 1.8125rem;
+  top: 4.125rem;
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding-left: 10px;
+}
+
+.register-button {
+  position: absolute;
+  inset: 0;
+}
+.send-rect {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 2.375rem;
+  position: absolute;
+  left: 4.625rem;
+  top: 17.2125rem;
+}
+.send {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 1.4rem;
+  font-weight: 400;
+  position: absolute;
+  left: 8.425rem;
+  top: 17.6625rem;
+}
+
+.x {
+  width: 1.875rem;
+  height: 1.5625rem;
+  position: absolute;
+  left: 0.9375rem;
+  top: 0.875rem;
+  overflow: visible;
+} */

@@ -1,0 +1,563 @@
+.payment-page,
+.payment-page * {
+  box-sizing: border-box;
+}
+.payment-page {
+  background: #ffffff;
+  height: 67.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-2 {
+  background: #151a33;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  overflow: hidden;
+}
+.paper-jet-api {
+  color: #c5cfff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 2.375rem;
+  top: 1.875rem;
+}
+.subscribe {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 71.8125rem;
+  top: 1.4375rem;
+}
+.subscribe2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 72.75rem;
+  top: 2.25rem;
+}
+.user {
+  height: auto;
+  position: absolute;
+  left: 84.25rem;
+  top: 1.125rem;
+  overflow: visible;
+}
+.contact {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-12 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 60.9375rem;
+  top: 1.4375rem;
+}
+.contact2 {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 61.875rem;
+  top: 2.25rem;
+}
+.desktop-5 {
+  background: #ffffff;
+  width: 90rem;
+  height: 6.25rem;
+  position: absolute;
+  left: 0rem;
+  top: 61.25rem;
+  overflow: hidden;
+}
+.rectangle-13 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 10.4375rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 76.875rem;
+  top: 1.4375rem;
+}
+.subscribe3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 77.8125rem;
+  top: 2.25rem;
+}
+.rectangle-14 {
+  background: #151a33;
+  border-radius: 0.625rem;
+  width: 8.5625rem;
+  height: 3.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 1.4375rem;
+}
+.contact3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 66.625rem;
+  top: 2.25rem;
+}
+.github {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 1.8125rem;
+  overflow: visible;
+}
+.name {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 3.1875rem;
+  top: 29.25rem;
+  width: 7.9375rem;
+  height: 1.8125rem;
+}
+.or {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 45.875rem;
+  top: 37.3125rem;
+  width: 7.9375rem;
+  height: 1.8125rem;
+}
+.email {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 3.4375rem;
+  top: 44.8125rem;
+  width: 7.9375rem;
+  height: 1.8125rem;
+}
+.rectangle-10 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 3.1875rem;
+  top: 47.4375rem;
+}
+.phone-number {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 3rem;
+  top: 52.625rem;
+  width: 13.25rem;
+  height: 1.8125rem;
+}
+.rectangle-11 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 3rem;
+  top: 55.25rem;
+}
+.expiration-date {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 47.8125rem;
+  top: 52.625rem;
+  width: 16.5625rem;
+  height: 1.8125rem;
+}
+.credit-debit-card-number {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 31.4375rem;
+  top: 45.5625rem;
+  width: 27.9375rem;
+  height: 1.8125rem;
+}
+.security-code {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 31.4375rem;
+  top: 52.8125rem;
+  width: 18.125rem;
+  height: 1.8125rem;
+}
+.rectangle-132 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 13.1875rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 31.4375rem;
+  top: 55.25rem;
+}
+.rectangle-142 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 14.75rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 48.125rem;
+  top: 55.25rem;
+}
+.payment-options {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.75rem;
+  font-weight: 400;
+  position: absolute;
+  left: 31.3125rem;
+  top: 29.25rem;
+  width: 18.25rem;
+  height: 1.875rem;
+}
+.rectangle-7 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 3.1875rem;
+  top: 31.8125rem;
+}
+.rectangle-122 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 31.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 31.4375rem;
+  top: 48rem;
+}
+.rectangle-8 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 3.1875rem;
+  top: 35.6875rem;
+}
+.rectangle-9 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 24.4375rem;
+  height: 3.125rem;
+  position: absolute;
+  left: 3.1875rem;
+  top: 39.5625rem;
+}
+.citypng-com-download-pay-with-pay-pal-blue-button-png-2000-x-2000-1 {
+  width: 15.9375rem;
+  height: 15.9375rem;
+  position: absolute;
+  left: 30.625rem;
+  top: 25.5rem;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.badge-300-x-135-reverse-1 {
+  width: 8rem;
+  height: 3.625rem;
+  position: absolute;
+  left: 48.9375rem;
+  top: 31.5625rem;
+  object-fit: cover;
+  aspect-ratio: 128/58;
+}
+.image-1 {
+  width: 31.3125rem;
+  height: 2.5rem;
+  position: absolute;
+  left: 31.5625rem;
+  top: 40.625rem;
+  object-fit: cover;
+  aspect-ratio: 501/40;
+}
+.rectangle-4 {
+  background: linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33);
+  border-radius: 1.875rem;
+  width: 58.875rem;
+  height: 19.25rem;
+  position: absolute;
+  left: 3rem;
+  top: 7.9375rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25),
+    inset 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+.rectangle-15 {
+  background: linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33),
+    linear-gradient(to left, #151a33, #151a33);
+  border-radius: 1.875rem;
+  width: 22rem;
+  height: 43.1875rem;
+  position: absolute;
+  left: 65.25rem;
+  top: 7.9375rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25),
+    inset 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+}
+._10 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 8.75rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 4.125rem;
+  top: 14.6875rem;
+}
+.month {
+  color: #c5cfff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 18.375rem;
+  top: 21.25rem;
+}
+.premium {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AnonymousPro-BoldItalic", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 6.125rem;
+  top: 10.125rem;
+}
+.order-creation-dispatch-advice-generation-invoice-generation-all-in-standardised-ubl-format-xml-file {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 400;
+  position: absolute;
+  left: 26.9375rem;
+  top: 9.8125rem;
+  width: 33.4375rem;
+  height: 15.9375rem;
+}
+.order-creation-dispatch-advice-generation-invoice-generation-all-in-standardised-ubl-format-xml-file-span {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+}
+.order-creation-dispatch-advice-generation-invoice-generation-all-in-standardised-ubl-format-xml-file-span2 {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+}
+.rectangle-16 {
+  background: #d9d9d9;
+  border-radius: 0.625rem;
+  width: 21.4375rem;
+  height: 5.375rem;
+  position: absolute;
+  left: 65.6875rem;
+  top: 54.0625rem;
+}
+.subscribe-now {
+  color: #000000;
+  text-align: left;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 67.5625rem;
+  top: 55.5rem;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.875rem;
+  line-height: 2.8125rem;
+  font-weight: 400;
+  position: absolute;
+  left: 67.625rem;
+  top: 9.625rem;
+  width: 18.875rem;
+  height: 24.3125rem;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more-span {
+  color: #6a7192;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 30px;
+  line-height: 45px;
+  font-weight: 400;
+}
+.extra-features-account-statistics-order-creation-from-csv-order-creation-in-bulk-xml-to-pdf-sending-ubl-via-email-language-translation-currency-conversion-and-more-span2 {
+  color: #6a7192;
+  list-style-type: disc;
+  padding-left: 1em;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 30px;
+  line-height: 45px;
+  font-weight: 400;
+}
+.first-name {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 3.8125rem;
+  top: 32.5rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.middle-name {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 3.75rem;
+  top: 36.3125rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.last-name {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 4rem;
+  top: 40.1875rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.eg-example-gmail-com {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 4rem;
+  top: 48.0625rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+._0000-0000-0000-0000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 32.4375rem;
+  top: 48.625rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+.cvc {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 32.4375rem;
+  top: 55.9375rem;
+  width: 6.4375rem;
+  height: 2.5rem;
+}
+.mm-yyyy {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 48.9375rem;
+  top: 55.9375rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}
+._00-000-000-000 {
+  color: #6a7192;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  position: absolute;
+  left: 4rem;
+  top: 55.8125rem;
+  width: 20.75rem;
+  height: 2.5rem;
+}

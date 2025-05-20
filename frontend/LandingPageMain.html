@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./vars.css">
+  <link rel="stylesheet" href="./chat.css">
+  <link rel="stylesheet" href="./LandingPageMain.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <script defer src="chat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+
+  <style>
+   a,
+   button,
+   input,
+   select,
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   * {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       border: none;
+       text-decoration: none;
+       background: none;
+   
+       -webkit-font-smoothing: antialiased;
+   }
+   
+   menu, ol, ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+   }
+   </style>
+  <title>PaperJetAPI</title>
+</head>
+<body>
+</body>
+  <!-- Chatbot stuff -->
+  <button id="chatbot-toggler">
+    <span class="material-symbols-outlined">mode_comment</span>
+    <span class="material-symbols-rounded">close</span>
+  </button>
+
+  <div class="chatbot-popup">
+    <!-- Chatbot Header -->
+    <div class="chat-header">
+      <div class="header-info">
+        <!-- <svg
+          class="chatbot-logo"
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 1024 1024"
+        >
+          <path
+            d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"
+          ></path>
+        </svg> -->
+
+        <svg class="chatbot-logo" height="50" width="50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 570 570" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M509.384,61.784c-2.501-2.463-6.227-3.2-9.476-1.873L5.455,261.892c-3.186,1.302-5.316,4.345-5.448,7.785 s1.759,6.638,4.837,8.18l124.677,62.456l32.758,87.556c1.287,3.439,4.57,5.699,8.214,5.699c0.131,0,0.263-0.002,0.394-0.008 c2.062-0.092,3.95-0.918,5.419-2.224l0.015,0.018l48.644-43.226l127.134,63.683c1.233,0.618,2.579,0.929,3.929,0.929 c1.064,0,2.13-0.194,3.144-0.584c2.302-0.883,4.125-2.695,5.024-4.991l147.2-375.935 C512.674,67.962,511.884,64.247,509.384,61.784z M440.331,103.201L273.127,225.615L75.656,252.167L440.331,103.201z M386.11,164.642l-93.692,86.863l-5.365-14.34L386.11,164.642z M38.144,274.915l205.361-27.614l-105.824,77.476L38.144,274.915z M179.881,357.634l-10.659,38.724l-21.418-57.245l124.544-91.183l6.162,16.47l-96.135,89.129 C181.178,354.639,180.313,356.06,179.881,357.634z M186.814,398.553l7.146-25.959l14.112,7.068L186.814,398.553z M203.583,357.792 l100.772-93.427l38.794,163.338L203.583,357.792z M358.083,414.656l-38.949-163.993l161.953-150.15L358.083,414.656z"></path> </g> </g> </g></svg>
+
+        <h2 class="logo-text">PaperJetBot</h2>
+      </div>
+      <button id="close-chatbot"
+      class="material-symbols-rounded">keyboard_arrow_down</button>
+    </div>
+
+    <!-- Chatbot Body -->
+    <div class="chat-body">
+      <div class="message bot-message">
+        <svg class="bot-avatar" height="50" width="50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 570 570" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M509.384,61.784c-2.501-2.463-6.227-3.2-9.476-1.873L5.455,261.892c-3.186,1.302-5.316,4.345-5.448,7.785 s1.759,6.638,4.837,8.18l124.677,62.456l32.758,87.556c1.287,3.439,4.57,5.699,8.214,5.699c0.131,0,0.263-0.002,0.394-0.008 c2.062-0.092,3.95-0.918,5.419-2.224l0.015,0.018l48.644-43.226l127.134,63.683c1.233,0.618,2.579,0.929,3.929,0.929 c1.064,0,2.13-0.194,3.144-0.584c2.302-0.883,4.125-2.695,5.024-4.991l147.2-375.935 C512.674,67.962,511.884,64.247,509.384,61.784z M440.331,103.201L273.127,225.615L75.656,252.167L440.331,103.201z M386.11,164.642l-93.692,86.863l-5.365-14.34L386.11,164.642z M38.144,274.915l205.361-27.614l-105.824,77.476L38.144,274.915z M179.881,357.634l-10.659,38.724l-21.418-57.245l124.544-91.183l6.162,16.47l-96.135,89.129 C181.178,354.639,180.313,356.06,179.881,357.634z M186.814,398.553l7.146-25.959l14.112,7.068L186.814,398.553z M203.583,357.792 l100.772-93.427l38.794,163.338L203.583,357.792z M358.083,414.656l-38.949-163.993l161.953-150.15L358.083,414.656z"></path> </g> </g> </g></svg>
+        <!-- <svg 
+          class="bot-avatar"
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 1024 1024"
+        >
+        <path
+            d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"
+          ></path>
+        </svg> -->
+        <div class="message-text">
+          How can I help you today?
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Chatbot Footer -->
+    <div class="chat-footer">
+      <form action="#" class="chat-form">
+        <textarea placeholder="Message..." class="message-input" required></textarea>
+        <div class="chat-controls">
+          <button type="button" id="emoji-picker" class="material-symbols-rounded">sentiment_satisfied</button>
+          <div class="file-upload-wrapper">
+            <input type="file" accept="images/*" id="file-input" hidden>
+            <button type="button" id="file-upload" class="material-symbols-rounded">attach_file</button>
+          </div>
+          <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- landingpage sutff -->
+  <div class="landing-page-main">
+    <div class="desktop-2">
+      <div class="paper-jet-api">PaperJetAPI</div>
+      <div class="rectangle-1"></div>
+      <a class="subscribe2" href="SubscribePage.html">subscribe</a>
+      <a href="LoginPage.html">
+        <img class="user" src="user0.svg" />
+      </a>
+      <div class="rectangle-12"></div>
+      <a class="contact2" href="Contact.html">contact</a>
+    </div>
+<!-- 
+    <a href="#" onclick="show('chatbox')">
+      <img class="chat" src="chat-bubble.svg" />
+    </a>
+    <div class="popup" id="chatbox">
+      <div class="paper-jet-bot">PaperJetBot</div>
+      <input type="text" class="chat-rectangle" placeholder="Enter Input:"></input>
+      <div class="send-rect"></div>
+      <a class="send" href="LandingPageMain.html">Send</a>
+      <a href="#" onclick="hide('chatbox')">
+        <img class="x" src="x0.svg" />
+      </a>
+    </div> -->
+
+
+
+    <div class="home-image">
+      <img class="_5166950-1" src="_5166950-10.png" />
+      <div
+        class="an-api-which-can-help-your-business-elevate-its-logistical-performance"
+      >
+        <span>
+          <span
+            class="an-api-which-can-help-your-business-elevate-its-logistical-performance-span"
+          >
+            An API which can help your business
+            <br />
+          </span>
+          <span
+            class="an-api-which-can-help-your-business-elevate-its-logistical-performance-span2"
+          >
+            elevate
+          </span>
+          <span
+            class="an-api-which-can-help-your-business-elevate-its-logistical-performance-span3"
+          >
+            its logistical performance
+          </span>
+        </span>
+      </div>
+      <div class="paper-jet-api2">PaperJetAPI</div>
+    </div>
+    <div class="invoice">
+      <div class="rectangle-2"></div>
+      <div
+        class="is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency"
+      >
+        <span>
+          <span
+            class="is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency-span"
+          >
+            Is figuring out payment options between supplies,
+            <br />
+            products and services proving to be quite difficult?
+            <br />
+            <br />
+            This function will assist in creating a standardised UBL
+            <br />
+            Invoice from a provided Order Document and other
+            <br />
+            provided data for an efficient system in managing
+            <br />
+            payments. Extra functionalities include:
+            <br />
+            <br />
+          </span>
+          <ul
+            class="is-figuring-out-payment-options-between-supplies-products-and-services-proving-to-be-quite-difficult-this-function-will-assist-in-creating-a-standardised-ubl-invoice-from-a-provided-order-document-and-other-provided-data-for-an-efficient-system-in-managing-payments-extra-functionalities-include-converting-xml-file-format-into-pdf-translating-language-and-converting-currency-span2"
+          >
+            <li>converting XML file format into PDF</li>
+            <li>Translating language and converting currency</li>
+          </ul>
+        </span>
+      </div>
+      <div
+        class="xml-version-1-0-encoding-utf-8-invoice-xmlns-urn-oasis-names-specification-ubl-schema-xsd-invoice-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-cbc-id-123-cbc-id-cbc-issue-date-2011-09-22-cbc-issue-date-cac-invoice-period-cbc-start-date-2011-08-01-cbc-start-date-cbc-end-date-2011-08-31-cbc-end-date-cac-invoice-period-cac-accounting-supplier-party-cac-party-cac-party-name-cbc-name-custom-cotter-pins-cbc-name-cac-party-name-cac-party-cac-accounting-supplier-party-cac-accounting-customer-party-cac-party-cac-party-name-cbc-name-north-american-veeblefetzer-cbc-name-cac-party-name-cac-party-cac-accounting-customer-party-cac-legal-monetary-total-cbc-payable-amount-currency-id-cad-100-00-cbc-payable-amount-cac-legal-monetary-total-cac-invoice-line-cbc-id-1-cbc-id-cbc-line-extension-amount-currency-id-cad-100-00-cbc-line-extension-amount-cac-item-cbc-description-cotter-pin-mil-spec-cbc-description-cac-item-cac-invoice-line-invoice"
+      >
+        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        <br />
+        &lt;Invoice
+        xmlns=&quot;urn:oasis:names:specification:ubl:schema:xsd:Invoice-2&quot;
+        <br />
+        xmlns:cac=&quot;urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2&quot;
+        <br />
+        xmlns:cbc=&quot;urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2&quot;&gt;
+        <br />
+        &lt;cbc:ID&gt;123&lt;/cbc:ID&gt;
+        <br />
+        &lt;cbc:IssueDate&gt;2011-09-22&lt;/cbc:IssueDate&gt;
+        <br />
+        &lt;cac:InvoicePeriod&gt;
+        <br />
+        &lt;cbc:StartDate&gt;2011-08-01&lt;/cbc:StartDate&gt;
+        <br />
+        &lt;cbc:EndDate&gt;2011-08-31&lt;/cbc:EndDate&gt;
+        <br />
+        &lt;/cac:InvoicePeriod&gt;
+        <br />
+        &lt;cac:AccountingSupplierParty&gt;
+        <br />
+        &lt;cac:Party&gt;
+        <br />
+        &lt;cac:PartyName&gt;
+        <br />
+        &lt;cbc:Name&gt;Custom Cotter Pins&lt;/cbc:Name&gt;
+        <br />
+        &lt;/cac:PartyName&gt;
+        <br />
+        &lt;/cac:Party&gt;
+        <br />
+        &lt;/cac:AccountingSupplierParty&gt;
+        <br />
+        &lt;cac:AccountingCustomerParty&gt;
+        <br />
+        &lt;cac:Party&gt;
+        <br />
+        &lt;cac:PartyName&gt;
+        <br />
+        &lt;cbc:Name&gt;North American Veeblefetzer&lt;/cbc:Name&gt;
+        <br />
+        &lt;/cac:PartyName&gt;
+        <br />
+        &lt;/cac:Party&gt;
+        <br />
+        &lt;/cac:AccountingCustomerParty&gt;
+        <br />
+        &lt;cac:LegalMonetaryTotal&gt;
+        <br />
+        &lt;cbc:PayableAmount
+        currencyID=&quot;CAD&quot;&gt;100.00&lt;/cbc:PayableAmount&gt;
+        <br />
+        &lt;/cac:LegalMonetaryTotal&gt;
+        <br />
+        &lt;cac:InvoiceLine&gt;
+        <br />
+        &lt;cbc:ID&gt;1&lt;/cbc:ID&gt;
+        <br />
+        &lt;cbc:LineExtensionAmount
+        currencyID=&quot;CAD&quot;&gt;100.00&lt;/cbc:LineExtensionAmount&gt;
+        <br />
+        &lt;cac:Item&gt;
+        <br />
+        &lt;cbc:Description&gt;Cotter pin, MIL-SPEC&lt;/cbc:Description&gt;
+        <br />
+        &lt;/cac:Item&gt;
+        <br />
+        &lt;/cac:InvoiceLine&gt;
+        <br />
+        &lt;/Invoice&gt;
+      </div>
+      <div class="invoice-generation">Invoice Generation</div>
+    </div>
+    <div class="delivery">
+      <div class="rectangle-22"></div>
+      <div
+        class="xml-version-1-0-encoding-utf-8-despatch-advice-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-urn-oasis-names-specification-ubl-schema-xsd-despatch-advice-2-cbc-ubl-version-id-2-0-cbc-ubl-version-id-cbc-customization-id-urn-oasis-names-specification-ubl-xpath-despatch-advice-2-0-sbs-1-0-draft-cbc-customization-id-cbc-profile-id-bpid-urn-oasis-names-draft-bpss-ubl-2-sbs-despatch-advice-notification-draft-cbc-profile-id-cbc-id-565899-cbc-id-cbc-copy-indicator-false-cbc-copy-indicator-cbc-uuid-88-c-7280-e-8-f-10-419-f-9949-8-efffa-2842-b-8-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cbc-document-status-code-no-status-cbc-document-status-code-cbc-despatch-advice-type-code-delivery-cbc-despatch-advice-type-code-cbc-note-sample-cbc-note-cac-order-reference-cbc-id-aeg-012345-cbc-id-cbc-sales-order-id-con-0095678-cbc-sales-order-id-cbc-uuid-6-e-09886-b-dc-6-e-439-f-82-d-1-7-ccac-7-f-4-e-3-b-1-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cac-order-reference-cac-despatch-supplier-party-cbc-customer-assigned-account-id-co-001-cbc-customer-assigned-account-id-cac-party-cac-party-name-cbc-name-consortial-cbc-name-cac-party-name-cac-postal-address-cbc-street-name-busy-street-cbc-street-name"
+      >
+        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        <br />
+        &lt;DespatchAdvice
+        xmlns:cbc=&quot;urn:oasis:names:specification:ubl:schema:xsd:CommonBasicC
+        <br />
+        omponents-2&quot;
+        xmlns:cac=&quot;urn:oasis:names:specification:ubl:schema:xsd:CommonAggreg
+        <br />
+        ateComponents-2&quot;
+        xmlns=&quot;urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2&quot;&gt;
+        <br />
+        &lt;cbc:UBLVersionID&gt;2.0&lt;/cbc:UBLVersionID&gt;
+        <br />
+        &lt;cbc:CustomizationID&gt;urn:oasis:names:specification:ubl:xpath:DespatchAd
+        <br />
+        vice-2.0:sbs-1.0-draft&lt;/cbc:CustomizationID&gt;
+        <br />
+        &lt;cbc:ProfileID&gt;bpid:urn:oasis:names:draft:bpss:ubl-2-sbs-despatch-advice-notification-draft&lt;/cbc:ProfileID&gt;
+        <br />
+        &lt;cbc:ID&gt;565899&lt;/cbc:ID&gt;
+        <br />
+        &lt;cbc:CopyIndicator&gt;false&lt;/cbc:CopyIndicator&gt;
+        <br />
+        &lt;cbc:UUID&gt;88C7280E-8F10-419F-9949-8EFFFA2842B8&lt;/cbc:UUID&gt;
+        <br />
+        &lt;cbc:IssueDate&gt;2005-06-20&lt;/cbc:IssueDate&gt;
+        <br />
+        &lt;cbc:DocumentStatusCode&gt;NoStatus&lt;/cbc:DocumentStatusCode&gt;
+        <br />
+        &lt;cbc:DespatchAdviceTypeCode&gt;delivery&lt;/cbc:DespatchAdviceTypeCode&gt;
+        <br />
+        &lt;cbc:Note&gt;sample&lt;/cbc:Note&gt;
+        <br />
+        &lt;cac:OrderReference&gt;
+        <br />
+        &lt;cbc:ID&gt;AEG012345&lt;/cbc:ID&gt;
+        <br />
+        &lt;cbc:SalesOrderID&gt;CON0095678&lt;/cbc:SalesOrderID&gt;
+        <br />
+        &lt;cbc:UUID&gt;6E09886B-DC6E-439F-82D1-7CCAC7F4E3B1&lt;/cbc:UUID&gt;
+        <br />
+        &lt;cbc:IssueDate&gt;2005-06-20&lt;/cbc:IssueDate&gt;
+        <br />
+        &lt;/cac:OrderReference&gt;
+        <br />
+        &lt;cac:DespatchSupplierParty&gt;
+        <br />
+        &lt;cbc:CustomerAssignedAccountID&gt;CO001&lt;/cbc:CustomerAssignedAccou
+        &lt;cac:Party&gt;
+        <br />
+        &lt;cac:PartyName&gt;
+        <br />
+        &lt;cbc:Name&gt;Consortial&lt;/cbc:Name&gt;
+        <br />
+        &lt;/cac:PartyName&gt;
+        <br />
+        &lt;cac:PostalAddress&gt;
+        <br />
+        &lt;cbc:StreetName&gt;Busy Street&lt;/cbc:StreetName&gt;
+        <br />
+      </div>
+      <div
+        class="wondering-how-to-transfer-your-goods-or-services-between-the-dispatch-party-and-delivery-party-in-response-to-an-order-document-and-other-provided-data-this-function-will-create-a-standardised-ubl-dispatch-advice-document-this-function-will-help-automatically-determine-fields-such-as-delivery-date-and-flexibly-sort-and-store-delivery-information-in-a-format-that-is-widely-recognised-as-universal-within-the-business-world"
+      >
+        Wondering how to transfer your goods or services between the
+        <br />
+        Dispatch party and Delivery party? In response to an Order
+        <br />
+        Document and other provided data, this function will create a
+        <br />
+        standardised UBL Dispatch Advice document.
+        <br />
+        <br />
+        This function will help automatically determine fields such as
+        <br />
+        delivery date and flexibly sort and store delivery information
+        <br />
+        in a format that is widely recognised as universal within the
+        <br />
+        business world.
+      </div>
+      <div class="dispatch-advice-generation">Dispatch Advice Generation</div>
+    </div>
+    <div class="order-creation">
+      <div class="rectangle-2"></div>
+      <div
+        class="need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email"
+      >
+        <span>
+          <span
+            class="need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email-span"
+          >
+            Need help sorting and storing all you company’s orders?
+            <br />
+            This function will help create a standardised
+            <br />
+            UBL Order document from your provided data to assist in
+            <br />
+            managing incoming supplies. Other extra functionalities
+            <br />
+            include:
+            <br />
+            <br />
+          </span>
+          <ul
+            class="need-help-sorting-and-storing-all-you-company-s-orders-this-function-will-help-create-a-standardised-ubl-order-document-from-your-provided-data-to-assist-in-managing-incoming-supplies-other-extra-functionalities-include-creating-orders-in-bulk-creating-orders-from-a-csv-file-storing-previously-made-order-documents-sending-order-documents-via-email-span2"
+          >
+            <li>Creating orders in bulk</li>
+            <li>Creating orders from a CSV file</li>
+            <li>Storing previously made Order documents</li>
+            <li>Sending order documents via email</li>
+          </ul>
+        </span>
+      </div>
+      <div
+        class="xml-version-1-0-encoding-utf-8-order-xmlns-cbc-urn-oasis-names-specification-ubl-schema-xsd-common-basic-components-2-xmlns-cac-urn-oasis-names-specification-ubl-schema-xsd-common-aggregate-components-2-xmlns-urn-oasis-names-specification-ubl-schema-xsd-order-2-cbc-ubl-version-id-2-0-cbc-ubl-version-id-cbc-customization-id-urn-oasis-names-specification-ubl-xpath-order-2-0-sbs-1-0-draft-cbc-customization-id-cbc-profile-id-bpid-urn-oasis-names-draft-bpss-ubl-2-sbs-order-with-simple-response-draft-cbc-profile-id-cbc-id-aeg-012345-cbc-id-cbc-sales-order-id-con-0095678-cbc-sales-order-id-cbc-copy-indicator-false-cbc-copy-indicator-cbc-uuid-6-e-09886-b-dc-6-e-439-f-82-d-1-7-ccac-7-f-4-e-3-b-1-cbc-uuid-cbc-issue-date-2005-06-20-cbc-issue-date-cbc-note-sample-cbc-note-cac-buyer-customer-party-cbc-customer-assigned-account-id-xfb-01-cbc-customer-assigned-account-id-cbc-supplier-assigned-account-id-gt-00978567-cbc-supplier-assigned-account-id-cac-party-cac-party-name-cbc-name-iyt-corporation-cbc-name-cac-party-name-cac-postal-address-cbc-street-name-avon-way-cbc-street-name-cbc-building-name-thereabouts-cbc-building-name-cbc-building-number-56-a-cbc-building-number-cbc-city-name-bridgtow-cbc-city-name-cbc-postal-zone-zz-99-1-zz-cbc-postal-zone-cbc-country-subentity-avon-cbc-country-subentity-cac-address-line-cbc-line-3rd-floor-room-5-cbc-line-cac-address-line-cac-country-cbc-identification-code-gb-cbc-identification-code-cac-country"
+      >
+        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        <br />
+        &lt;Order
+        xmlns:cbc=&quot;urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2&quot;
+        xmlns:cac=&quot;urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2&quot;
+        xmlns=&quot;urn:oasis:names:specification:ubl:schema:xsd:Order-2&quot;&gt;
+        <br />
+        &lt;cbc:UBLVersionID&gt;2.0&lt;/cbc:UBLVersionID&gt;
+        <br />
+        &lt;cbc:CustomizationID&gt;urn:oasis:names:specification:ubl:xpath:Order-2.0:sbs-1.0-draft&lt;/cbc:CustomizationID&gt;
+        <br />
+        &lt;cbc:ProfileID&gt;bpid:urn:oasis:names:draft:bpss:ubl-2-sbs-order-with-simple-response-draft&lt;/cbc:ProfileID&gt;
+        <br />
+        &lt;cbc:ID&gt;AEG012345&lt;/cbc:ID&gt;
+        <br />
+        &lt;cbc:SalesOrderID&gt;CON0095678&lt;/cbc:SalesOrderID&gt;
+        <br />
+        &lt;cbc:CopyIndicator&gt;false&lt;/cbc:CopyIndicator&gt;
+        <br />
+        &lt;cbc:UUID&gt;6E09886B-DC6E-439F-82D1-7CCAC7F4E3B1&lt;/cbc:UUID&gt;
+        <br />
+        &lt;cbc:IssueDate&gt;2005-06-20&lt;/cbc:IssueDate&gt;
+        <br />
+        &lt;cbc:Note&gt;sample&lt;/cbc:Note&gt;
+        <br />
+        &lt;cac:BuyerCustomerParty&gt;
+        <br />
+        &lt;cbc:CustomerAssignedAccountID&gt;XFB01&lt;/cbc:CustomerAssignedAccountID&gt;
+        <br />
+        &lt;cbc:SupplierAssignedAccountID&gt;GT00978567&lt;/cbc:SupplierAssignedAccountID&gt;
+        <br />
+        &lt;cac:Party&gt;
+        <br />
+        &lt;cac:PartyName&gt;
+        <br />
+        &lt;cbc:Name&gt;IYT Corporation&lt;/cbc:Name&gt;
+        <br />
+        &lt;/cac:PartyName&gt;
+        <br />
+        &lt;cac:PostalAddress&gt;
+        <br />
+        &lt;cbc:StreetName&gt;Avon Way&lt;/cbc:StreetName&gt;
+        <br />
+        &lt;cbc:BuildingName&gt;Thereabouts&lt;/cbc:BuildingName&gt;
+        <br />
+        &lt;cbc:BuildingNumber&gt;56A&lt;/cbc:BuildingNumber&gt;
+        <br />
+        &lt;cbc:CityName&gt;Bridgtow&lt;/cbc:CityName&gt;
+        <br />
+        &lt;cbc:PostalZone&gt;ZZ99 1ZZ&lt;/cbc:PostalZone&gt;
+        <br />
+        &lt;cbc:CountrySubentity&gt;Avon&lt;/cbc:CountrySubentity&gt;
+        <br />
+        &lt;cac:AddressLine&gt;
+        <br />
+        &lt;cbc:Line&gt;3rd Floor, Room 5&lt;/cbc:Line&gt;
+        <br />
+        &lt;/cac:AddressLine&gt;
+        <br />
+        &lt;cac:Country&gt;
+        <br />
+        &lt;cbc:IdentificationCode&gt;GB&lt;/cbc:IdentificationCode&gt;
+        <br />
+        &lt;/cac:Country&gt;
+      </div>
+      <div class="order-creation2">Order creation</div>
+    </div>
+    <div class="desktop-3">
+      <div class="rectangle-13"></div>
+      <a class="subscribe3" href="SubscribePage.html">subscribe</a>
+      <div class="rectangle-14"></div>
+      <a class="contact3" href="Contact.html">contact</a>
+      <a href="https://github.com/a-kuchuk/seng2021">
+        <img class="github" src="github0.svg" />
+      </a>
+    </div>
+  </div>
+</body>
+</html>
